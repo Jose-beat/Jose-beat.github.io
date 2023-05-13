@@ -50,6 +50,11 @@ body {
   .featurette-divider {
     margin: 5rem 0; /* Space out the Bootstrap <hr> more */
   }
+
+  .featurette-header {
+    margin: 5rem 0; /* Space out the Bootstrap <hr> more */
+    opacity: 0;
+  }
   
   /* Thin out the marketing headings */
   /* rtl:begin:remove */
@@ -156,3 +161,7 @@ body {
   .bd-mode-toggle {
     z-index: 1500;
   }
+
+#profile-image{
+  width: 100px;
+}
