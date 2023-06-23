@@ -5,15 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../../lib/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <script src="../../lib/bootstrap/js/bootstrap.bundle.js"></script>
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="public/css/style.css">
+    <script src="lib/bootstrap/js/bootstrap.bundle.js"></script>
 
 
 </head>
-<body>
-    <header data-bs-theme="dark">
-        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+<body data-barba="wrapper">
+    <main data-barba="container" data-barba-namespace="home">
+      <header data-bs-theme="dark">
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top myNav" style="background-color: #1C335E;">
             <div class="container-fluid">
                 <a class="navbar-brand">Jose Uriel Rodriguez Ramirez</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"  data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"  aria-label="Toggle navigation">
@@ -23,11 +24,11 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav me-auto mb-2 mb-md-0">
                         <li class="nav-item">
-                            <a href="../../index.html" class="nav-link" aria-current="page">Inicio</a>
+                            <a href="index.html" class="nav-link" aria-current="page">Inicio</a>
                         </li>
                         
                         <li class="nav-item">
-                            <a href="#" class="nav-link" aria-current="page">Portafolio</a>
+                            <a href="" class="nav-link active" aria-current="page">Portafolio</a>
                         </li>
                         
                         <li class="nav-item">
@@ -39,7 +40,6 @@
             </div>
           </nav>
     </header>
-    <main>
         <hr class="featurette-header">
         <div class="container ">
             <div class="row featurette">
@@ -123,7 +123,11 @@
             </p>
           </footer>
     </main>
-    <script src="../js/color-modes.js"></script>
+    <script src="lib/jquery/jquery-3.7.0.min.js"></script>
+    <script src="https://unpkg.com/@barba/core"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@barba/core"></script>
+    <script src="public/js/color-modes.js"></script>
+    <script src="public/js/script.js"></script>
 
 </body>
 </html>

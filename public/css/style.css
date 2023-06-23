@@ -6,8 +6,19 @@ body {
     padding-top: 3rem;
     padding-bottom: 3rem;
     color: rgb(var(--bs-tertiary-color-rgb));
+    transition: all .3s;
   }
   
+  body::after{
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: static;
+    top: -100vw;
+    left: 0;
+    background: #000000;
+    transition: all .3s;
+  }
   
   /* CUSTOMIZE THE CAROUSEL
   -------------------------------------------------- */
@@ -165,5 +176,26 @@ body {
 #profile-image{
   width: 100px;
   
+}
+
+.loading::after{
+  position: fixed;
+  top: 0;
+}
+.item-icon{
+  width: 70px;
+  height: 70px;
+  background-color: #a8a8a8;
+  border-radius: 90px;
+
+}
+.image-item{
+  width: 70px;
+  height: 70px;
+}
+
+.container-media{
+  width: 250px;
+  height: 250px;
 }
 
