@@ -20,7 +20,8 @@ $(document).ready(function(){
       }]
     });
 
-    createItemContainer(languages);
+    createItemContainer(languages, "Lenguajes de Programacion", "myLanguajes");
+    createItemContainer(frameworks, "Frameworks", "myFrameworks");
     galleryExpand('container-media');
     galleryCollapse('container-media');
 
