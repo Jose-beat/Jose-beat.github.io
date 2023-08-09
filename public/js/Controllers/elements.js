@@ -37,7 +37,7 @@ function createItemContainer(items, title, idSection){
         let itemsLength = items.length;
         let itemContainers = 0;
         let itemsByContainer = 8;
-        let SectionContainer = `<div id=${idSection} class="sectionContainer"><h2>${title}</h2></div>`;
+        let SectionContainer = `<div id=${idSection} class="mySections"><h2 class="sectionTitle">${title}</h2></div>`;
 
         if(itemsLength > 0){
             $('#items').append(SectionContainer);
