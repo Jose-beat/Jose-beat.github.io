@@ -23,7 +23,8 @@ $(document).ready(function(){
     createItemContainer(languages, "Lenguajes de Programacion", "myLanguajes");
     createItemContainer(frameworks, "Frameworks", "myFrameworks");
 
-    
+    addingCarouselImages(imageCarousel)
+
     galleryExpand('container-media');
     galleryCollapse('container-media');
 

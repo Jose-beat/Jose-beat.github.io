@@ -16,7 +16,7 @@ var languages = [
     {name:'Name14', imagePath:''},
     {name:'Name15', imagePath:''},
     {name:'Name16', imagePath:''},
-    {name:'Name17', imagePath:''},
+    {name:'Name17', imagePath:''}
 ];
 
 var frameworks = [
