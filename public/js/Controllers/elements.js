@@ -1,28 +1,22 @@
 
 var languages = [
-    {name:'Name1', imagePath:''},
-    {name:'Name2', imagePath:''},
-    {name:'Name3', imagePath:''},
-    {name:'Name4', imagePath:''},
-    {name:'Name5', imagePath:''},
-    {name:'Name6', imagePath:''},
-    {name:'Name7', imagePath:''},
-    {name:'Name8', imagePath:''},
-    {name:'Name9', imagePath:''},
-    {name:'Name10', imagePath:''},
-    {name:'Name11', imagePath:''},
-    {name:'Name12', imagePath:''},
-    {name:'Name13', imagePath:''},
-    {name:'Name14', imagePath:''},
-    {name:'Name15', imagePath:''},
-    {name:'Name16', imagePath:''},
-    {name:'Name17', imagePath:''}
+   
+    {name:'C-Sharp', imagePath:'/public/img/icon-csharp.svg'},
+    {name:'CSS', imagePath:'/public/img/icon-css.png'},
+    {name:'Dart', imagePath:'/public/img/icon-dart.png'},
+    {name:'HTML', imagePath:'/public/img/icon-html.png'},
+    {name:'Java', imagePath:'/public/img/icon-java.png'},
+    {name:'JavaScript', imagePath:'/public/img/icon-js.png'},
+    {name:'PHP', imagePath:'/public/img/icon-php.png'},
+    {name:'Python', imagePath:'/public/img/icon-python.svg'}
 ];
 
 var frameworks = [
-    {name:'Name1', imagePath:''},
-    {name:'Name2', imagePath:''},
-    {name:'Name3', imagePath:''}
+    {name:'Laravel', imagePath:'/public/img/icon-lrvl.svg'},
+    {name:'NetCore', imagePath:'/public/img/icon-netcore.svg'},
+    {name:'Django', imagePath:'/public/img/icon-dj.png'},
+    {name:'Flutter', imagePath:'/public/img/icon-fltr.png'},
+    {name:'Bootstrap', imagePath:'/public/img/icon-bstp.png'},
 ];
 // var programs = [
 //     {name:'Name1', imagePath:''},
@@ -70,9 +64,9 @@ function technologyItems(items, containers, itemsByContainer, idSection){
     items.forEach(function(val, index, array){
 
         let myItem = `
-            <div class="col">
+            <div  class="col">
                 <div  class="item-icon mx-auto" >
-                    <img class="image-item " src="public/img/icon_test.png" alt="">
+                    <img class="image-item mx-auto d-block" src="${val.imagePath}" alt="">
                 </div>
                 <p class="text-center fw-bold">
                 ${val.name}

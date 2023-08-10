@@ -4,7 +4,7 @@ function galleryExpand(className){
         console.log($(this));
         anime({
             targets: `.${className}`,
-            width: '100%', // -> from '28px' to '100%',
+            width: '290px', // -> from '28px' to '100%',
             easing: 'easeInOutQuad',
             direction: 'alternate',
             loop: false

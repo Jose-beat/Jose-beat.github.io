@@ -175,7 +175,7 @@ body {
   }
 
 #profile-image{
-  width: 100px;
+  width: 100%;
   
 }
 
@@ -184,23 +184,27 @@ body {
   top: 0;
 }
 .item-icon{
-  width: 70px;
+  width: 100px;
   height: 70px;
-  background-color: #a8a8a8;
-  border-radius: 90px;
+
 
 }
 .image-item{
-  width: 70px;
-  height: 70px;
+  width: 60%;
+
 }
 
 .container-media{
-  width: 250px;
-  height: 250px;
+  width: 125px;
+  
 }
 
 .sectionTitle{
   margin: 4%;
 }
 
+#contentImages{
+  width: 500px;
+  height: 500px;
+ 
+}

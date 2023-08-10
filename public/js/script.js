@@ -3,6 +3,7 @@ $(document).ready(function(){
       transitions: [{
         name: 'default-transition',
         leave: function(data) {
+          console.log(data);
           var done = this.async();
           document.body.classList.add('loading')
           setTimeout(function(){
@@ -10,6 +11,7 @@ $(document).ready(function(){
           }, 300);
         },
         enter: function(data) {
+            console.log(data);
             var done = this.async();
             done();
     
@@ -24,9 +26,9 @@ $(document).ready(function(){
     createItemContainer(frameworks, "Frameworks", "myFrameworks");
 
     addingCarouselImages(imageCarousel)
-
-    galleryExpand('container-media');
-    galleryCollapse('container-media');
+    addSectionsBlog(sections);
+    //galleryExpand('container-media');
+    // galleryCollapse('container-media');
 
 });
 
