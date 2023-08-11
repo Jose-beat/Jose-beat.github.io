@@ -63,7 +63,7 @@ body {
   }
 
   .featurette-header {
-    margin: 5rem 0; /* Space out the Bootstrap <hr> more */
+    margin: 1rem 0; /* Space out the Bootstrap <hr> more */
     opacity: 0;
   }
   
@@ -207,4 +207,9 @@ body {
   width: 500px;
   height: 500px;
  
+}
+
+.icon-items{
+  width: 35%;
+  fill: currentColor !important;
 }

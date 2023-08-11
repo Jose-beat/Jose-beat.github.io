@@ -39,6 +39,7 @@ $(document).ready(function(){
             createItemContainer(frameworks, "Frameworks", "myFrameworks");
             addingCarouselImages(imageCarousel)
             addSectionsBlog(sections);
+            addingPersonalInformation(generalInfo);
           }
 
         },
