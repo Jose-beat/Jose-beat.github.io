@@ -1,8 +1,8 @@
 var generalInfo = [
-    {name: 'Github Profile', type:'link', content:'@Jose-beat', iconPath: '/public/icons/icon-github.svg'},
-    {name: 'Phone Number', type:'text', content:'+2491302526', iconPath: '/public/icons/icon-phone.svg'},
-    {name: 'Phone Number', type:'text', content:'+2491302526', iconPath: '/public/icons/icon-phone.svg'},
-    {name: 'Phone Number', type:'text', content:'+2491302526', iconPath: '/public/icons/icon-phone.svg'},
+    {name: 'Github Profile', type:'link', link:'https://github.com/Jose-beat', content:'@Jose-beat', iconPath: '/public/icons/icon-github.svg'},
+    {name: 'Numero Telefonico', type:'text', content:'+52-2491111518', iconPath: '/public/icons/icon-phone.svg'},
+    {name: 'Correo Electronico', type:'text', content:'uri.rm.45@gmail.com', iconPath: '/public/icons/icon-email.svg'},
+    {name: 'Ubicacion', type:'text', content:'Xochitlan Todos Santos, Puebla, Mexico', iconPath: '/public/icons/icon-location.svg'},
 ]
 
 var sections = [
@@ -64,37 +64,49 @@ function addingPersonalInformation(items){
     
     let section = $('#general-information');
     let infoCopy = [...items];
-
+    let numberOfContainers = 0;
+    let itemsByContainer = 2;
    items.forEach(function(element, index, array){
-        console.log(infoCopy);
- 
-        if(index % 3 === 0 || index === 0){
-            let container = `<div id=${index} class="row align-items-start"></div>`;
+        
+        if(index % itemsByContainer === 0 || index === 0){
+            let container = `<div id="section-gi-${index}" class="row align-items-start"></div>`;
             section.append(container);
-
-            let sector = infoCopy.splice(0,3);
-            sector.forEach(function(element, index, array){
-                $(`#${index}`).append(
-                    `<div class="col">
-                        <img class="icon-items mx-auto d-block" src="${element.iconPath}" alt="">
-                        <p class="text-center fw-bold">
-                           ${element.name}
-                        </p>
-                    </div>
-                `
-                );
-                 console.log("Mi elemento" + element);
-            });
-
+            numberOfContainers += 1;
         }
    });
 
+   addGeneralInfoItems(items, numberOfContainers, itemsByContainer);
+}
 
-//    let sector = infoCopy.splice(0,3);
-//    console.log(sector);
-//    console.log(infoCopy);
+function addGeneralInfoItems(items, numberContainers, itemsByContainer){
+    let stringItems = [];
+    items.forEach(function(element, index, array){
+        let myItem = `<div class="col">
+                <img class="icon-items mx-auto d-block" src="${element.iconPath}" alt="">
+                ${
+                    element.type == 'link'
+                    ? `<a class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover text-center fw-bold" href="${element.link}">${element.content}<a>`
+                    : `<p class="text-center fw-bold">${element.content}</p>`
+                }
+                
+            </div>
+        `;
+    
+        stringItems.push(myItem);
+        
+    });
 
+    for (let index = 0; index <= numberContainers; index++){
+        
+        let myContainer = $(`#section-gi-${index * itemsByContainer}`);
+            for (let index = 1; index <= itemsByContainer; index++) {
 
+                let itemPop = stringItems.pop();
+                myContainer.append(itemPop);
+                
+            }
+        
+    };
 
 }
 
