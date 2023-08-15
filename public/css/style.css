@@ -213,3 +213,7 @@ body {
   width: 15%;
   fill: currentColor !important;
 }
+
+.sub-item{
+  color: #1269f5;
+}

@@ -10,71 +10,104 @@ var sections = [
         name:'Mi Seccion', 
         type: 'head',
         title:'Perfil Profesional', 
-        
-        subtitle:'Un subtitulo', 
-        
+        subtitle:'', 
         textContent:`Me considero una persona preparada para aplicar sus conocimientos en el ámbito laboral. En busca de un ambiente sano para contribuir con él. El manejo de las tecnologías de la información siempre ha sido una habilidad que me ha motivado a la superación personal. Parte de una pasión que debe alimentarse con conocimiento y práctica.`, 
-        
         imageContent:'/public/img/500x500px.png',
         imageClass: 'picture',
-
-        imageAlt : 'Descripcion'
-    
-    },
-
-    {
-        name:'Mi Seccion',
-
-        type: 'content',
-        
-        title:'Un titulo', 
-        
-        subtitle:'Un subtitulo', 
-        
-        textContent:`Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. `, 
-        
-        imageContent:'/public/img/500x500px.png',
-
-        imageClass: 'contentImages',
-
-        imageAlt : 'Descripcion'
+        imageAlt : 'Foto de Perfil'
     
     },
     {
-        name:'Mi Seccion',
-
-        type: 'content',
-        
-        title:'Un titulo', 
-        
-        subtitle:'Un subtitulo', 
-        
-        textContent:`Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. `, 
-        
-        imageContent:'/public/img/500x500px.png',
-
-        imageClass: 'contentImages',
-
-        imageAlt : 'Descripcion'
-    
-    },
-
-    {
-        name:'MiSeccion',
+        name:'experience',
 
         type: 'list',
         
-        title:'Un titulo', 
+        title:'Experiencia', 
         
-        subtitle:'Un subtitulo', 
+        subtitle:'', 
         
         listContent:[
-            'Evento 1',
-            'Evento 2',
-            'Evento 3',
-            'Evento 4',
-            'Evento 5',
-            'Evento 6',
+            itemsFormat('experience', 'SISTEMA UNIFICADO DE CONTROL UNIVERSAL | ANALISTA/DOCUMENTADOR', 'Analisis y toma de requerimientos para definicion de alcances para el proyecto en el Honorable Ayuntamiento de Tecamachalco', 'mayo 2020 – septiembre 2020'),
+            itemsFormat('experience', 'TICAS | EFOODIES', 'Desarrollo de uma plataforma para la administracion de restaurantes y pedidos en linea desarrollado em NET CORE para la aplicacion web de administracion y Flutter para plataformas moviles.', 'agosto 2021 – mayo 2022'),
+            itemsFormat('experience', 'XHOFHOX | GET PLATFORM', 'Desarrollo Back End de la plataforma web de administracion de campamentos y participantes de los mismos en EUA.', 'octubre 2021 – febrero 2022'),
+            itemsFormat('experience','TICAS | SOPORTE A SISTEMAS SIUM', 'Soporte a los sistemas de SIUM pertenecientes a la universidad maya, control de incidencias, actualizacion del sistema de facturacion y capacitacion de personal.', 'enero 2022 - abril 2022' ),
+            itemsFormat('experience', 'XHOFHOX | AGENDAME', 'Desarrollo y soporte del sistema “Agendame“ para la creacion y administracion de citas a distintas sucursales, empresas o servicios.', 'enero 2022 - abril 2022'),
+            itemsFormat('experience', 'Softtek | Cuente Coppel - Remediaciones', 'Soporte, remediacion de querys, correccion de errores y analisis de aplicaciones privadas de la empresa Coppel', 'Octubre 2022 - Actualidad'),
+        ],
+        
+        imageContent:'/public/img/500x500px.png',
+
+        imageClass: 'contentImages',
+
+        imageAlt : 'Descripcion'
+    
+    },
+    // {
+    //     name:'Mi Seccion',
+    //     type: 'content',
+    //     title:'Un titulo', 
+    //     subtitle:'Un subtitulo', 
+    //     textContent:`Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. `, 
+    //     imageContent:'/public/img/500x500px.png',
+    //     imageClass: 'contentImages',
+    //     imageAlt : 'Descripcion'
+    
+    // },
+    // {
+    //     name:'Mi Seccion',
+
+    //     type: 'content',
+        
+    //     title:'Un titulo', 
+        
+    //     subtitle:'Un subtitulo', 
+        
+    //     textContent:`Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. `, 
+        
+    //     imageContent:'/public/img/500x500px.png',
+
+    //     imageClass: 'contentImages',
+
+    //     imageAlt : 'Descripcion'
+    
+    // },
+
+    {
+        name:'skills',
+
+        type: 'list',
+        
+        title:'Habilidades', 
+        
+        subtitle:'', 
+        
+        listContent:[
+            'Manejo, modelado y diseño de base de datos relacionales (Modelo entidad-relación y modelo relacional)',
+            'Dominio del Lenguaje Universal de Modelado (UML)',
+            'Manejo de Métricas para el desarrollo de software',
+            'Uso de Metodologías Agiles para el desarrollo de software (SCRUM, XP)',
+        ],
+        
+        imageContent:'/public/img/500x500px.png',
+
+        imageClass: 'contentImages',
+
+        imageAlt : 'Descripcion'
+    
+    },
+    {
+        name:'shares',
+
+        type: 'list',
+        
+        title:'Participaciones', 
+        
+        subtitle:'', 
+        
+        listContent:[
+            'Participación en el curso Cisco R&S: Introduction to Networks',
+            'Participacion en el “Behind The Code” organizado por IBM',
+            'Practicipacion impartiendo el taller “Desarrollo movil con flutter y consumo de Web Service” en el Instituto Tecnologico Superior de Acatlan de Osorio.',
         ],
         
         imageContent:'/public/img/500x500px.png',
@@ -284,4 +317,20 @@ function addSectionsBlog(sections){
         }
 
     });
+}
+
+function itemsFormat(type, title, content, dates){
+    
+    let itemFormat = ``;
+    switch (type) {
+        case 'experience':
+            itemFormat = `${title}</br> <strong>Tareas realizadas:</strong> ${content} <p class="sub-item">${dates}</p>`;
+            break;
+    
+        default:
+
+            break;
+    }
+
+    return  itemFormat;
 }
