@@ -37,8 +37,14 @@ $(document).ready(function(){
           afterEnter(data){
             createItemContainer(languages, "Lenguajes de Programacion", "myLanguajes");
             createItemContainer(frameworks, "Frameworks", "myFrameworks");
-            addingCarouselImages(imageCarousel)
+            createItemContainer(cloudTechnology, "Tecnologia Cloud", "myCloud");
+            createItemContainer(otherSoftware, "Otras Tecnologias", "otherTechnology");
+            createItemContainer(operatingSystem, "Sistemas Operativos", "operatingSystem");
+
+            addingCarouselImages(imageCarousel);
+            
             addSectionsBlog(sections);
+            
             addingPersonalInformation(generalInfo);
           }
 

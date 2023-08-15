@@ -19,13 +19,24 @@ var frameworks = [
     {name:'Bootstrap', imagePath:'/public/img/icon-bstp.png'},
 ];
 
+var cloudTechnology = [
+    {name:'Azure AZ-900', imagePath:'/public/icons/icon-az900.svg'},
+    {name:'IBM Cloud', imagePath:'/public/icons/icon-ibm.svg'},
+    {name:'Azure AI-900', imagePath:'/public/icons/icon-ai900.svg'},
+]
 
-// var programs = [
-//     {name:'Name1', imagePath:''},
-//     {name:'Name2', imagePath:''},
-//     {name:'Name3', imagePath:''}
-// ];
+var otherSoftware = [
+    {name:'VSC', imagePath:'/public/icons/icon-vsc.svg'},
+    {name:'Git', imagePath:'/public/icons/icon-git.svg'},
+    {name:'VIM', imagePath:'/public/icons/icon-vim.svg'},
+    {name:'VS', imagePath:'/public/icons/icon-vs.svg'},
+];
 
+var operatingSystem = [
+    {name:'Windows', imagePath:'/public/icons/icon-windows.svg'},
+    {name:'Linux', imagePath:'/public/icons/icon-linux.svg'},
+    {name:'MacOS', imagePath:'/public/icons/icon-apple.svg'},
+];
 // Creamos los contenedores segun la cantidad de elementos en cada item
 
 function createItemContainer(items, title, idSection){
@@ -40,18 +51,18 @@ function createItemContainer(items, title, idSection){
 
             if(itemsLength%2==0){
 
-                itemContainers = itemsLength/itemsByContainer;
+                itemContainers = itemsByContainer/itemsLength;
 
-               for (let index = 1; index <= itemContainers; index++) {
-                $(`#${idSection}`).append(`<div class=" g-col-lg-2 g-col-lg-6 format-items" id="container-${index}"><div class="container"> <div class="row align-items-start" id="myRow-${idSection}-${index}"></div></div></div>`);
-               }
-                
-            }else{
-                itemContainers = ((itemsLength-1)/itemsByContainer) + 1;
                 for (let index = 1; index <= itemContainers; index++) {
                     $(`#${idSection}`).append(`<div class=" g-col-lg-2 g-col-lg-6 format-items" id="container-${index}"><div class="container"> <div class="row align-items-start" id="myRow-${idSection}-${index}"></div></div></div>`);
                 }
-                 
+                
+            }else{
+                itemContainers = (itemsByContainer / (itemsLength-1)) + 1;
+                for (let index = 1; index <= itemContainers; index++) {
+                    $(`#${idSection}`).append(`<div class=" g-col-lg-2 g-col-lg-6 format-items" id="container-${index}"><div class="container"> <div class="row align-items-start" id="myRow-${idSection}-${index}"></div></div></div>`);
+                }
+                
             }
         }
         

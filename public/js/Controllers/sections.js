@@ -9,11 +9,11 @@ var sections = [
     {
         name:'Mi Seccion', 
         type: 'head',
-        title:'Un titulo', 
+        title:'Perfil Profesional', 
         
         subtitle:'Un subtitulo', 
         
-        textContent:`Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. `, 
+        textContent:`Me considero una persona preparada para aplicar sus conocimientos en el ámbito laboral. En busca de un ambiente sano para contribuir con él. El manejo de las tecnologías de la información siempre ha sido una habilidad que me ha motivado a la superación personal. Parte de una pasión que debe alimentarse con conocimiento y práctica.`, 
         
         imageContent:'/public/img/500x500px.png',
         imageClass: 'picture',
@@ -57,13 +57,39 @@ var sections = [
 
         imageAlt : 'Descripcion'
     
-    }
+    },
+
+    {
+        name:'MiSeccion',
+
+        type: 'list',
+        
+        title:'Un titulo', 
+        
+        subtitle:'Un subtitulo', 
+        
+        listContent:[
+            'Evento 1',
+            'Evento 2',
+            'Evento 3',
+            'Evento 4',
+            'Evento 5',
+            'Evento 6',
+        ],
+        
+        imageContent:'/public/img/500x500px.png',
+
+        imageClass: 'contentImages',
+
+        imageAlt : 'Descripcion'
+    
+    },
 ]
 
 function addingPersonalInformation(items){
     
     let section = $('#general-information');
-    let infoCopy = [...items];
+  
     let numberOfContainers = 0;
     let itemsByContainer = 2;
    items.forEach(function(element, index, array){
@@ -132,7 +158,7 @@ function addSectionsBlog(sections){
                 `
                 <h2 class="featurette-heading fw-normal lh-1">
                     ${element.title}
-                    <span class="text-body-secondary">Texto Secundario</span>
+                    ${element.subtitle == '' ? '' : `<span class="text-body-secondary">` + element.subtitle + `</span>`}
                 </h2>  
                 
                 <p class="lead">
@@ -152,7 +178,7 @@ function addSectionsBlog(sections){
             `
             <h2 class="featurette-heading fw-normal lh-1">
                 ${element.title}
-                <span class="text-body-secondary">Texto Secundario</span>
+                ${element.subtitle == '' ? '' : `<span class="text-body-secondary">` + element.subtitle + `</span>`}
             </h2>  
             
             <p class="lead">
@@ -168,6 +194,7 @@ function addSectionsBlog(sections){
         <div class="col-md-7 heading-section">
             <h2 class="featurette-heading fw-normal lh-1">
                 ${element.title}
+                ${element.subtitle == '' ? '' : `<span class="text-body-secondary">` + element.subtitle + `</span>`}
             </h2>  
             <p class="lead">
                 ${element.textContent}
@@ -185,7 +212,57 @@ function addSectionsBlog(sections){
         <div  class="shadow col-md-5 d-flex align-items-center justify-content-center ${element.imageClass}">
           <img src="${element.imageContent}" id="profile-image" class="img-fluid" alt="${element.imageAlt}"> 
          </div>
-        `
+        `;
+
+        let listTemplate = `
+        <hr class="featurette-divider">
+        <div class="col-md-${sizeUpAsigned}">
+            ${
+                sizeUpAsigned == 7
+                ?
+                `<img src="${element.imageContent}"  class="img-fluid ${element.imageClass}" alt="${element.imageAlt}">`
+                :
+                `
+                <h2 class="featurette-heading fw-normal lh-1">
+                    ${element.title}
+                    ${element.subtitle == '' ? '' : `<span class="text-body-secondary">` + element.subtitle + `</span>`}
+                    
+                </h2>  
+                
+                <p class="lead">
+                    <ul class="list-group list-group-flush" id="list-${element.name}">
+
+                    </ul>
+                </p>
+                `
+            }
+            
+        </div>  
+    
+        <div class="col-md-${sizeDownAsigned}">
+        ${
+            sizeDownAsigned == 7
+            ?
+            `<img src="${element.imageContent}"  class="img-fluid ${element.imageClass}" alt="${element.imageAlt}">`
+            :
+            `
+            <h2 class="featurette-heading fw-normal lh-1">
+                ${element.title}
+                ${element.subtitle == '' ? '' : `<span class="text-body-secondary">` + element.subtitle + `</span>`}
+                                </h2>  
+            
+            <p class="lead">
+                <ul class="list-group list-group-flush" id="list-${element.name}">
+             
+            </ul>
+            </p>
+            `
+        }
+        
+        </div>
+        `;
+
+
 
         if (element.type == 'head') {
             $(headingSection).append(headTemplate);
@@ -193,6 +270,17 @@ function addSectionsBlog(sections){
 
         if(element.type == 'content'){
             $(sectionContent).append(contentTemplate);
+        }
+
+        if(element.type == 'list'){
+
+            $(sectionContent).append(listTemplate);
+
+            element.listContent.forEach(function(value, index, array){
+                console.log(`#list-${element.name}`);
+                let elementItem = '<li class="list-group-item">'+ value +'</li>';
+                $(`#list-${element.name}`).append(elementItem);
+            });
         }
 
     });
