@@ -12,7 +12,7 @@ var sections = [
         title:'Perfil Profesional', 
         subtitle:'', 
         textContent:`Me considero una persona preparada para aplicar sus conocimientos en el ámbito laboral. En busca de un ambiente sano para contribuir con él. El manejo de las tecnologías de la información siempre ha sido una habilidad que me ha motivado a la superación personal. Parte de una pasión que debe alimentarse con conocimiento y práctica.`, 
-        imageContent:'/public/img/500x500px.png',
+        imageContent:'/public/img/profile-photo.jpg',
         imageClass: 'picture',
         imageAlt : 'Foto de Perfil'
     
@@ -110,7 +110,7 @@ var sections = [
             'Practicipacion impartiendo el taller “Desarrollo movil con flutter y consumo de Web Service” en el Instituto Tecnologico Superior de Acatlan de Osorio.',
         ],
         
-        imageContent:'/public/img/500x500px.png',
+        imageContent:'/public/img/participation-photo.jpg',
 
         imageClass: 'contentImages',
 
