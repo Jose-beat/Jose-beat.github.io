@@ -486,7 +486,7 @@ pre {
   flex-wrap: wrap;
   margin-right: -15px;
   margin-left: -15px;
-  margin-top: 1.5%;
+
 }
 
 .no-gutters {
@@ -8290,17 +8290,3 @@ h1, h2, h3, h4, h5,
 
 .dropdown-toggle::after {
   display: none; }
-
-  /* #frco-container{
-    position: fixed;
-    z-index: 4;
-
-    left: 10%;
-  } */
-/* .w-section{
-  position: relative;
-  background-color: #0062cc;
-  margin-bottom: 5%;
-  width: 100%;
-  height: 100%;
-} */

@@ -8,7 +8,7 @@ import { filter } from 'rxjs';
   styleUrl: './nav-bar.component.css'
 })
 export class NavBarComponent  implements OnInit{
-  @ViewChild('navbar') navbar! : ElementRef;
+  //@ViewChild('navbar') navbar! : ElementRef;
 
   menuItems = [
     {label: 'Home', target: '#home', route: 'web/home'},
@@ -27,34 +27,8 @@ export class NavBarComponent  implements OnInit{
         this.closeNavbar();
     });
 
-    this.adjustMarginContainer();
-  }
-
-  scrollTo(target: string) {
-    var offsetAdjustment = 70;
-    const element = document.getElementById(target.replace('#', ''));
-    const navbarHeight = this.navbar.nativeElement.offsetHeight;
-    console.log(navbarHeight);
-    console.log(element);
-
-    if (element) {
-      window.scrollTo({
-        top: element.offsetTop - navbarHeight,
-        behavior: 'smooth'
-      });
-      setTimeout(function() {
-        // Desplazar un poco hacia arriba para dejar espacio adicional por el navbar
-        window.scrollBy({
-            top: -offsetAdjustment,
-            behavior: 'smooth'
-        });
-      }, 400); // Ajusta el tiempo según la duración del scroll suave
-
-
-    }
 
   }
-
   closeNavbar(){
     const navbarCollapse = document.querySelector('.navbar-collapse');
     if (navbarCollapse && navbarCollapse.classList.contains('show')) {
@@ -63,18 +37,5 @@ export class NavBarComponent  implements OnInit{
   }
 
 
-  @HostListener('window:resize', ['$event'])
-  onResize(){
-    this.adjustMarginContainer();
 
-  }
-
-
-
-  adjustMarginContainer(): void{
-
-    const heightNavbar = document.querySelector('.navbar-nav')?.clientHeight;
-    document.body.style.padding = `${heightNavbar!}px`;
-
-  }
 }
