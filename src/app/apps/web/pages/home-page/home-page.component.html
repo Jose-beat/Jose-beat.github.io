@@ -1,11 +1,12 @@
 <h1 class="text-black">Desarrollo de Software</h1>
+
 <div class="row ">
     <div class="col">
           <div class="card mb-3" >
             <div class="row g-0">
               <div class="col-md-8">
                 <div class="card-body">
-                  <h5 class="card-title">Informacion Personal</h5>
+                  <h2 class="card-title">Informacion Personal</h2>
                   <p class="card-text"><strong>Nombre: </strong>Jose Uriel Rodriguez Ramirez</p>
                   <p class="card-text"><strong>Ubicacion: </strong>Xochitlan Todos Santos, Puebla, Mexico</p>
                   <p class="card-text"><strong>Titulo: </strong>Ingenieria en Gestion y Desarrollo de Software</p>
@@ -13,7 +14,7 @@
                 </div>
               </div>
               <div class="col-md-4">
-                <img src="/assets/pendiente3.jpg" class="img-fluid rounded-end" alt="...">
+                <img src="/assets/img/pendiente3.jpg" class="img-fluid rounded-end" alt="...">
               </div>
             </div>
           </div>
@@ -24,112 +25,102 @@
     <div class="col-md-6 mb-3">
         <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Experiencia</h5>
+              <h2 class="card-title">Experiencia</h2>
+              <mat-accordion>
+                <mat-expansion-panel [expanded]="true">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title class="web-title fw-bold">
+                      Sistema Unificado de Control universal
+                    </mat-panel-title>
+                    <mat-panel-description>
+                      May 2020- Ago 2020
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
 
-              <ol class="list-group list-group-numbered">
-                <li class="list-group-item d-flex justify-content-between align-items-start">
-                  <div class="ms-2 me-auto">
-                    <div class="web-title fw-bold">Sistema Unificado de Control universal</div>
-                    <strong class="web-text">Tareas realizadas:</strong>
-                    <p class="web-text">
-                      Analisis y toma de requerimientos para definicion
-                      de alcances para el proyecto en el Honorable Ayuntamiento de Tecamachalco.
-                    </p>
-                  </div>
-                  <span class="badge text-bg-primary">May 2020 - Sep 2020</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-start">
-                  <div class="ms-2 me-auto">
-                    <div class="web-title fw-bold">TICAS</div>
-                    <strong class="web-text">Tareas realizadas:</strong>
-                    <p class="web-text">
-                      Desarrollo de plataformas para la administracion de
+                  <p>
+                    Analisis y toma de requerimientos para definicion
+                    de alcances para el proyecto en el Honorable Ayuntamiento de Tecamachalco.
+                  </p>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel >
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      TICAS
+                    </mat-panel-title>
+                    <mat-panel-description>
+                      Ago 2021 - Abr 2022
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+                  <p>
+                    Desarrollo de plataformas para la administracion de
                       restaurantes, pedidos en linea desarrollados en NET CORE para aplicaciones web
                       y Flutter para aplicaciones moviles ademas de brindar soporte a sistemas web
                       de Instituciones educativas.
-                    </p>
-                  </div>
-                  <span class="badge text-bg-primary">Ago 2021 - Abr 2022</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-start">
-                  <div class="ms-2 me-auto">
-                    <div class="web-title fw-bold">Xhofhox</div>
-                    <strong class="web-text">Tareas realizadas:</strong>
-                    <p class="web-text">
-                      Desarrollo para plataformas web de administracion de
-                      campamentos en EUA y la gestion de agendas personales
-                      y profesionales con aplicaciones web.
-                    </p>
-                  </div>
-                  <span class="badge text-bg-primary">Oct 2021 - Oct 2022</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-start">
-                  <div class="ms-2 me-auto">
-                    <div class="web-title fw-bold">Softtek</div>
-                    <strong class="web-text">Tareas realizadas:</strong>
-                    <p class="web-text">
-                      Soporte y desarrollo de aplicaciones web internas para la gestion de inmuebles y proveedores
-                      para empresas de tienda a nivel nacional.
-                    </p>
-                  </div>
-                  <span class="badge text-bg-success">Nov 2022 - Actual</span>
-                </li>
-              </ol>
+                  </p>
+                </mat-expansion-panel>
 
+                <mat-expansion-panel >
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      Xhofhox
+                    </mat-panel-title>
+                    <mat-panel-description>
+                      Oct 2021 - Oct 2022
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+                  <p>
+                    Desarrollo para plataformas web de administracion de
+                    campamentos en EUA y la gestion de agendas personales
+                    y profesionales con aplicaciones web.
+                  </p>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel >
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      Softtek
+                    </mat-panel-title>
+                    <mat-panel-description>
+                      Nov 2022 - Actual
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+                  <p>
+                    Soporte y desarrollo de aplicaciones web internas para la gestion de inmuebles y proveedores
+                      para empresas de tienda a nivel nacional.
+                  </p>
+                </mat-expansion-panel>
+
+              </mat-accordion>
             </div>
           </div>
     </div>
     <div class="col-md-6 mb-3">
         <div class="card" >
             <div class="card-body">
-              <h5 class="card-title">Participaciones</h5>
+              <h2 class="card-title">Participaciones</h2>
               <ol class="list-group list-group-numbered">
                 <li class="list-group-item d-flex justify-content-between align-items-start">
                   <div class="ms-2 me-auto">
-                    <div class="web-title fw-bold">Sistema Unificado de Control universal</div>
+                    <div class="web-title fw-bold">Cisco R&S</div>
                     <strong class="web-text">Tareas realizadas:</strong>
                     <p class="web-text">
-                      Analisis y toma de requerimientos para definicion
-                      de alcances para el proyecto en el Honorable Ayuntamiento de Tecamachalco.
+                      Participación en el curso Cisco R&S: Introduction to Networks
                     </p>
                   </div>
-                  <span class="badge text-bg-primary">May 2020 - Sep 2020</span>
+                  <span class="badge text-bg-primary">May 2019</span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-start">
                   <div class="ms-2 me-auto">
-                    <div class="web-title fw-bold">TICAS</div>
+                    <div class="web-title fw-bold">Imparticion de Talleres</div>
                     <strong class="web-text">Tareas realizadas:</strong>
                     <p class="web-text">
-                      Desarrollo de plataformas para la administracion de
-                      restaurantes, pedidos en linea desarrollados en NET CORE para aplicaciones web
-                      y Flutter para aplicaciones moviles ademas de brindar soporte a sistemas web
-                      de Instituciones educativas.
+                      Practicipacion impartiendo el taller “Desarrollo movil con flutter y
+                      consumo de Web Service” en el Instituto Tecnologico Superior de
+                      Acatlan de Osorio.
                     </p>
                   </div>
-                  <span class="badge text-bg-primary">Ago 2021 - Abr 2022</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-start">
-                  <div class="ms-2 me-auto">
-                    <div class="web-title fw-bold">Xhofhox</div>
-                    <strong class="web-text">Tareas realizadas:</strong>
-                    <p class="web-text">
-                      Desarrollo para plataformas web de administracion de
-                      campamentos en EUA y la gestion de agendas personales
-                      y profesionales con aplicaciones web.
-                    </p>
-                  </div>
-                  <span class="badge text-bg-primary">Oct 2021 - Oct 2022</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-start">
-                  <div class="ms-2 me-auto">
-                    <div class="web-title fw-bold">Softtek</div>
-                    <strong class="web-text">Tareas realizadas:</strong>
-                    <p class="web-text">
-                      Soporte y desarrollo de aplicaciones web internas para la gestion de inmuebles y proveedores
-                      para empresas de tienda a nivel nacional.
-                    </p>
-                  </div>
-                  <span class="badge text-bg-success">Nov 2022 - Actual</span>
+                  <span class="badge text-bg-primary">Abr 2022</span>
                 </li>
               </ol>
               <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
@@ -139,4 +130,52 @@
             </div>
           </div>
     </div>
+</div>
+
+<div class="row ">
+  <div class="col">
+        <div class="card mb-3" >
+          <div class="row g-0">
+            <div class="col">
+              <div class="card-body">
+                <h2 class="card-title">Tecnologia</h2>
+                <p class="card-text">
+                  Creo que no tenemos un indice sobre que tanto sabemos
+                  sobre una tecnologia pero podemos hacernos una idea con
+                  nuestros proyectos y experiencias.
+                </p>
+
+                <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+                  <mat-tab label="FrontEnd">
+                    <div class="row row-cols-1 row-cols-md-3 g-4 mt-1">
+
+                      <div class="col">
+                        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
+                          <div class="col d-flex flex-column justify-content-center text-center">
+                            <img src="/assets/icons/icon-cs.svg" class="web-icon" alt="...">
+                            <h3 >C#</h3>
+                          </div>
+                          <div class="col d-flex justify-content-center">Column</div>
+                          <div class="col d-flex justify-content-center">Column</div>
+                          <div class="col d-flex justify-content-center">Column</div>
+                        </div>
+                      </div>
+
+
+                    </div>
+                  </mat-tab>
+                  <mat-tab label="BackEnd">
+
+                  </mat-tab>
+                  <mat-tab label="Tecnologia en la Nube">
+
+                  </mat-tab>
+                </mat-tab-group>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+  </div>
 </div>

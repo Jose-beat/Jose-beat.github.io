@@ -5,17 +5,22 @@ import { BriefPageComponent } from './pages/brief-page/brief-page.component';
 import { ContactPageComponent } from './pages/contact-page/contact-page.component';
 import { WebRoutingModule } from './web-routing.module';
 
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatTabsModule} from '@angular/material/tabs'
 
 
 @NgModule({
   declarations: [
     HomePageComponent,
     BriefPageComponent,
-    ContactPageComponent
+    ContactPageComponent,
+
   ],
   imports: [
     CommonModule,
-    WebRoutingModule
+    WebRoutingModule,
+    MatExpansionModule,
+    MatTabsModule
 
   ]
 })
