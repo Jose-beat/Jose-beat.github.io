@@ -7,8 +7,9 @@ import { WebRoutingModule } from './web-routing.module';
 
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatTabsModule} from '@angular/material/tabs'
-
-
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 @NgModule({
   declarations: [
     HomePageComponent,
@@ -19,8 +20,12 @@ import {MatTabsModule} from '@angular/material/tabs'
   imports: [
     CommonModule,
     WebRoutingModule,
+
     MatExpansionModule,
-    MatTabsModule
+    MatTabsModule,
+    MatProgressBarModule,
+    MatButtonModule,
+    MatIconModule
 
   ]
 })
