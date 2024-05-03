@@ -7,10 +7,12 @@ import { NavBarComponent } from './shared/nav-bar/nav-bar.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
+
   ],
   imports: [
     BrowserModule,

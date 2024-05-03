@@ -1,0 +1,39 @@
+[
+  {
+    "Users": {
+      "alovelance" :{
+        "fisrt": "ada",
+        "last": "migth",
+        "born": 1815
+      },
+      "Sride" :{
+        "fisrt": "ada",
+        "last": "migth",
+        "born": 1815
+      }
+
+    },
+    "rooms": {
+      "software":{
+        "messages": {
+          "message1": {
+            "from": {
+
+            },
+            "content": {
+
+            }
+          },
+          "message2": {
+            "from": {
+
+            },
+            "content": {
+
+            }
+          }
+        }
+      }
+    }
+  }
+]
