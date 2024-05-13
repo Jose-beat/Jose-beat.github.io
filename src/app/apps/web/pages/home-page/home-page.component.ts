@@ -11,8 +11,10 @@ import { MatDialog } from '@angular/material/dialog';
 export class HomePageComponent {
   constructor(public dialog: MatDialog){}
 
-  getPDF(): void{
-    const dialogRef = this.dialog.open(PopupComponent);
+  getPDF(link: string): void{
+    const dialogRef = this.dialog.open(PopupComponent, {
+      data: {"link" :`${link}` }
+    });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog Result ${result}`);
