@@ -15,25 +15,26 @@
                   <div class="container text-center mt-5">
                     <div class="row">
                       <div class="col">
-                        <button class="material-icons head-icons mb-3" mat-fab color="primary" aria-label="Example icon button with a bookmark icon">
+
+                        <button (click)="redirectTo(emailLink)" class="material-icons head-icons mb-3" mat-fab color="primary" aria-label="Example icon button with a bookmark icon">
                           <mat-icon>email</mat-icon>
                         </button>
                         <h4 class="fw-bold">uri.rm&#64;gmail.com</h4>
                       </div>
                       <div class="col">
-                        <button class="material-icons head-icons  mb-3" mat-fab color="primary" aria-label="Example icon button with a bookmark icon">
+                        <button (click)="redirectTo(callLink)" class="material-icons head-icons  mb-3" mat-fab color="primary" aria-label="Example icon button with a bookmark icon">
                           <mat-icon>call</mat-icon>
                         </button>
                         <h4 class="fw-bold">+52 2491302526</h4>
                       </div>
                       <div class="col">
-                        <button class="material-icons head-icons  mb-3" mat-fab color="primary" aria-label="Example icon button with a bookmark icon">
+                        <button (click)="redirectTo(mapsLink)" class="material-icons head-icons  mb-3" mat-fab color="primary" aria-label="Example icon button with a bookmark icon">
                           <mat-icon>location_on</mat-icon>
                         </button>
                         <h4 class="fw-bold">Xochitlan Todos Santos Puebla</h4>
                       </div>
                       <div class="col">
-                        <button class="material-icons head-icons  mb-3" mat-fab color="primary" aria-label="Example icon button with a bookmark icon">
+                        <button (click)="redirectTo(repositoryLink)" class="material-icons head-icons  mb-3" mat-fab color="primary" aria-label="Example icon button with a bookmark icon">
                           <mat-icon>code</mat-icon>
                         </button>
                         <h4 class="fw-bold">Jose-beat</h4>
@@ -134,16 +135,16 @@
           <div class="col">
             <div class="card-body">
               <h2 class="card-title">Certificaciones</h2>
-                  <p class="card-text">
+                  <!-- <p class="card-text">
                     Texto sobre idiomas manejados
-                  </p>
+                  </p> -->
                   <ol class="list-group list-group-numbered">
                     <li class="list-group-item d-flex justify-content-between align-items-start">
                       <div class="ms-2 me-auto">
                         <div class="fw-bold">CCNA R&S:</div>
                         Routing and Switching Essentials
                       </div>
-                      <button mat-icon-button color="primary" (click)="getPDF('https://drive.google.com/file/d/1gqgdvpH52pQ3vfOxu0GPDgNBYNzefRxd/view?usp=drive_link')" aria-label="Example icon button with a home icon">
+                      <button mat-icon-button color="primary" (click)="getPDF('https://drive.google.com/file/d/1gqgdvpH52pQ3vfOxu0GPDgNBYNzefRxd/preview')" aria-label="Example icon button with a home icon">
                         <mat-icon>visibility</mat-icon>
                       </button>
                     </li>
@@ -152,7 +153,7 @@
                         <div class="fw-bold">IT ESSENTIALS PC:</div>
                         Hardware and Software
                       </div>
-                      <button mat-icon-button color="primary" (click)="getPDF('https://drive.google.com/file/d/1zF-61TAQA9J7TaV6PyClau216kBZlxu8/view?usp=drive_link')" aria-label="Example icon button with a home icon">
+                      <button mat-icon-button color="primary" (click)="getPDF('https://drive.google.com/file/d/1zF-61TAQA9J7TaV6PyClau216kBZlxu8/preview')" aria-label="Example icon button with a home icon">
                         <mat-icon>visibility</mat-icon>
                       </button>
                     </li>
@@ -161,7 +162,7 @@
                         <div class="fw-bold">MICROSOFT AZ-900 CERTIFIED:</div>
                         Azure Fundamentals
                       </div>
-                      <button mat-icon-button color="primary" (click)="getPDF('https://drive.google.com/file/d/1NaaXqofIILrok9WPUEYZ-Z-jmf4wPNjr/view?usp=drive_link')" aria-label="Example icon button with a home icon">
+                      <button mat-icon-button color="primary" (click)="getPDF('https://drive.google.com/file/d/1NaaXqofIILrok9WPUEYZ-Z-jmf4wPNjr/preview')" aria-label="Example icon button with a home icon">
                         <mat-icon>visibility</mat-icon>
                       </button>
                     </li>
@@ -170,7 +171,7 @@
                         <div class="fw-bold">FOUNDATIONAL C# WITH MICROSOFT:</div>
                         C# Fundamentals
                       </div>
-                      <button mat-icon-button color="primary" (click)="getPDF('https://drive.google.com/file/d/1iN1WXyoXLqyOWwLGbqZdGKlgzaKYUOkE/view?usp=drive_link')" aria-label="Example icon button with a home icon">
+                      <button mat-icon-button color="primary" (click)="getPDF('https://drive.google.com/file/d/1iN1WXyoXLqyOWwLGbqZdGKlgzaKYUOkE/preview')" aria-label="Example icon button with a home icon">
                         <mat-icon>visibility</mat-icon>
                       </button>
                     </li>
@@ -179,7 +180,7 @@
                         <div class="fw-bold">MICROSOFT AI-900 CERTIFIED:</div>
                         AI and Machine Learning Fundamentals
                       </div>
-                      <button mat-icon-button color="primary" (click)="getPDF('https://drive.google.com/file/d/1KaLQLP83BtOWZXE5_-TeKeekfZ-DP_wf/view?usp=drive_link')" aria-label="Example icon button with a home icon">
+                      <button mat-icon-button color="primary" (click)="getPDF('https://drive.google.com/file/d/1KaLQLP83BtOWZXE5_-TeKeekfZ-DP_wf/preview')" aria-label="Example icon button with a home icon">
                         <mat-icon>visibility</mat-icon>
                       </button>
                     </li>
@@ -372,7 +373,8 @@
           <div class="card-body">
             <h2 class="card-title">Idiomas</h2>
                 <p class="card-text">
-                  Texto sobre idiomas manejados
+                  Como hablante y escucha tengo que pulir algunas cosas
+                  pero en la lectura me siento bastante familiarizado.
                 </p>
 
                 <div class="col mt-3">
@@ -404,7 +406,7 @@
           <div class="card-body">
             <h2 class="card-title">Educacion</h2>
                 <p class="card-text">
-                  Texto sobre Educacion
+                  Los titulos aun los tengo en tramite
                 </p>
                 <mat-accordion>
                   <mat-expansion-panel [expanded]="true">

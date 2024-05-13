@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer, SafeHtml, SafeScript, SafeStyle } from '@angular/platform-browser';
-
+//TODO: Revision de implementacion de pipe Global para seguridad
 @Pipe({
   name: 'safe'
 })
