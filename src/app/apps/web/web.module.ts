@@ -5,13 +5,9 @@ import { BriefPageComponent } from './pages/brief-page/brief-page.component';
 import { ContactPageComponent } from './pages/contact-page/contact-page.component';
 import { WebRoutingModule } from './web-routing.module';
 import { PopupComponent } from './components/popup/popup.component';
+import { SharedModule } from '../../shared/shared.module';
 
-import {MatExpansionModule} from '@angular/material/expansion';
-import {MatTabsModule} from '@angular/material/tabs'
-import {MatProgressBarModule} from '@angular/material/progress-bar';
-import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
-import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+
 
 
 
@@ -26,14 +22,7 @@ import {MatDialog, MatDialogModule} from '@angular/material/dialog';
   imports: [
     CommonModule,
     WebRoutingModule,
-
-    MatExpansionModule,
-    MatTabsModule,
-    MatProgressBarModule,
-    MatButtonModule,
-    MatIconModule,
-    MatDialogModule
-
+    SharedModule
   ]
 })
 export class WebModule { }

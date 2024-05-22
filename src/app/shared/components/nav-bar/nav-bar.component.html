@@ -7,8 +7,8 @@
                   </button>
                   <div class="collapse navbar-collapse" id="ftco-nav">
                       <ul class="navbar-nav ml-auto mr-md-3">
-                        <li class="nav-item active" *ngFor="let item of menuItems" >
-                          <a [routerLink]="[item.route]" routerLinkActive="active"  class="nav-link">{{item.label}}</a>
+                        <li class="nav-item" *ngFor="let item of menuItems" >
+                          <a [routerLink]="[item.route]" [routerLinkActive]="['active']" class="nav-link">{{item.label}}</a>
                         </li>
 
                       </ul>

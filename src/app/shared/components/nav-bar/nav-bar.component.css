@@ -38,7 +38,9 @@
     letter-spacing: 1px;
     opacity: 1 !important; }
     .ftco-navbar-light .navbar-nav > .nav-item > .nav-link:hover {
-      color: #000000; }
+      color: #7700ff; }
+      .ftco-navbar-light .navbar-nav > .nav-item > .nav-link.active {
+        color: #7700ff; }
     @media (max-width: 991.98px) {
       .ftco-navbar-light .navbar-nav > .nav-item > .nav-link {
         padding-left: 0;
