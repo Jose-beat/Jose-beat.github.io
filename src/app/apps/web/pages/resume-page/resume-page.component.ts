@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PopupComponent } from '../../../../shared/components/popup/popup.component';
+import { GlobalService } from '../../../../services/global/global.service';
+
 
 @Component({
   selector: 'app-resume-page',
@@ -16,11 +18,14 @@ export class ResumePageComponent {
 
 
 
-  constructor(public dialog: MatDialog){}
+  constructor(public dialog: MatDialog, private globalService : GlobalService){}
 
+  downloadResume() :void {
+    this.globalService.methodNotImplemented();
+  }
   redirectTo(link: string): void {
-    window.open(link,'_blank');
 
+    window.open(link,'_blank');
   }
 
   getPDF(link: string): void{

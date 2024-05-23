@@ -10,6 +10,7 @@ import Point from 'ol/geom/Point';
 import {Vector as VectorLayer} from 'ol/layer';
 import {Vector as VectorSource} from 'ol/source';
 import {Icon} from 'ol/style';
+import { GlobalService } from '../../../../services/global/global.service';
 
 
 @Component({
@@ -20,7 +21,7 @@ import {Icon} from 'ol/style';
 
 export class ContactPageComponent implements AfterViewInit{
 
-
+  constructor(private globalService: GlobalService){}
   public map?: Map;
 
 
@@ -71,6 +72,10 @@ export class ContactPageComponent implements AfterViewInit{
 
 
 
+  }
+
+  public submitEmail(): void {
+    this.globalService.methodNotImplemented();
   }
 
 }

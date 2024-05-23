@@ -28,6 +28,7 @@ import { ComponentsModule } from './components/components.module';
   imports: [
     CommonModule,
     WebRoutingModule,
+    //* My component module
     SharedModule,
     ComponentsModule
 
