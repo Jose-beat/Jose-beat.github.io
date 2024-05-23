@@ -1,111 +1,115 @@
 <h1 class="text-black">Portafolio</h1>
 <div class="row">
     <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
-      <div class="card h-100" >
-        <img src="/assets/img/proyecto.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h2 class="card-title">EFoodies </h2>
-          <div class="h-50">
-            <p class="card-text">
-              Sistema de administracion para restaurantes desarrollado
-              con .NET Core MVC.
-            </p>
-          </div>
-          <span class="badge text-bg-success m-1 ">Proyecto Terminado</span>
-          <a  class="btn btn-danger btn-sm mb-3 text-light" disabled>Repo Privada </a>
-        </div>
-        <div class="card-footer">
-          <span class="badge text-bg-primary m-1">.NET MVC</span>
-          <span class="badge text-bg-primary m-1">SQL Server</span>
-        </div>
-      </div>
-
-    </div>
-    <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
-      <div class="card h-100" >
-        <img src="/assets/img/proyecto.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h2 class="card-title">GET Platform</h2>
-          <div class="h-50">
-          <p class="card-text">
-            Sistema de administracion para campamentos de trabajo
-            en EUA desarrollado con .NET Core MVC y SQL Server.
-          </p>
-          </div>
-
-          <span class="badge text-bg-success m-1">Proyecto Terminado</span>
-          <a class="btn btn-danger btn-sm mb-3 text-light" disabled>Repo Privada </a>
-        </div>
-        <div class="card-footer">
-          <span class="badge text-bg-primary m-1">.NET MVC</span>
-          <span class="badge text-bg-primary m-1">SQL Server</span>
-        </div>
-      </div>
-
-    </div>
-    <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
-      <div class="card h-100" >
-        <img src="/assets/img/proyecto.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h2 class="card-title">TINISA</h2>
-          <div class="h-50">
-          <p class="card-text">
-            Sistema de facturacion y administracion de viajes y recursos para la transportista
-            TINISA desarrollado con .NET MVC, .NET API y SQL Server.
-          </p>
-        </div>
-        <span class="badge text-bg-success m-1">Proyecto Terminado</span>
-        <a  class="btn btn-danger btn-sm mb-3 text-light" disabled>Repo Privada </a>
-        </div>
-        <div class="card-footer">
-          <span class="badge text-bg-primary m-1">.NET MVC - API</span>
-          <span class="badge text-bg-primary m-1">SQL Server</span>
-
-        </div>
-      </div>
-
-    </div>
-    <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
-      <div class="card h-100" >
-        <img src="/assets/img/proyecto.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h2 class="card-title">SIDS</h2>
-          <div class="h-50">
-          <p class="card-text">
+      <mat-card class="brief-card">
+        <mat-card-header>
+          <mat-icon mat-card-avatar>code</mat-icon>
+          <mat-card-title>EFoodies</mat-card-title>
+          <mat-card-subtitle>.NET MVC</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="/assets/icons/icon-web-purple.svg" alt="Project Image">
+        <mat-card-content  class="h-50">
+          <br>
+          <p>
             Sistema de administracion para restaurantes desarrollado
             con .NET Core MVC.
           </p>
-        </div>
-        <span class="badge text-bg-success m-1">Proyecto Terminado</span>
-        <a  class="btn btn-danger btn-sm mb-3 text-light" disabled>Repo Privada </a>
-        </div>
-        <div class="card-footer">
-          <span class="badge text-bg-primary m-1">.NET MVC - API</span>
-          <span class="badge text-bg-primary m-1">SQL Server</span>
-        </div>
-      </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button class="mr-3" mat-flat-button disabled color="primary">Rep. Privado</button>
+          <button mat-button  color="primary">Informacion</button>
+        </mat-card-actions>
+      </mat-card>
+
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
+      <mat-card class="brief-card">
+        <mat-card-header>
+          <mat-icon mat-card-avatar>code</mat-icon>
+          <mat-card-title>GET Platform</mat-card-title>
+          <mat-card-subtitle>.NET MVC</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="/assets/icons/icon-web-purple.svg" alt="Project Image">
+        <mat-card-content  class="h-50">
+          <hr>
+
+            <p>
+              Sistema de administracion para campamentos de trabajo
+              en EUA desarrollado con .NET Core MVC y SQL Server.
+            </p>
+
+        </mat-card-content>
+        <mat-card-actions>
+          <button class="mr-3" mat-flat-button disabled color="primary">Rep. Privado</button>
+          <button mat-button  color="primary">Informacion</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
+      <mat-card class="brief-card">
+        <mat-card-header>
+          <mat-icon mat-card-avatar>code</mat-icon>
+          <mat-card-title>TINISA</mat-card-title>
+          <mat-card-subtitle>.NET MVC</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="/assets/icons/icon-web-purple.svg" alt="Project Image">
+        <mat-card-content  class="h-50">
+          <br>
+          <p>
+            Sistema de facturacion y administracion de viajes y recursos para la transportista
+            TINISA desarrollado con .NET MVC, .NET API y SQL Server.
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button class="mr-3" mat-flat-button disabled color="primary">Rep. Privado</button>
+          <button mat-button  color="primary">Informacion</button>
+        </mat-card-actions>
+      </mat-card>
+
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
+      <mat-card class="brief-card">
+        <mat-card-header>
+          <mat-icon mat-card-avatar>code</mat-icon>
+          <mat-card-title>SIDS</mat-card-title>
+          <mat-card-subtitle>.NET MVC</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="/assets/icons/icon-web-purple.svg" alt="Project Image">
+        <mat-card-content  class="h-50">
+          <br>
+          <p>
+            Sistema de administracion para restaurantes desarrollado
+            con .NET Core MVC.
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button class="mr-3" mat-flat-button disabled color="primary">Rep. Privado</button>
+          <button mat-button  color="primary">Informacion</button>
+        </mat-card-actions>
+      </mat-card>
 
 
     </div>
     <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
-      <div class="card h-100" >
-        <img src="/assets/img/proyecto.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h2 class="card-title">Sticky Notes</h2>
-          <div class="h-50">
-          <p class="card-text">
+      <mat-card class="brief-card">
+        <mat-card-header>
+          <mat-icon mat-card-avatar>code</mat-icon>
+          <mat-card-title>Sticky Notes</mat-card-title>
+          <mat-card-subtitle>Android</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="/assets/icons/icon-web-purple.svg" alt="Project Image">
+        <mat-card-content  class="h-50">
+          <br>
+          <p>
             Aplicacion movil para envio de notas para parejas
           </p>
-        </div>
-        <span class="badge text-bg-warning m-1">Proyecto Pendiente</span>
-        <a class="btn btn-secondary btn-sm mb-5 text-light" disabled>Repo Pendiente </a>
+        </mat-card-content>
+        <mat-card-actions>
+          <button class="mr-3" mat-flat-button  color="primary">Rep. Pendiente</button>
+          <button mat-button  color="primary">Informacion</button>
+        </mat-card-actions>
+      </mat-card>
 
-        </div>
-        <div class="card-footer">
-          <span class="badge text-bg-primary m-1">.NET MVC - API</span>
-          <span class="badge text-bg-primary m-1">SQL Server</span>
-        </div>
-      </div>
 
 
     </div>

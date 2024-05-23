@@ -1,0 +1,25 @@
+.web-title{
+  font-size: 90%;
+}
+.web-text{
+  font-size: 80%;
+}
+.web-icon{
+  width: 50px;
+}
+.centered-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.head-icons{
+  font-size: 40px;
+  color: white;
+}
+
+.custom-border {
+  border-color: #9109b3;
+}
+
+

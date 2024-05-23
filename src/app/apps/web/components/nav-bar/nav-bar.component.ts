@@ -11,9 +11,9 @@ export class NavBarComponent  implements OnInit{
   //@ViewChild('navbar') navbar! : ElementRef;
 
   menuItems = [
-    {label: 'Home', target: '#home', route: 'web/home'},
-    {label: 'Portafolio', target: '#briefCase',route: 'web/briefCase'},
-    {label: 'Contacto', target: '#contact', route: 'web/contact'},
+    {label: 'Curriculum', target: '#home', route: '/web/resume'},
+    {label: 'Portafolio', target: '#briefCase',route: '/web/briefCase'},
+    {label: 'Contacto', target: '#contact', route: '/web/contact'},
 
   ]
 
