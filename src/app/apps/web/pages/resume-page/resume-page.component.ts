@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PopupComponent } from '../../../../shared/components/popup/popup.component';
-import { GlobalService } from '../../../../services/global/global.service';
+import { GlobalService } from '../../../../shared/services/global/global.service';
+
 
 
 @Component({
