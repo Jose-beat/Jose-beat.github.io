@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-home-page',
+  selector: 'beat-home-page',
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.css',
 })

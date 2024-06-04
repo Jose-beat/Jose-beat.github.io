@@ -14,7 +14,7 @@ import { GlobalService } from '../../../../services/global/global.service';
 
 
 @Component({
-  selector: 'app-contact-page',
+  selector: 'beat-contact-page',
   templateUrl: './contact-page.component.html',
   styleUrl: './contact-page.component.css'
 })

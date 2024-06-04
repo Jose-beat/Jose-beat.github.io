@@ -5,7 +5,7 @@ import { GlobalService } from '../../../../services/global/global.service';
 
 
 @Component({
-  selector: 'app-resume-page',
+  selector: 'beat-resume-page',
   templateUrl: './resume-page.component.html',
   styleUrl: './resume-page.component.css'
 })
