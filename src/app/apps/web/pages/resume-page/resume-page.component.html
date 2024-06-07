@@ -13,43 +13,7 @@
                   <p class="card-text"><strong>Titulo: </strong>Ingenieria en Gestion y Desarrollo de Software</p>
 
                   <h2 class="card-title">Informacion de Contacto</h2>
-                  <div class="container text-center mt-5">
-                    <div class="row d-flex flex-wrap">
-                      <div class="col-6 col-md-4 col-lg-3 mb-3 text-center">
-
-                        <button (click)="redirectTo(emailLink)" class="material-icons head-icons mb-3" mat-fab color="primary" aria-label="Example icon button with a bookmark icon">
-                          <mat-icon>email</mat-icon>
-                        </button>
-                        <h4 class="fw-bold">uri.rm&#64;gmail.com</h4>
-                      </div>
-                      <div class="col-6 col-md-4 col-lg-3 mb-3 text-center">
-                        <button (click)="redirectTo(callLink)" class="material-icons head-icons  mb-3" mat-fab color="primary" aria-label="Example icon button with a bookmark icon">
-                          <mat-icon>call</mat-icon>
-                        </button>
-                        <h4 class="fw-bold">+52 2491302526</h4>
-                      </div>
-                      <div class="col-6 col-md-4 col-lg-3 mb-3 text-center">
-                        <button (click)="redirectTo(mapsLink)" class="material-icons head-icons  mb-3" mat-fab color="primary" aria-label="Example icon button with a bookmark icon">
-                          <mat-icon>location_on</mat-icon>
-                        </button>
-                        <h4 class="fw-bold">Xochitlan Todos Santos Puebla</h4>
-                      </div>
-                      <div class="col-6 col-md-4 col-lg-3 mb-3 text-center">
-                        <button (click)="redirectTo(repositoryLink)" class="material-icons head-icons  mb-3" mat-fab color="primary" aria-label="Example icon button with a bookmark icon">
-                          <mat-icon>code</mat-icon>
-                        </button>
-                        <h4 class="fw-bold">Jose-beat</h4>
-                      </div>
-                      <div class="col-6 col-md-4 col-lg-3 mb-3 text-center">
-                        <button (click)="downloadResume()" class="material-icons head-icons  mb-3" mat-fab color="primary" aria-label="Example icon button with a bookmark icon">
-                          <mat-icon>download</mat-icon>
-                        </button>
-                        <h4 class="fw-bold">Descargar Curriculum</h4>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p> -->
+                  <beat-profile-button></beat-profile-button>
                 </div>
               </div>
 
@@ -64,72 +28,7 @@
         <div class="card custom-border">
             <div class="card-body">
               <h2 class="card-title">Experiencia</h2>
-              <mat-accordion>
-                <mat-expansion-panel [expanded]="true">
-                  <mat-expansion-panel-header>
-                    <mat-panel-title class="web-title fw-bold">
-                      H. Ayuntamiento
-                    </mat-panel-title>
-                    <mat-panel-description>
-                      May 2020- Ago 2020
-                    </mat-panel-description>
-                  </mat-expansion-panel-header>
-
-                  <p>
-                    Analisis y toma de requerimientos para definicion
-                    de alcances para el proyecto en el Honorable Ayuntamiento de Tecamachalco.
-                  </p>
-                </mat-expansion-panel>
-
-                <mat-expansion-panel >
-                  <mat-expansion-panel-header>
-                    <mat-panel-title>
-                      TICAS
-                    </mat-panel-title>
-                    <mat-panel-description>
-                      Ago 2021 - Abr 2022
-                    </mat-panel-description>
-                  </mat-expansion-panel-header>
-                  <p>
-                    Desarrollo de plataformas para la administracion de
-                      restaurantes, pedidos en linea desarrollados en NET CORE para aplicaciones web
-                      y Flutter para aplicaciones moviles ademas de brindar soporte a sistemas web
-                      de Instituciones educativas.
-                  </p>
-                </mat-expansion-panel>
-
-                <mat-expansion-panel >
-                  <mat-expansion-panel-header>
-                    <mat-panel-title>
-                      Xhofhox
-                    </mat-panel-title>
-                    <mat-panel-description>
-                      Oct 2021 - Oct 2022
-                    </mat-panel-description>
-                  </mat-expansion-panel-header>
-                  <p>
-                    Desarrollo para plataformas web de administracion de
-                    campamentos en EUA y la gestion de agendas personales
-                    y profesionales con aplicaciones web.
-                  </p>
-                </mat-expansion-panel>
-
-                <mat-expansion-panel >
-                  <mat-expansion-panel-header>
-                    <mat-panel-title>
-                      Softtek
-                    </mat-panel-title>
-                    <mat-panel-description>
-                      Nov 2022 - Actual
-                    </mat-panel-description>
-                  </mat-expansion-panel-header>
-                  <p>
-                    Soporte y desarrollo de aplicaciones web internas para la gestion de inmuebles y proveedores
-                      para empresas de tienda a nivel nacional.
-                  </p>
-                </mat-expansion-panel>
-
-              </mat-accordion>
+            <beat-accordion-item></beat-accordion-item>
             </div>
           </div>
     </div>
@@ -144,53 +43,7 @@
                   <!-- <p class="card-text">
                     Texto sobre idiomas manejados
                   </p> -->
-                  <ol class="list-group list-group-numbered">
-                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                      <div class="ms-2 me-auto">
-                        <div class="fw-bold">CCNA R&S:</div>
-                        Routing and Switching Essentials
-                      </div>
-                      <button mat-icon-button color="primary" (click)="getPDF('https://drive.google.com/file/d/1gqgdvpH52pQ3vfOxu0GPDgNBYNzefRxd/preview')" aria-label="Example icon button with a home icon">
-                        <mat-icon>visibility</mat-icon>
-                      </button>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                      <div class="ms-2 me-auto">
-                        <div class="fw-bold">IT ESSENTIALS PC:</div>
-                        Hardware and Software
-                      </div>
-                      <button mat-icon-button color="primary" (click)="getPDF('https://drive.google.com/file/d/1zF-61TAQA9J7TaV6PyClau216kBZlxu8/preview')" aria-label="Example icon button with a home icon">
-                        <mat-icon>visibility</mat-icon>
-                      </button>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                      <div class="ms-2 me-auto">
-                        <div class="fw-bold">MICROSOFT AZ-900 CERTIFIED:</div>
-                        Azure Fundamentals
-                      </div>
-                      <button mat-icon-button color="primary" (click)="getPDF('https://drive.google.com/file/d/1NaaXqofIILrok9WPUEYZ-Z-jmf4wPNjr/preview')" aria-label="Example icon button with a home icon">
-                        <mat-icon>visibility</mat-icon>
-                      </button>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                      <div class="ms-2 me-auto">
-                        <div class="fw-bold">FOUNDATIONAL C# WITH MICROSOFT:</div>
-                        C# Fundamentals
-                      </div>
-                      <button mat-icon-button color="primary" (click)="getPDF('https://drive.google.com/file/d/1iN1WXyoXLqyOWwLGbqZdGKlgzaKYUOkE/preview')" aria-label="Example icon button with a home icon">
-                        <mat-icon>visibility</mat-icon>
-                      </button>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                      <div class="ms-2 me-auto">
-                        <div class="fw-bold">MICROSOFT AI-900 CERTIFIED:</div>
-                        AI and Machine Learning Fundamentals
-                      </div>
-                      <button mat-icon-button color="primary" (click)="getPDF('https://drive.google.com/file/d/1KaLQLP83BtOWZXE5_-TeKeekfZ-DP_wf/preview')" aria-label="Example icon button with a home icon">
-                        <mat-icon>visibility</mat-icon>
-                      </button>
-                    </li>
-                  </ol>
+                  <beat-viewer-item></beat-viewer-item>
 
 
           </div>
