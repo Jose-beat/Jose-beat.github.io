@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-list-item',
+  selector: 'beat-list-item',
   templateUrl: './list-item.component.html',
 })
 export class ListItemComponent {

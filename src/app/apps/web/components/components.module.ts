@@ -10,6 +10,8 @@ import { TabItemComponent } from './tab-item/tab-item.component';
 import { MatButtonModule } from '@angular/material/button';
 import { ComponentsMaterialModule } from '../../../shared/components-material/components-material.module';
 import { AccordionItemComponent } from './accordion-item/accordion-item.component';
+import { ProgressListItemComponent } from './progress-list-item/progress-list-item.component';
+import { ProjectItemComponent } from './project-item/project-item.component';
 
 
 
@@ -22,6 +24,8 @@ import { AccordionItemComponent } from './accordion-item/accordion-item.componen
     ViewerItemComponent,
     ListItemComponent,
     TabItemComponent,
+    ProgressListItemComponent,
+    ProjectItemComponent,
   ],
   imports: [
     CommonModule,
@@ -34,7 +38,9 @@ import { AccordionItemComponent } from './accordion-item/accordion-item.componen
     AccordionItemComponent,
     ViewerItemComponent,
     ListItemComponent,
-    TabItemComponent
+    TabItemComponent,
+    ProgressListItemComponent,
+    ProjectItemComponent
   ]
 })
 export class ComponentsModule { }
