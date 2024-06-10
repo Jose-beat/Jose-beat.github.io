@@ -1,5 +1,24 @@
 <mat-accordion>
-  <mat-expansion-panel [expanded]="true">
+  <!--TODO: Cambiar el item expandido por el mas reciente--->
+  <mat-expansion-panel *ngFor="let item of accordionItems; let i = index" [expanded]="i === 0" >
+    <mat-expansion-panel-header>
+      <mat-panel-title class="web-title fw-bold">
+        {{item.Title}}
+      </mat-panel-title>
+      <mat-panel-description>
+        <!--TODO: Que los pipes sean mas centralizados para no repetir codigo--->
+        <!--TODO: Que las fechas intercambien entre ingles y español--->
+        {{item.StartDate | date:'MMM yyyy'}} - {{item.FinalDate | date:'MMM yyyy'}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <p>
+      {{item.Description}}
+    </p>
+  </mat-expansion-panel>
+
+
+  <!-- <mat-expansion-panel [expanded]="true">
     <mat-expansion-panel-header>
       <mat-panel-title class="web-title fw-bold">
         H. Ayuntamiento
@@ -61,6 +80,6 @@
       Soporte y desarrollo de aplicaciones web internas para la gestion de inmuebles y proveedores
         para empresas de tienda a nivel nacional.
     </p>
-  </mat-expansion-panel>
+  </mat-expansion-panel> -->
 
 </mat-accordion>

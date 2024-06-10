@@ -1,10 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { AccordionItem } from '../../../../shared/interfaces/AccordionItem.interface';
 
-interface AccordionItem {
-  Title: string;
-  Date: Date;
-  Description : string;
-}
+
 
 
 @Component({
@@ -12,5 +9,9 @@ interface AccordionItem {
   templateUrl: './accordion-item.component.html'
 })
 export class AccordionItemComponent {
+  @Input()
+  public accordionItems? : AccordionItem[];
+
+
 
 }
