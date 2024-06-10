@@ -12,6 +12,11 @@ export class ResumePageComponent {
 
 
   constructor(){}
+
+
+
+
+  //TODO: Estos datos deben venir de del backend
   public experienceItems : AccordionItem[] = [
     {Title: 'H. Ayuntamiento', StartDate: new Date("2020-05-01"), FinalDate:  new Date("2020-08-01"), Description: 'Analisis y toma de requerimientos para definicion de alcances para el proyecto en el Honorable Ayuntamiento de Tecamachalco.'},
     {Title: 'TICAS', StartDate: new Date("2021-08-01"), FinalDate:  new Date("2022-04-01"), Description: 'Desarrollo de plataformas para la administracion de restaurantes, pedidos en linea desarrollados en NET CORE para aplicaciones web y Flutter para aplicaciones moviles ademas de brindar soporte a sistemas web de Instituciones educativas.'},
