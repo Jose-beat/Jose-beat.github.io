@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { environments } from '../../../../../environments/environments';
 
 
 
 
 
 interface TabGroup {
- Title : string,
- Items : TabItem[],
+  Title : string,
+  Items : TabItem[],
 }
 
 interface TabItem {
@@ -21,7 +22,12 @@ interface TabItem {
   styles: ['.web-icon{width: 50px;}']
 })
 export class TabItemComponent {
+
   public INITIAL_ICON_PATH : string = 'assets/icons/';
+
+
+
+  //TODO: Informacion proveniente de Backend
   public technologyItems : TabGroup[] = [
     {Title: 'FrontEnd', Items: [
                                     {Title: 'Angular', IconPath: 'favicon.ico'},
@@ -48,7 +54,7 @@ export class TabItemComponent {
                                     {Title: 'VS Code', IconPath: 'icon-vsc.svg'},
                                     {Title: 'DBeaver', IconPath: 'icon-dbv.svg'},
                                     {Title: 'Postman', IconPath: 'icon-pstn.svg'},
-                                    {Title: 'WinSCP', IconPath: 'icon-winscp.svg'},
+                                    {Title: 'WinSCP', IconPath: 'icon-winscp.png'},
                                     {Title: 'Android Studio', IconPath: 'icon-as.svg'},
                                     ]},
     {Title: 'Tecnologia en la nube', Items: [
