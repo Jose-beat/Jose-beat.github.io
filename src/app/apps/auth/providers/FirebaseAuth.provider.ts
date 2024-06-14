@@ -1,4 +1,4 @@
-import { Observable, catchError, from, map, of } from "rxjs";
+import { Observable, catchError, from, map, of, tap } from "rxjs";
 import { IAuthRepository } from "../interfaces/IAuthRepository.interface";
 import { getAuth, initializeAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { initializeApp } from "firebase/app"
@@ -21,7 +21,7 @@ export class FirebaseAuth implements IAuthRepository {
 
   private app = initializeApp(this.firebaseConfig);
   private auth = getAuth(this.app);
-  private email : string = 'orreo@correo.com';
+  private email : string = 'correo@correo.com';
   private password : string = '123456789';
 
   Login<T>(): Observable<IAuthTransaction<T>> {
@@ -34,8 +34,12 @@ export class FirebaseAuth implements IAuthRepository {
     };
 
     return from(signInWithEmailAndPassword(this.auth, this.email, this.password)).pipe(
+      tap((user) => {
+          user.user.getIdToken().then(token =>   sessionStorage.setItem('tkn', token));
+      }),
       map((user)=>({
         Message: user.user.email!,
+        Login: true,
       })),
       catchError((error) => {
         return new  Observable<IAuthTransaction<T>>((observer) => {

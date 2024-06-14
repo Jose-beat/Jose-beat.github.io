@@ -1,5 +1,6 @@
+import { ITableData } from "../interfaces/ITableData.interface";
 import { Utilities } from "../utilities/table.utilities";
-import { ITableData } from "./global/ITableData.interface";
+
 
 export class User implements ITableData{
   public Id : string;
