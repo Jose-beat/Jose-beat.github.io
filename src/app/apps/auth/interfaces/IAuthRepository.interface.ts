@@ -10,5 +10,5 @@ export interface IAuthRepository {
 
   CheckAuthentication(): Observable<boolean>;
 
-
+  CreateUserAuth<T>(model : T) : Promise<IAuthTransaction<T>>;
 }

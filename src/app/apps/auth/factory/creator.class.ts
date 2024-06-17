@@ -23,4 +23,9 @@ export abstract class Creator{
     const factory = this.factoryMethod();
     return factory.CheckAuthentication();
   }
+
+  CreateUserAuth<T>(model : T) : Promise<IAuthTransaction<T>>{
+    const factory =  this.factoryMethod();
+    return factory.CreateUserAuth(model);
+  }
 }

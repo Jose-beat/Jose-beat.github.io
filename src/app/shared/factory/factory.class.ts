@@ -31,8 +31,8 @@ export abstract class Factory {
     return factory.Delete(id, model);
   }
 
-  CreateUser<T extends ITableData>(model : T) : ITransaction<T>{
+  CreateUser<T extends ITableData>(model : T) : Promise<ITransaction<T>>{
     const factory = this.FactoryMethod();
-    return factory.Create(model);
+    return factory.CreateUser(model);
   }
 }

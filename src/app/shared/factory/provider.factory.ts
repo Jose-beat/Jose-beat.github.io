@@ -1,5 +1,6 @@
 import { IRepository } from "../interfaces/IRepository.interface";
 import { Factory } from "./factory.class"
+import { FirebaseDB } from "./providers/FirebaseDB.provider";
 
 export class Provider extends Factory{
 
@@ -13,7 +14,7 @@ export class Provider extends Factory{
     let provider : IRepository;
     switch (this.provider) {
       case "FB":
-        throw Error("Provider Not Implemented");
+        provider = new FirebaseDB();
         break;
 
       default:

@@ -1,12 +1,15 @@
 import { Observable, catchError, from, map, of, tap } from "rxjs";
 import { IAuthRepository } from "../interfaces/IAuthRepository.interface";
-import { getAuth, initializeAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, initializeAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { initializeApp } from "firebase/app"
 import { IAuthTransaction } from '../interfaces/IAuthTransaction.interface';
 import { User } from "../../../shared/model/User.model";
 import { environments } from "../../../../environments/environments";
+import { ITransaction } from "../../../shared/interfaces/ITransaction.interface";
+import { Utilities } from "../../../shared/utilities/table.utilities";
 
 export class FirebaseAuth implements IAuthRepository {
+
 
   private firebaseConfig = {
     apiKey:             environments.API_KEY,
@@ -65,5 +68,37 @@ export class FirebaseAuth implements IAuthRepository {
     throw new Error("Method not implemented.");
   }
 
+  async CreateUserAuth<T>(model : T): Promise<IAuthTransaction<T>> {
+    let response : IAuthTransaction<T> = {
+      Message: 'Initial Response',
+      Created: false,
+      Error: false,
 
+    };
+
+    let model_name :String = (model as any).constructor.name;
+    if(model_name === 'User' ){
+
+      let model_user : User = Utilities.convertToUser<T>(model);
+      await createUserWithEmailAndPassword(this.auth, model_user.Email,model_user.Password)
+      .then((userCredencial)=>{
+          console.log(userCredencial.user);
+          response = {
+            Message: '',
+            Created: true
+          }
+      })
+      .catch((error)=>{
+        console.log(error);
+          response = {
+            Message: error.code + error.message,
+            Created: false,
+            Error: true,
+          }
+      });
+    }
+
+
+    return response;
+  }
 }

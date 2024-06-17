@@ -5,31 +5,31 @@
         Sign Up
       </div>
       <div class="card-body">
-        <form [formGroup]="FormSignUp" (ngSubmit)="Submit()" autocomplete="off">
+        <form [formGroup]="formSignUp" (ngSubmit)="Submit()" autocomplete="off">
           <div class="row">
             <div class="col-lg-6 mb-3">
               <label for="exampleInputEmail1" class="form-label">Nombre</label>
-              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              <input type="text" class="form-control" id="Name" formControlName="Name" aria-describedby="emailHelp">
             </div>
             <div class="col-lg-6 mb-3">
               <label for="exampleInputEmail1" class="form-label">Apellidos</label>
-              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              <input type="text" class="form-control" id="LastName" formControlName="LastName" aria-describedby="emailHelp">
             </div>
             <div class="col-lg-6 mb-3">
               <label for="exampleInputEmail1" class="form-label">Email</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              <input type="email" class="form-control"id="Email" formControlName="Email" aria-describedby="emailHelp">
             </div>
             <div class="col-lg-6 mb-3">
               <label for="exampleInputEmail1" class="form-label">Username</label>
-              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              <input type="text" class="form-control" id="Username" formControlName="Username" aria-describedby="emailHelp">
             </div>
             <div class="col-lg-6 mb-3">
               <label for="exampleInputEmail1" class="form-label">Password</label>
-              <input type="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              <input type="password" class="form-control" id="Password" formControlName="Password" aria-describedby="emailHelp">
             </div>
             <div class="col-lg-12 mb-3">
               <label for="exampleInputEmail1" class="form-label">Icon</label>
-              <input type="file" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              <input type="file" class="form-control" id="Icon" formControlName="Icon" aria-describedby="emailHelp">
             </div>
           </div>
           <button type="submit" class="btn btn-primary">Crear Cuenta</button>

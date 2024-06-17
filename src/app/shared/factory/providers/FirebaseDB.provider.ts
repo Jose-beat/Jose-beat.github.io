@@ -25,7 +25,7 @@ export class FirebaseDB implements IRepository{
     throw new Error("Method not implemented.");
   }
 
-  CreateUser<T extends ITableData>(model: T): ITransaction<T> {
+  CreateUser<T extends ITableData>(model: T): Promise<ITransaction<T>> {
     console.error({model: model});
     throw new Error("Method not implemented.");
   }

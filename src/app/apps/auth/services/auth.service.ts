@@ -16,9 +16,11 @@ import { ITableData } from '../../../shared/interfaces/ITableData.interface';
   providedIn: 'root'
 })
 export class AuthService implements IAuthRepository, IRepository {
+
+
   private user? : User;
   private authCreator : AuthCreator = new AuthProvider("localEmail");
-  private DbCreator : DBFactory = new DBProvider("localEmail");
+  private dbCreator : DBFactory = new DBProvider("FB");
 
 
 
@@ -37,12 +39,10 @@ export class AuthService implements IAuthRepository, IRepository {
   Delete<T>(id: String, model: new (...args: any[]) => T): ITransaction<T> {
     throw new Error('Method not implemented.');
   }
-  CreateUser<T extends ITableData>(model: T): ITransaction<T> {
-    return this.DbCreator.CreateUser(model);
+
+  CreateUser<T extends ITableData>(model: T): Promise<ITransaction<T>> {
+    return this.dbCreator.CreateUser(model);
   }
-
-
-
 
 
   Login<T>(): Observable<IAuthTransaction<T>> {
@@ -54,6 +54,9 @@ export class AuthService implements IAuthRepository, IRepository {
   }
   CheckAuthentication(): Observable<boolean> {
     throw new Error('Method not implemented.');
+  }
+  CreateUserAuth <T>(model : T): Promise<IAuthTransaction<T>> {
+    return this.authCreator.CreateUserAuth(model);
   }
 
 

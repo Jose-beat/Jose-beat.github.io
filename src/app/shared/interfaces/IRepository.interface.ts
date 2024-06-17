@@ -15,5 +15,5 @@ export interface IRepository {
 
   Delete<T>(id: String, model : new (...args: any[]) => T) : ITransaction<T>;
 
-  CreateUser<T extends ITableData>(model : T) : ITransaction<T>
+  CreateUser<T extends ITableData>(model : T) : Promise<ITransaction<T>>
 }
