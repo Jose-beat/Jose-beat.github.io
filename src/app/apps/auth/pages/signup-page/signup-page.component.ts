@@ -9,8 +9,12 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class SignupPageComponent {
 
   constructor(private formBuilder : FormBuilder){}
-  public UserForm : FormGroup = this.formBuilder.group({
-    
+  public FormSignUp : FormGroup = this.formBuilder.group({
+
   });
+
+  Submit(): void{
+    throw Error("Not Implemented");
+  }
 
 }
