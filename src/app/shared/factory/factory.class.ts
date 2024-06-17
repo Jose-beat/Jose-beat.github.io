@@ -30,4 +30,9 @@ export abstract class Factory {
     const factory = this.FactoryMethod();
     return factory.Delete(id, model);
   }
+
+  CreateUser<T extends ITableData>(model : T) : ITransaction<T>{
+    const factory = this.FactoryMethod();
+    return factory.Create(model);
+  }
 }

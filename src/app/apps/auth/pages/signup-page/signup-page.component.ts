@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-signup-page',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrl: './signup-page.component.css'
 })
 export class SignupPageComponent {
+
+  constructor(private formBuilder : FormBuilder){}
+  public UserForm : FormGroup = this.formBuilder.group({
+    
+  });
 
 }

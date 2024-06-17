@@ -1,3 +1,4 @@
+import { FormGroup } from "@angular/forms";
 import { ITableData } from "../interfaces/ITableData.interface";
 import { Utilities } from "../utilities/table.utilities";
 
@@ -12,7 +13,7 @@ export class User implements ITableData{
   public Icon? : string;
   public CreateDate?: number;
   public UpdateDate?: number;
-  public Active : boolean;
+  public State : number;
 
   constructor(
     //Interface TableData attributes
@@ -22,21 +23,25 @@ export class User implements ITableData{
     Username : string,
     Password : string,
     Icon? : string,
+    Id? : string,
+    CreateDate? : number,
     UpdateDate?: number,
+    State? : number
 
   ){
-    this.Id = Utilities.generateId();
+    this.Id = Utilities.generateId(Id);
     this.Name = Name;
     this.LastName = LastName;
     this.Email = Email;
     this.Password = Password;
     this.Username = Username;
     this.Icon = Icon;
-    this.CreateDate = Utilities.createDate(this.CreateDate);
+    this.CreateDate = Utilities.createDate(CreateDate);
     this.UpdateDate = Utilities.updateDate(UpdateDate);
-    this.Active = true;
+    this.State = State!;
   }
 
+  //TODO : Ver forma de incluir cada formulario de que cada modelo en la clas
 
 
 }

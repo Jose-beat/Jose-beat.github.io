@@ -6,6 +6,7 @@ import { ResetPasswordPageComponent } from './pages/reset-password-page/reset-pa
 import { SignupPageComponent } from './pages/signup-page/signup-page.component';
 import { VerificationAccountPageComponent } from './pages/verification-account-page/verification-account-page.component';
 import { AuthRoutingModule } from './auth-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -19,6 +20,7 @@ import { AuthRoutingModule } from './auth-routing.module';
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     AuthRoutingModule
   ]
 })

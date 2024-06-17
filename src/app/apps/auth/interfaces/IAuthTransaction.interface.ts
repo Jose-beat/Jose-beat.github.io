@@ -4,5 +4,7 @@ export interface IAuthTransaction<T>{
   ListObject? : T[],
   LogIn?:boolean,
   LogOut?: boolean,
+  Created? : boolean,
+  Verified?: boolean
   Error?: boolean
 }
