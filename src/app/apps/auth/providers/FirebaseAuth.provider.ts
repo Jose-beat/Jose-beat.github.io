@@ -1,28 +1,18 @@
 import { Observable, catchError, from, map, of, tap } from "rxjs";
 import { IAuthRepository } from "../interfaces/IAuthRepository.interface";
-import { createUserWithEmailAndPassword, getAuth, initializeAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, deleteUser, getAuth, initializeAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { initializeApp } from "firebase/app"
 import { IAuthTransaction } from '../interfaces/IAuthTransaction.interface';
 import { User } from "../../../shared/model/User.model";
 import { environments } from "../../../../environments/environments";
 import { ITransaction } from "../../../shared/interfaces/ITransaction.interface";
 import { Utilities } from "../../../shared/utilities/table.utilities";
+import { AuthMessage } from "../../../shared/enum/Messages.enum";
+import { getFirebaseApp } from "../../../shared/factory/providers/firebase-provider/firebase-config.provider";
 
 export class FirebaseAuth implements IAuthRepository {
 
-
-  private firebaseConfig = {
-    apiKey:             environments.API_KEY,
-    authDomain:         environments.AUTH_DOMAIN,
-    databaseURL:        environments.DATABASE_URL,
-    projectId:          environments.PROJECT_ID,
-    storageBucket:      environments.STORAGE_BUCKET,
-    messagingSenderId:  environments.MESSAGING_SENDER_ID,
-    appId:              environments.APP_ID,
-    measurementId:      environments.MEASUREMENT_ID
-  }
-
-  private app = initializeApp(this.firebaseConfig);
+  private app = getFirebaseApp();
   private auth = getAuth(this.app);
   private email : string = 'correo@correo.com';
   private password : string = '123456789';
@@ -101,9 +91,52 @@ export class FirebaseAuth implements IAuthRepository {
         Message: "Ocurrio un Error: " + error,
         Success: false,
         Error: true,
-      }
+      };
+      console.error(response);
     }
 
+
+
+    return response;
+  }
+
+  async DeleteUser<T>(): Promise<IAuthTransaction<T>> {
+    const user = this.auth.currentUser!;
+
+    let response : IAuthTransaction<T> = {
+      Message: '',
+      Success: false,
+      Error: false,
+    };
+
+    try{
+      await deleteUser(user).then(
+        ()=>{
+          response = {
+            Message: '',
+            Success: true,
+            Error: false,
+          }
+        }
+      ).catch(
+        (error)=>{
+          response = {
+            Message: AuthMessage.Error + error.Message,
+            Success: false,
+            Error: true,
+          }
+          console.error(response);
+        }
+      );
+
+    }catch(error){
+      response = {
+        Message: AuthMessage.Error + error,
+        Success: false,
+        Error: true,
+      }
+      console.error(response);
+    }
 
 
     return response;

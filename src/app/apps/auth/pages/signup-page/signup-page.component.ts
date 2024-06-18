@@ -49,6 +49,8 @@ export class SignupPageComponent {
 
     if(this.response.Error === true){
       console.log("ERROR AL CREAR AL USUARIO EN LA DB: " + this.response.Message);
+
+      console.log("Eliminando usuario: " + (await this.authService.DeleteUser()).Success);
       return;
     };
 

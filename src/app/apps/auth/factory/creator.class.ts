@@ -28,4 +28,10 @@ export abstract class Creator{
     const factory =  this.factoryMethod();
     return factory.CreateUserAuth(model);
   }
+
+  DeleteUser<T>(): Promise<IAuthTransaction<T>>{
+
+    const factory = this.factoryMethod();
+    return factory.DeleteUser();
+  }
 }

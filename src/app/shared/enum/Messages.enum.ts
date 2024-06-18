@@ -6,3 +6,13 @@ export enum MessageType {
   DataEmpty = "Aun no hay datos",
   Error = "Ha ocurrido un error : "
 }
+
+
+export enum AuthMessage{
+  Login = "Bienvenido",
+  Logout = "Hasta Luego",
+  Created = "Usuario Registrado Correctamente",
+  Deleted = "Usuario Eliminado Correctamente",
+  Verified = "Usuario Verificado Correctamente",
+  Error = "Ha ocurrido un error : "
+}

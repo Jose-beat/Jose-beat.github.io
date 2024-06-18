@@ -6,31 +6,14 @@ import { ITransaction } from "../../interfaces/ITransaction.interface";
 import { environments } from "../../../../environments/environments";
 import {  getDatabase, ref, set } from "firebase/database";
 import { MessageType } from '../../enum/Messages.enum';
+import { getFirebaseApp } from './firebase-provider/firebase-config.provider';
 
 export class FirebaseDB implements IRepository{
 
 
 
-  private firebaseConfig = {
-    apiKey:             environments.API_KEY,
-    authDomain:         environments.AUTH_DOMAIN,
-    databaseURL:        environments.DATABASE_URL,
-    projectId:          environments.PROJECT_ID,
-    storageBucket:      environments.STORAGE_BUCKET,
-    messagingSenderId:  environments.MESSAGING_SENDER_ID,
-    appId:              environments.APP_ID,
-    measurementId:      environments.MEASUREMENT_ID
-  }
-  private app = initializeApp(this.firebaseConfig);
+  private app = getFirebaseApp();
   private db = getDatabase(this.app);
-
-
-
-
-
-
-
-
 
   GetAll<T>(model: new (...args: any[]) => T): Observable<ITransaction<T>> {
     console.error({model: model});
@@ -65,7 +48,7 @@ export class FirebaseDB implements IRepository{
     try{
 
       await set(ref(this.db, model_name + '/' + Id ), model)
-          .catch((error) => {console.error("Error al guardar: " + error)});
+          .catch((error) => {response = {Message: MessageType.Error + error , ModelObject: model,  Error: true};});
 
       response = {Message: MessageType.Create,Success: true,  ModelObject: model,  Error: false};
 

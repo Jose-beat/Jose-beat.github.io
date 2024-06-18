@@ -18,6 +18,7 @@ import { ITableData } from '../../../shared/interfaces/ITableData.interface';
 export class AuthService implements IAuthRepository, IRepository {
 
 
+
   private user? : User;
   private authCreator : AuthCreator = new AuthProvider("localEmail");
   private dbCreator : DBFactory = new DBProvider("FB");
@@ -59,7 +60,9 @@ export class AuthService implements IAuthRepository, IRepository {
     return this.authCreator.CreateUserAuth(model);
   }
 
-
+  DeleteUser<T>(): Promise<IAuthTransaction<T>> {
+    return this.authCreator.DeleteUser();
+  }
 
 
 
