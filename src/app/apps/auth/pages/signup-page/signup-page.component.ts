@@ -4,8 +4,9 @@ import { AuthService } from '../../services/auth.service';
 import { User } from '../../../../shared/model/User.model';
 import { ITransaction } from '../../../../shared/interfaces/ITransaction.interface';
 import { Utilities } from '../../../../shared/utilities/table.utilities';
-import { IAuthTransaction } from '../../interfaces/IAuthTransaction.interface';
+
 import { Alert } from '../../../../shared/utilities/alert.utilities';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup-page',
@@ -17,11 +18,12 @@ export class SignupPageComponent {
   constructor(
     private formBuilder : FormBuilder,
     private authService: AuthService,
+    private router : Router
   ){}
 
 
   public response? : ITransaction<User>;
-  public authResponse? : IAuthTransaction<User>;
+  public authResponse? : ITransaction<User>;
   public user : User = new User('','','','','');
   public formSignUp : FormGroup = this.formBuilder.group({
     Name: [],
@@ -53,11 +55,17 @@ export class SignupPageComponent {
       console.log("ERROR AL CREAR AL USUARIO EN LA DB: " + this.response.Message);
 
       console.log("Eliminando usuario: " + (await this.authService.DeleteUser()).Success);
-      Alert.sweetAlert(this.response);
+      // Alert.sweetAlert(this.response);
       return;
     };
 
-    Alert.sweetAlert(this.response);
+    Alert.sweetAlert(this.response).then(
+      (result)=>{
+        if(result.isConfirmed){
+          this.router.navigate([this.response?.RedirectTo]);
+        }
+      }
+    );
 
 
 

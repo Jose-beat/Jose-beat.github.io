@@ -1,11 +1,12 @@
 import { Observable, catchError, from, map, of, tap } from 'rxjs';
 import { IAuthRepository } from '../interfaces/IAuthRepository.interface';
 import { createUserWithEmailAndPassword, deleteUser, getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import { IAuthTransaction } from '../interfaces/IAuthTransaction.interface';
+
 import { User } from '../../../shared/model/User.model';
 import { Utilities } from '../../../shared/utilities/table.utilities';
 import { AuthMessage } from '../../../shared/enum/Messages.enum';
 import { getFirebaseApp } from '../../../shared/factory/providers/firebase-provider/firebase-config.provider';
+import { ITransaction } from '../../../shared/interfaces/ITransaction.interface';
 
 export class FirebaseAuth implements IAuthRepository {
   private app = getFirebaseApp();
@@ -13,8 +14,8 @@ export class FirebaseAuth implements IAuthRepository {
   private email: string = 'correo@correo.com';
   private password: string = '123456789';
 
-  Login<T>(): Observable<IAuthTransaction<T>> {
-    let response: IAuthTransaction<T> = {
+  Login<T>(): Observable<ITransaction<T>> {
+    let response: ITransaction<T> = {
       Message: '',
       Success: false,
       Error: false,
@@ -33,7 +34,7 @@ export class FirebaseAuth implements IAuthRepository {
         Login: true,
       })),
       catchError((error) => {
-        return new Observable<IAuthTransaction<T>>((observer) => {
+        return new Observable<ITransaction<T>>((observer) => {
           observer.next({
             Message: error.code + error.message,
             Error: true,
@@ -52,8 +53,8 @@ export class FirebaseAuth implements IAuthRepository {
     throw new Error('Method not implemented.');
   }
 
-  async CreateUserAuth<T>(model: T): Promise<IAuthTransaction<T>> {
-    let response: IAuthTransaction<T> = { Message: 'Initial Response', Success: false, Error: false,
+  async CreateUserAuth<T>(model: T): Promise<ITransaction<T>> {
+    let response: ITransaction<T> = { Message: 'Initial Response', Success: false, Error: false,
     };
     let model_name: String = (model as any).constructor.name;
     try {
@@ -81,10 +82,10 @@ export class FirebaseAuth implements IAuthRepository {
     return response;
   }
 
-  async DeleteUser<T>(): Promise<IAuthTransaction<T>> {
+  async DeleteUser<T>(): Promise<ITransaction<T>> {
     const user = this.auth.currentUser!;
 
-    let response: IAuthTransaction<T> = { Message: '', Success: false, Error: false };
+    let response: ITransaction<T> = { Message: '', Success: false, Error: false };
 
     try {
       await deleteUser(user)

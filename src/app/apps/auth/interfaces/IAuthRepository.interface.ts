@@ -1,16 +1,16 @@
 import { Observable } from "rxjs";
 import { ITransaction } from "../../../shared/interfaces/ITransaction.interface";
-import { IAuthTransaction } from "./IAuthTransaction.interface";
+
 
 export interface IAuthRepository {
 
-  Login<T>(): Observable<IAuthTransaction<T>>;
+  Login<T>(): Observable<ITransaction<T>>;
 
   Logout(): void;
 
   CheckAuthentication(): Observable<boolean>;
 
-  CreateUserAuth<T>(model : T) : Promise<IAuthTransaction<T>>;
+  CreateUserAuth<T>(model : T) : Promise<ITransaction<T>>;
 
-  DeleteUser<T>() : Promise<IAuthTransaction<T>>;
+  DeleteUser<T>() : Promise<ITransaction<T>>;
 }

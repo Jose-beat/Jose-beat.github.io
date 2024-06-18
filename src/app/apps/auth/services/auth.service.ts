@@ -7,7 +7,6 @@ import { Provider  as DBProvider }from "../../../shared/factory/provider.factory
 import { Creator as AuthCreator } from '../factory/creator.class';
 import { Factory  as DBFactory }from "../../../shared/factory/factory.class";
 import { ITransaction } from '../../../shared/interfaces/ITransaction.interface';
-import { IAuthTransaction } from '../interfaces/IAuthTransaction.interface';
 import { IRepository } from '../../../shared/interfaces/IRepository.interface';
 import { ITableData } from '../../../shared/interfaces/ITableData.interface';
 
@@ -46,7 +45,7 @@ export class AuthService implements IAuthRepository, IRepository {
   }
 
 
-  Login<T>(): Observable<IAuthTransaction<T>> {
+  Login<T>(): Observable<ITransaction<T>> {
     return  this.authCreator.Login();
 
   }
@@ -56,11 +55,11 @@ export class AuthService implements IAuthRepository, IRepository {
   CheckAuthentication(): Observable<boolean> {
     throw new Error('Method not implemented.');
   }
-  CreateUserAuth <T>(model : T): Promise<IAuthTransaction<T>> {
+  CreateUserAuth <T>(model : T): Promise<ITransaction<T>> {
     return this.authCreator.CreateUserAuth(model);
   }
 
-  DeleteUser<T>(): Promise<IAuthTransaction<T>> {
+  DeleteUser<T>(): Promise<ITransaction<T>> {
     return this.authCreator.DeleteUser();
   }
 

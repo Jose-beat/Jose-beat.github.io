@@ -6,3 +6,7 @@ export interface ITransaction<T>{
   Success? : boolean,
   Error?: boolean
 }
+
+
+
+
