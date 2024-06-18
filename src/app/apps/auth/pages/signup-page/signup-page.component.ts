@@ -5,6 +5,7 @@ import { User } from '../../../../shared/model/User.model';
 import { ITransaction } from '../../../../shared/interfaces/ITransaction.interface';
 import { Utilities } from '../../../../shared/utilities/table.utilities';
 import { IAuthTransaction } from '../../interfaces/IAuthTransaction.interface';
+import { Alert } from '../../../../shared/utilities/alert.utilities';
 
 @Component({
   selector: 'app-signup-page',
@@ -41,6 +42,7 @@ export class SignupPageComponent {
     this.authResponse = await this.authService.CreateUserAuth<User>(this.user);
 
     if(this.authResponse.Error === true || this.authResponse.Success === false){
+
       console.log("ERROR AL CREAR AL USUARIO: " + this.authResponse.Message);
       return;
     };
@@ -51,10 +53,11 @@ export class SignupPageComponent {
       console.log("ERROR AL CREAR AL USUARIO EN LA DB: " + this.response.Message);
 
       console.log("Eliminando usuario: " + (await this.authService.DeleteUser()).Success);
+      Alert.sweetAlert(this.response);
       return;
     };
 
-
+    Alert.sweetAlert(this.response);
 
 
 

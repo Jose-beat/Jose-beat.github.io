@@ -48,12 +48,14 @@ export class FirebaseDB implements IRepository{
     try{
 
       await set(ref(this.db, model_name + '/' + Id ), model)
-          .catch((error) => {response = {Message: MessageType.Error + error , ModelObject: model,  Error: true};});
+          .catch((error) => {
+            response = {Message: MessageType.Error + error ,RedirectTo: '/admin/dashboard', ModelObject: model,  Error: true};
+          });
 
-      response = {Message: MessageType.Create,Success: true,  ModelObject: model,  Error: false};
+      response = {Message: MessageType.Create,Success: true,RedirectTo: '/error',  ModelObject: model,  Error: false};
 
     }catch(error){
-      response = {Message: MessageType.Error + error , ModelObject: model,  Error: true};
+      response = {Message: MessageType.Error + error ,RedirectTo: '/error', ModelObject: model,  Error: true};
     }
 
     return response;
