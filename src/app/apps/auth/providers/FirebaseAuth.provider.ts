@@ -31,8 +31,7 @@ export class FirebaseAuth implements IAuthRepository {
 
     let response : IAuthTransaction<T> = {
       Message: '',
-      LogIn: false,
-      LogOut: false,
+      Success: false,
       Error: false,
     };
 
@@ -71,32 +70,40 @@ export class FirebaseAuth implements IAuthRepository {
   async CreateUserAuth<T>(model : T): Promise<IAuthTransaction<T>> {
     let response : IAuthTransaction<T> = {
       Message: 'Initial Response',
-      Created: false,
+      Success: false,
       Error: false,
 
     };
-
     let model_name :String = (model as any).constructor.name;
-    if(model_name === 'User' ){
+    try{
+      if(model_name === 'User' ){
 
-      let model_user : User = Utilities.convertToUser<T>(model);
-      await createUserWithEmailAndPassword(this.auth, model_user.Email,model_user.Password)
-      .then((userCredencial)=>{
-          console.log(userCredencial.user);
-          response = {
-            Message: '',
-            Created: true
-          }
-      })
-      .catch((error)=>{
-        console.log(error);
-          response = {
-            Message: error.code + error.message,
-            Created: false,
-            Error: true,
-          }
-      });
+        let model_user : User = Utilities.convertToUser<T>(model);
+        await createUserWithEmailAndPassword(this.auth, model_user.Email,model_user.Password)
+        .then((userCredencial)=>{
+            console.log(userCredencial.user);
+            response = {
+              Message: '',
+              Success: true
+            }
+        })
+        .catch((error)=>{
+          console.log(error);
+            response = {
+              Message: error.code + error.message,
+              Success: false,
+              Error: true,
+            }
+        });
+      }
+    }catch(error){
+      response = {
+        Message: "Ocurrio un Error: " + error,
+        Success: false,
+        Error: true,
+      }
     }
+
 
 
     return response;

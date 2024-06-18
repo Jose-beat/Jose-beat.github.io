@@ -38,7 +38,7 @@ export class User implements ITableData{
     this.Icon = Icon;
     this.CreateDate = Utilities.createDate(CreateDate);
     this.UpdateDate = Utilities.updateDate(UpdateDate);
-    this.State = State!;
+    this.State =  State === null || State === undefined ? 1 : 0;
   }
 
   //TODO : Ver forma de incluir cada formulario de que cada modelo en la clas

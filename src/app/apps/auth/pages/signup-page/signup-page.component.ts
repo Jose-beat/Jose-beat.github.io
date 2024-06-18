@@ -4,6 +4,7 @@ import { AuthService } from '../../services/auth.service';
 import { User } from '../../../../shared/model/User.model';
 import { ITransaction } from '../../../../shared/interfaces/ITransaction.interface';
 import { Utilities } from '../../../../shared/utilities/table.utilities';
+import { IAuthTransaction } from '../../interfaces/IAuthTransaction.interface';
 
 @Component({
   selector: 'app-signup-page',
@@ -19,6 +20,7 @@ export class SignupPageComponent {
 
 
   public response? : ITransaction<User>;
+  public authResponse? : IAuthTransaction<User>;
   public user : User = new User('','','','','');
   public formSignUp : FormGroup = this.formBuilder.group({
     Name: [],
@@ -30,22 +32,30 @@ export class SignupPageComponent {
   });
 
 
-  Submit(): void{
+  async Submit(): Promise<void>{
 
     console.info(this.user);
 
     this.user =  Utilities.formObjectT<User>(this.formSignUp, this.user);
 
-    this.authService.CreateUserAuth<User>(this.user).then(
-      (AuthResponse)=>{
+    this.authResponse = await this.authService.CreateUserAuth<User>(this.user);
 
-        this.authService.CreateUser(this.user)
-      }
-    ).catch(
-      (error)=>{
-        console.log(error);
-      }
-    );
+    if(this.authResponse.Error === true || this.authResponse.Success === false){
+      console.log("ERROR AL CREAR AL USUARIO: " + this.authResponse.Message);
+      return;
+    };
+
+    this.response = await this.authService.CreateUser<User>(this.user);
+
+    if(this.response.Error === true){
+      console.log("ERROR AL CREAR AL USUARIO EN LA DB: " + this.response.Message);
+      return;
+    };
+
+
+
+
+
   }
 
 }

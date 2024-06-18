@@ -2,5 +2,6 @@ export interface ITransaction<T>{
   Message: string,
   ModelObject? : T,
   ListObject? : T[],
-  Error?: Boolean
+  Success? : boolean,
+  Error?: boolean
 }
