@@ -1,8 +1,7 @@
-import { ActivatedRouteSnapshot, CanActivateChildFn, CanActivateFn, CanMatchFn, Route, Router, RouterStateSnapshot, UrlSegment } from "@angular/router";
-import { Observable, from, tap } from "rxjs";
+import { Observable, from, map, tap } from "rxjs";
 import { AuthService } from "../services/auth.service";
-import { Inject, inject } from "@angular/core";
-
+import { ActivatedRouteSnapshot, CanActivateFn, CanMatchFn, Route, Router, RouterStateSnapshot, UrlSegment } from "@angular/router";
+import { inject } from "@angular/core";
 
 const checkStatus = (): boolean | Promise<boolean> => {
   const authService: AuthService = inject(AuthService);
@@ -11,27 +10,23 @@ const checkStatus = (): boolean | Promise<boolean> => {
   return authService.CheckAuthentication().then(
     authenticated => {
       console.log('Autenticado'  + authenticated);
-      if(!authenticated)return router.navigate(['/auth']);
-      return authenticated;
+      if(authenticated)return router.navigate(['./']);
+      return !authenticated;
     }
   );
 
 
 }
-
-
-
-export const AuthActivateGuard: CanActivateFn = (
+export const PublicActivateGuard: CanActivateFn = (
   route: ActivatedRouteSnapshot,
   state: RouterStateSnapshot
-) => {
+)=> {
   return checkStatus();
-}
+};
 
-
-export const AuthMatchGuard: CanMatchFn = (
+export const PublicMatchGuard: CanMatchFn = (
   route: Route,
   urlSegment: UrlSegment[]
 )=> {
   return checkStatus();
-}
+};

@@ -19,7 +19,7 @@ export abstract class Creator{
     return factory.Logout();
   }
 
-  CheckAuthentication() : Observable<boolean> {
+  CheckAuthentication() : Promise<boolean> {
     const factory = this.factoryMethod();
     return factory.CheckAuthentication();
   }

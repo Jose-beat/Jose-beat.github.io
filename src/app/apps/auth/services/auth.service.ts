@@ -52,8 +52,8 @@ export class AuthService implements IAuthRepository, IRepository {
   Logout(): void {
     throw new Error('Method not implemented.');
   }
-  CheckAuthentication(): Observable<boolean> {
-    throw new Error('Method not implemented.');
+  CheckAuthentication(): Promise<boolean> {
+    return this.authCreator.CheckAuthentication();
   }
   CreateUserAuth <T>(model : T): Promise<ITransaction<T>> {
     return this.authCreator.CreateUserAuth(model);

@@ -1,6 +1,6 @@
 import { Observable, catchError, from, map, of, tap } from 'rxjs';
 import { IAuthRepository } from '../interfaces/IAuthRepository.interface';
-import { createUserWithEmailAndPassword, deleteUser, getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, deleteUser, getAuth, onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth';
 
 import { User } from '../../../shared/model/User.model';
 import { Utilities } from '../../../shared/utilities/table.utilities';
@@ -49,8 +49,29 @@ export class FirebaseAuth implements IAuthRepository {
     throw new Error('Method not implemented.');
   }
 
-  CheckAuthentication(): Observable<boolean> {
-    throw new Error('Method not implemented.');
+  async CheckAuthentication(): Promise<boolean> {
+
+    console.log(sessionStorage.getItem('token') + " Mi token es este");
+    if(!sessionStorage.getItem('token')) return false;
+    const token = sessionStorage.getItem('token');
+    let current_user  = this.auth.currentUser;
+    let user_state : boolean = false;
+
+    let current_user_token : string = '';
+
+    await current_user!.getIdToken().then(token => current_user_token = token);
+
+    if( !current_user || current_user_token !== token ){
+      user_state = false;
+    }
+
+    user_state = true;
+    console.log(current_user);
+    return user_state;
+
+
+
+
   }
 
   async CreateUserAuth<T>(model: T): Promise<ITransaction<T>> {
