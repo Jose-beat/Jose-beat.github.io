@@ -2,18 +2,21 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ErrorPageComponent } from './shared/pages/error-page/error-page.component';
 import { AuthActivateGuard, AuthMatchGuard } from './apps/auth/guards/auth.guard';
-import { PublicActivateGuard, PublicMatchGuard } from './apps/auth/guards/public.guard';
+import { AdminActivateGuard, AdminMatchGuard } from './apps/auth/guards/admin.guard';
+
 
 const routes: Routes = [
   {
     path: 'web',
     loadChildren: () => import('./apps/web/web.module').then(m => m.WebModule),
-    canActivate: [PublicActivateGuard],
-    canMatch: [PublicMatchGuard]
+
   },
   {
     path: 'admin',
-    loadChildren: ()=> import('./apps/admin/admin.module').then(m => m.AdminModule)
+    loadChildren: ()=> import('./apps/admin/admin.module').then(m => m.AdminModule),
+    canActivate: [AdminActivateGuard],
+    canMatch: [AdminMatchGuard]
+
   },
   {
     path: 'auth',

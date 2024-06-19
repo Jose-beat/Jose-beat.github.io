@@ -9,22 +9,27 @@ const checkStatus = (): boolean | Promise<boolean> => {
 
   return authService.CheckAuthentication().then(
     authenticated => {
-      console.log('Autenticado'  + authenticated);
-      if(authenticated)return router.navigate(['./']);
-      return !authenticated;
+      // console.log('Autenticado'  + authenticated);
+      // if(authenticated)return router.navigate(['./']);
+      if(!authenticated){
+        console.log("Te mandare al login")
+        debugger;
+        return router.navigate(['/auth']);
+      }
+      return authenticated;
     }
   );
 
 
 }
-export const PublicActivateGuard: CanActivateFn = (
+export const AdminActivateGuard: CanActivateFn = (
   route: ActivatedRouteSnapshot,
   state: RouterStateSnapshot
 )=> {
   return checkStatus();
 };
 
-export const PublicMatchGuard: CanMatchFn = (
+export const AdminMatchGuard: CanMatchFn = (
   route: Route,
   urlSegment: UrlSegment[]
 )=> {

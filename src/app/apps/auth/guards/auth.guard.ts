@@ -10,9 +10,16 @@ const checkStatus = (): boolean | Promise<boolean> => {
 
   return authService.CheckAuthentication().then(
     authenticated => {
-      console.log('Autenticado'  + authenticated);
-      if(!authenticated)return router.navigate(['/auth']);
-      return authenticated;
+      // console.log('Autenticado'  + authenticated);
+        if(authenticated){
+        console.log("Te mandare al Admin")
+        debugger;
+        return router.navigate(['/admin']);
+        }
+      // }else{
+      //   return router.navigate(['/auth']);
+      // }
+      return !authenticated;
     }
   );
 
