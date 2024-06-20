@@ -6,9 +6,9 @@ export interface IAuthRepository {
 
   Login<T>(): Observable<ITransaction<T>>;
 
-  Logout(): void;
+  Logout(): Observable<boolean>;
 
-  CheckAuthentication(): Promise<boolean>;
+  CheckAuthentication(): Observable<boolean>;
 
   CreateUserAuth<T>(model : T) : Promise<ITransaction<T>>;
 

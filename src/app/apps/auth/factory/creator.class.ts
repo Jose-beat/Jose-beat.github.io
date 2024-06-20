@@ -8,18 +8,18 @@ export abstract class Creator{
 
   protected abstract factoryMethod() : IAuthRepository;
 
-   Login<T> (): Observable<ITransaction<T>> {
+    Login<T> (): Observable<ITransaction<T>> {
     const factory = this.factoryMethod();
     return  factory.Login();
 
   }
 
-  Logout() : void {
+  Logout() : Observable<boolean> {
     const factory = this.factoryMethod();
     return factory.Logout();
   }
 
-  CheckAuthentication() : Promise<boolean> {
+  CheckAuthentication() : Observable<boolean> {
     const factory = this.factoryMethod();
     return factory.CheckAuthentication();
   }

@@ -49,10 +49,10 @@ export class AuthService implements IAuthRepository, IRepository {
     return  this.authCreator.Login();
 
   }
-  Logout(): void {
-    throw new Error('Method not implemented.');
+  Logout(): Observable<boolean> {
+    return this.authCreator.Logout();
   }
-  CheckAuthentication(): Promise<boolean> {
+  CheckAuthentication(): Observable<boolean> {
     return this.authCreator.CheckAuthentication();
   }
   CreateUserAuth <T>(model : T): Promise<ITransaction<T>> {

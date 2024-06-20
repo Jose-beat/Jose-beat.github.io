@@ -1,6 +1,6 @@
 import { Observable, catchError, from, map, of, tap } from 'rxjs';
 import { IAuthRepository } from '../interfaces/IAuthRepository.interface';
-import { createUserWithEmailAndPassword, deleteUser, getAuth, onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, deleteUser, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 
 import { User } from '../../../shared/model/User.model';
 import { Utilities } from '../../../shared/utilities/table.utilities';
@@ -45,29 +45,61 @@ export class FirebaseAuth implements IAuthRepository {
     );
   }
 
-  Logout(): void {
-    throw new Error('Method not implemented.');
+   Logout(): Observable<boolean>  {
+
+    const logoutObserver = new Observable<boolean>((subscriber)=>{
+      signOut(this.auth).then(()=>{
+        console.log("CHIDO")
+        subscriber.next(true);
+        subscriber.complete();
+      }).catch((error)=>{
+        console.log("NO CHIDO")
+        console.log("Error Logout: " + error);
+        subscriber.next(false);
+        subscriber.complete();
+      });
+    });
+
+    return logoutObserver;
+
   }
 
-  async CheckAuthentication(): Promise<boolean> {
+  CheckAuthentication(): Observable<boolean> {
 
-    console.log(sessionStorage.getItem('token') + " Mi token es este");
-    if(!sessionStorage.getItem('token')) return false;
-    const token = sessionStorage.getItem('token');
     let current_user  = this.auth.currentUser;
+   // console.error("Mi usuario actual" + current_user);
     let user_state : boolean = false;
-
     let current_user_token : string = '';
+    const userObserver = new Observable<boolean>((subscriber)=>{
 
-    await current_user!.getIdToken().then(token => current_user_token = token);
+      // if(!sessionStorage.getItem('token')) subscriber.next(false);
+      // const token = sessionStorage.getItem('token');
+      onAuthStateChanged(this.auth, (user)=>{
+        // console.log(this.auth)
+        if(user){
+          console.log("CHIDO");
+          subscriber.next(true);
+          subscriber.complete();
+        }else{
+          console.log("NO CHIDO")
+          subscriber.next(false);
+          subscriber.complete();
+        }
+      })
+     // console.error("Mi token actual" + current_user_token);
+      //await current_user!.getIdToken().then(token => current_user_token = token);
 
-    if( !current_user || current_user_token !== token ){
-      user_state = false;
-    }
+      // if( !current_user || current_user_token !== token ){
+      //   subscriber.next(false);
+      //   subscriber.complete();
+      // }
 
-    user_state = true;
-    console.log(current_user);
-    return user_state;
+      // subscriber.next(true);
+      // subscriber.complete();
+      // console.log(current_user);
+    })
+
+    return userObserver;
 
 
 
@@ -87,7 +119,7 @@ export class FirebaseAuth implements IAuthRepository {
 
             userCredencial.user
             .getIdToken()
-            .then((token) => sessionStorage.setItem('token', token));
+            .then((token) => {});
             response = { Message: '', Success: true};
           })
           .catch((error) => {

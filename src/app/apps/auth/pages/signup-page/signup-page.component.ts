@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { User } from '../../../../shared/model/User.model';
@@ -7,19 +7,22 @@ import { Utilities } from '../../../../shared/utilities/table.utilities';
 
 import { Alert } from '../../../../shared/utilities/alert.utilities';
 import { Router } from '@angular/router';
+import { catchError, tap } from 'rxjs';
 
 @Component({
   selector: 'app-signup-page',
   templateUrl: './signup-page.component.html',
   styleUrl: './signup-page.component.css'
 })
-export class SignupPageComponent {
+export class SignupPageComponent implements OnDestroy{
 
   constructor(
     private formBuilder : FormBuilder,
     private authService: AuthService,
     private router : Router
   ){}
+  ngOnDestroy(): void {
+  }
 
 
   public response? : ITransaction<User>;
@@ -62,7 +65,15 @@ export class SignupPageComponent {
     Alert.sweetAlert(this.response).then(
       (result)=>{
         if(result.isConfirmed){
-          this.router.navigate([this.response?.RedirectTo]);
+
+          const logout = this.authService.Logout().subscribe(
+            (logout)=>{
+              if(!logout) console.log("Error al desloguear al usuario");
+              this.router.navigate([this.response?.RedirectTo]);
+            }
+          );
+
+
         }
       }
     );

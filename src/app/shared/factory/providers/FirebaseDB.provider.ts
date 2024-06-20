@@ -52,7 +52,7 @@ export class FirebaseDB implements IRepository{
             response = {Message: MessageType.Error + error ,RedirectTo: '/error', ModelObject: model,  Error: true};
           });
 
-      response = {Message: MessageType.Create,Success: true,RedirectTo: '/admin/dashboard',  ModelObject: model,  Error: false};
+      response = {Message: MessageType.Create,Success: true,RedirectTo: '/auth',  ModelObject: model,  Error: false};
 
     }catch(error){
       response = {Message: MessageType.Error + error ,RedirectTo: '/error', ModelObject: model,  Error: true};
