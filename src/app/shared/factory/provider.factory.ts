@@ -1,6 +1,6 @@
 import { IRepository } from "../interfaces/IRepository.interface";
 import { Factory } from "./factory.class"
-import { FirebaseDB } from "./providers/FirebaseDB.provider";
+import { FirebaseDB } from "./providers/firebaseDb.provider";
 
 export class Provider extends Factory{
 

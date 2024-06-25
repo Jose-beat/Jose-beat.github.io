@@ -10,17 +10,23 @@
             <div class="col-lg-6 mb-3">
               <label for="exampleInputEmail1" class="form-label">Nombre</label>
               <input type="text" class="form-control" id="Name" formControlName="Name" aria-describedby="emailHelp">
+              <span *ngIf="isValidField('Name')" class="form-text text-danger">
+                Email sin formato correcto
+              </span>
             </div>
             <div class="col-lg-6 mb-3">
               <label for="exampleInputEmail1" class="form-label">Apellidos</label>
               <input type="text" class="form-control" id="LastName" formControlName="LastName" aria-describedby="emailHelp">
+              <span *ngIf="isValidField('LastName')" class="form-text text-danger">
+                Email sin formato correcto
+              </span>
             </div>
             <div class="col-lg-6 mb-3">
               <label for="exampleInputEmail1" class="form-label">Email</label>
               <input type="email" class="form-control"id="Email" formControlName="Email" aria-describedby="emailHelp">
               <span *ngIf="isValidField('Email')" class="form-text text-danger">
                 Email sin formato correcto
-            </span>
+              </span>
             </div>
             <div class="col-lg-6 mb-3">
               <label for="exampleInputEmail1" class="form-label">Username</label>

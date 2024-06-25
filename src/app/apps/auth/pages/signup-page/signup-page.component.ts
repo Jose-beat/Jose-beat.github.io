@@ -31,11 +31,11 @@ export class SignupPageComponent implements OnDestroy{
   public authResponse? : ITransaction<User>;
   public user : User = new User('','','','','');
   public formSignUp : FormGroup = this.formBuilder.group({
-    Name: [],
-    LastName: [],
+    Name: ['',[Validators.required, Validators.pattern(this.validatorService.firstNameAndLastnamePattern)]],
+    LastName: ['',[Validators.required, Validators.pattern(this.validatorService.firstNameAndLastnamePattern)]],
     Email: ['', [Validators.required, Validators.pattern(this.validatorService.emailPattern)]],
-    Username: [],
-    Password : [] ,
+    Username: ['', []],
+    Password : ['', []] ,
     Icon: []
   });
 

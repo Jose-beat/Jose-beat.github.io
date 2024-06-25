@@ -6,7 +6,7 @@ import { ITransaction } from "../../interfaces/ITransaction.interface";
 import {  getDatabase, ref, set } from "firebase/database";
 import { MessageType } from '../../enum/Messages.enum';
 import { getFirebaseApp } from './firebase-provider/firebase-config.provider';
-import { DBTransaction } from './transaction/DBTransaction.class';
+import { DBTransaction } from './transaction/dbTransaction.class';
 
 export class FirebaseDB implements IRepository{
 
