@@ -1,5 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { User } from '../../../../shared/model/User.model';
 import { ITransaction } from '../../../../shared/interfaces/ITransaction.interface';
@@ -8,6 +8,7 @@ import { Utilities } from '../../../../shared/utilities/table.utilities';
 import { Alert } from '../../../../shared/utilities/alert.utilities';
 import { Router } from '@angular/router';
 import { catchError, tap } from 'rxjs';
+import { ValidatorsService } from '../../../../shared/validator/email-validator.service';
 
 @Component({
   selector: 'app-signup-page',
@@ -19,7 +20,8 @@ export class SignupPageComponent implements OnDestroy{
   constructor(
     private formBuilder : FormBuilder,
     private authService: AuthService,
-    private router : Router
+    private router : Router,
+    private validatorService : ValidatorsService
   ){}
   ngOnDestroy(): void {
   }
@@ -31,14 +33,14 @@ export class SignupPageComponent implements OnDestroy{
   public formSignUp : FormGroup = this.formBuilder.group({
     Name: [],
     LastName: [],
-    Email: [],
+    Email: ['', [Validators.required, Validators.pattern(this.validatorService.emailPattern)]],
     Username: [],
     Password : [] ,
     Icon: []
   });
 
 
-  async Submit(): Promise<void>{
+  async submit(): Promise<void>{
 
     console.info(this.user);
 
@@ -82,6 +84,11 @@ export class SignupPageComponent implements OnDestroy{
 
 
 
+  }
+
+  isValidField(field: string){
+    //TODO: Servicio para validacion
+    return this.validatorService.isValidField(this.formSignUp, field);
   }
 
 }
