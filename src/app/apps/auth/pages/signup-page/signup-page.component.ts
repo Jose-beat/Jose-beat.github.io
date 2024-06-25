@@ -46,9 +46,10 @@ export class SignupPageComponent implements OnDestroy{
 
     this.authResponse = await this.authService.CreateUserAuth<User>(this.user);
 
-    if(this.authResponse.Error === true || this.authResponse.Success === false){
+    if(this.authResponse.Error === true){
 
-      console.log("ERROR AL CREAR AL USUARIO: " + this.authResponse.Message);
+      // console.log("ERROR AL CREAR AL USUARIO: " + this.authResponse.Message);
+      Alert.sweetAlert(this.authResponse).then();
       return;
     };
 
@@ -58,6 +59,7 @@ export class SignupPageComponent implements OnDestroy{
       console.log("ERROR AL CREAR AL USUARIO EN LA DB: " + this.response.Message);
 
       console.log("Eliminando usuario: " + (await this.authService.DeleteUser()).Success);
+      Alert.sweetAlert(this.response).then();
       // Alert.sweetAlert(this.response);
       return;
     };

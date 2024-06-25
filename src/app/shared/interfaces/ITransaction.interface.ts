@@ -4,8 +4,10 @@ export interface ITransaction<T>{
   ListObject? : T[],
   RedirectTo? : string,
   Success? : boolean,
-  Error?: boolean
+  Error?: boolean,
 }
+
+
 
 
 

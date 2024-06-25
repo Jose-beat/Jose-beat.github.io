@@ -14,5 +14,13 @@ export enum AuthMessage{
   Created = "Usuario Registrado Correctamente",
   Deleted = "Usuario Eliminado Correctamente",
   Verified = "Usuario Verificado Correctamente",
-  Error = "Ha ocurrido un error : "
+  Error = "Ha ocurrido un error : ",
+
+}
+
+export enum AuthCode {
+  Executed = "SEXEC",
+  WithoutExecution = "WEXEC",
+  FailExecution = "FEXEC",
+
 }

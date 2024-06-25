@@ -3,10 +3,10 @@ import { Observable } from "rxjs";
 import { IRepository } from "../../interfaces/IRepository.interface";
 import { ITableData } from "../../interfaces/ITableData.interface";
 import { ITransaction } from "../../interfaces/ITransaction.interface";
-import { environments } from "../../../../environments/environments";
 import {  getDatabase, ref, set } from "firebase/database";
 import { MessageType } from '../../enum/Messages.enum';
 import { getFirebaseApp } from './firebase-provider/firebase-config.provider';
+import { DBTransaction } from './transaction/DBTransaction.class';
 
 export class FirebaseDB implements IRepository{
 
@@ -49,13 +49,15 @@ export class FirebaseDB implements IRepository{
 
       await set(ref(this.db, model_name + '/' + Id ), model)
           .catch((error) => {
-            response = {Message: MessageType.Error + error ,RedirectTo: '/error', ModelObject: model,  Error: true};
+            //response = {Message: MessageType.Error + error ,RedirectTo: '/error', ModelObject: model,  Error: true};
+            response = DBTransaction.OnFaliure(MessageType.Error + error, '/error');
           });
 
-      response = {Message: MessageType.Create,Success: true,RedirectTo: '/auth',  ModelObject: model,  Error: false};
+      //response = {Message: MessageType.Create,Success: true,RedirectTo: '/auth',  ModelObject: model,  Error: false};
+      response = DBTransaction.OnSuccess(MessageType.Create, model, [], '/auth');
 
     }catch(error){
-      response = {Message: MessageType.Error + error ,RedirectTo: '/error', ModelObject: model,  Error: true};
+      response =  DBTransaction.OnFaliure(MessageType.Error + error, '/error');
     }
 
     return response;
