@@ -42,51 +42,46 @@ export class SignupPageComponent {
   public validatorUtilities : FormUtilities = new FormUtilities(this.formSignUp);
 
   async submit(): Promise<void>{
+
     this.loader = true;
     console.info(this.user);
 
+
+
     this.user =  Utilities.formObjectT<User>(this.formSignUp, this.user);
 
-    this.authResponse = await this.authService.CreateUserAuth<User>(this.user);
+    await Promise.all([this.authService.CreateUserAuth<User>(this.user), this.authService.CreateUser<User>(this.user)])
+                  .then(async (responses)=>{
+                      this.authResponse = responses[0];
+                      this.response = responses[1];
 
-    if(this.authResponse.Error === true){
+                      this.loader = false;
+                      if(this.authResponse.Error){
+                        Alert.sweetAlert(this.authResponse);
+                        return;
+                      }
 
-      // console.log("ERROR AL CREAR AL USUARIO: " + this.authResponse.Message);
-      this.loader = false;
-      Alert.sweetAlert(this.authResponse).then(()=>this.loader = false);
-
-      return;
-    };
-
-    this.response = await this.authService.CreateUser<User>(this.user);
-
-    if(this.response.Error === true){
-      console.log("ERROR AL CREAR AL USUARIO EN LA DB: " + this.response.Message);
-
-      console.log("Eliminando usuario: " + (await this.authService.DeleteUser()).Success);
-      this.loader = false;
-      Alert.sweetAlert(this.response).then();
-      // Alert.sweetAlert(this.response);
-      return;
-    };
-    this.loader = false;
-    Alert.sweetAlert(this.response).then(
-      (result)=>{
-        if(result.isConfirmed){
-          const logout = this.authService.Logout().subscribe(
-            (logout)=>{
-              if(!logout) console.log("Error al desloguear al usuario");
-              this.router.navigate([this.response?.RedirectTo]);
-            }
-          );
+                      if(this.response.Error){
+                        await this.authService.DeleteUser();
+                        Alert.sweetAlert(this.response);
+                        return;
+                      }
+                      Alert.sweetAlert(this.response).then(
+                          (result)=>{
+                            if(result.isConfirmed){
+                              this.authService.Logout().subscribe(
+                                (logout)=>{
+                                  if(!logout) console.log("Error al desloguear al usuario");
+                                  this.router.navigate([this.response?.RedirectTo]);
+                                }
+                              );
 
 
-        }
-      }
-    );
+                            }
+                          }
+                        );
 
-
-
+                  });
   }
 
 
