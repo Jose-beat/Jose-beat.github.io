@@ -45,8 +45,8 @@ export class AuthService implements IAuthRepository, IRepository {
   }
 
 
-  Login<T>(): Observable<ITransaction<T>> {
-    return  this.authCreator.Login();
+  Login<T>(email : string, password : string): Promise<ITransaction<T>> {
+    return  this.authCreator.Login(email, password);
 
   }
   Logout(): Observable<boolean> {

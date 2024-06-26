@@ -8,14 +8,14 @@ import { Utilities } from '../../../../shared/utilities/table.utilities';
 import { Alert } from '../../../../shared/utilities/alert.utilities';
 import { Router } from '@angular/router';
 import { catchError, tap } from 'rxjs';
-import { ValidatorsService } from '../../../../shared/validator/email-validator.service';
+import { ValidatorsService } from '../../../../shared/validator/validator.service';
 
 @Component({
   selector: 'app-signup-page',
   templateUrl: './signup-page.component.html',
   styleUrl: './signup-page.component.css'
 })
-export class SignupPageComponent implements OnDestroy{
+export class SignupPageComponent {
 
   constructor(
     private formBuilder : FormBuilder,
@@ -23,13 +23,14 @@ export class SignupPageComponent implements OnDestroy{
     private router : Router,
     private validatorService : ValidatorsService
   ){}
-  ngOnDestroy(): void {
-  }
+
 
 
   public response? : ITransaction<User>;
   public authResponse? : ITransaction<User>;
   public user : User = new User('','','','','');
+
+
   public formSignUp : FormGroup = this.formBuilder.group({
     Name: ['',[Validators.required, Validators.pattern(this.validatorService.firstNameAndLastnamePattern)]],
     LastName: ['',[Validators.required, Validators.pattern(this.validatorService.firstNameAndLastnamePattern)]],

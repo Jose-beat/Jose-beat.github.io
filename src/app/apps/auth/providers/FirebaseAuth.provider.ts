@@ -13,39 +13,28 @@ import { AuthTransaction } from './transaction/AuthTransaction.class';
 export class FirebaseAuth implements IAuthRepository {
   private app = getFirebaseApp();
   private auth = getAuth(this.app);
-  private email: string = 'correo@correo.com';
-  private password: string = '123456789';
 
-  Login<T>(): Observable<ITransaction<T>> {
+
+  async Login<T>(email : string, password : string ): Promise<ITransaction<T>> {
     let response: ITransaction<T> = {
-      Message: '',
+      Message: AuthCode.WithoutExecution,
       Success: false,
       Error: false,
     };
 
-    return from(
-      signInWithEmailAndPassword(this.auth, this.email, this.password)
-    ).pipe(
-      tap((user) => {
-        user.user
-          .getIdToken()
-          .then((token) => sessionStorage.setItem('tkn', token));
-      }),
-      map((user) => ({
-        Message: user.user.email!,
-        Login: true,
-      })),
-      catchError((error) => {
-        return new Observable<ITransaction<T>>((observer) => {
-          observer.next({
-            Message: error.code + error.message,
-            Error: true,
-          });
-          observer.complete();
-        });
-      })
-    );
+    await signInWithEmailAndPassword(this.auth, email, password)
+          .then(
+            (userCredential)=>{
+            response = AuthTransaction.OnSuccess(userCredential.user.email!, '/admin');
+        }).catch(
+            (error)=>{
+            response = AuthTransaction.OnFaliure(`${AuthCode.FailExecution} : ${error.code} - ${error.message}`, '');
+              });
+    return response;
+
+
   }
+
 
   Logout(): Observable<boolean>  {
 

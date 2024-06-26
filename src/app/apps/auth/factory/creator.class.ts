@@ -8,9 +8,9 @@ export abstract class Creator{
 
   protected abstract factoryMethod() : IAuthRepository;
 
-    Login<T> (): Observable<ITransaction<T>> {
+    Login<T> (email : string, password : string): Promise<ITransaction<T>> {
     const factory = this.factoryMethod();
-    return  factory.Login();
+    return  factory.Login(email ,password);
 
   }
 

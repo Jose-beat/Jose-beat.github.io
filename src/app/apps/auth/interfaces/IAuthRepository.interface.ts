@@ -4,7 +4,7 @@ import { ITransaction } from "../../../shared/interfaces/ITransaction.interface"
 
 export interface IAuthRepository {
 
-  Login<T>(): Observable<ITransaction<T>>;
+  Login<T>(email : string, password : string): Promise<ITransaction<T>>;
 
   Logout(): Observable<boolean>;
 

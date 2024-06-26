@@ -8,9 +8,9 @@ const checkStatus = (): boolean | Observable<boolean> => {
   const router : Router = inject(Router);
 
   return authService.CheckAuthentication().pipe(
-    // tap(authenticated => console.log("Autenticado en admin: " + authenticated)),
+
     tap((isAuthenticated)=>{
-      // console.log("NO Autenticado, te mandare al auth");
+
       if(!isAuthenticated)router.navigate(['/auth'])}
     ),
     map(isAuthenticated => isAuthenticated)

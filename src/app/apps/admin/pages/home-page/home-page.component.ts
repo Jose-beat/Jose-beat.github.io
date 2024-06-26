@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../auth/services/auth.service';
 import { pipe, tap } from 'rxjs';
 
@@ -7,8 +7,13 @@ import { pipe, tap } from 'rxjs';
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.css'
 })
-export class HomePageComponent {
+export class HomePageComponent implements OnInit {
+
   constructor(private authService : AuthService){}
+
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
 
   logout(): void{
     this.authService.Logout().subscribe(
