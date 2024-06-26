@@ -7,6 +7,7 @@ import { ITransaction } from '../../../../shared/interfaces/ITransaction.interfa
 import { User } from '../../../../shared/model/User.model';
 import { AuthTransaction } from '../../providers/transaction/AuthTransaction.class';
 import { Router } from '@angular/router';
+import { FormUtilities } from '../../../../shared/utilities/form.utilities';
 
 @Component({
   selector: 'app-login-page',
@@ -28,7 +29,9 @@ export class LoginPageComponent {
   public formLogin : FormGroup = this.formBuilder.group({
     Email : ['', [Validators.required, Validators.pattern(this.validatorService.emailPattern)]],
     Password : ['', [Validators.required]]
-  })
+  });
+  public validatorUtilities : FormUtilities = new FormUtilities(this.formLogin);
+
   async logIn(){
     this.loader = true;
     this.response = await this.authService.Login<User>(this.formLogin.value.Email, this.formLogin.value.Password);
@@ -48,8 +51,5 @@ export class LoginPageComponent {
     );
   }
 
-  isValidField(field: string){
-    //TODO: Servicio para validacion
-    return this.validatorService.isValidField(this.formLogin, field);
-  }
+
 }

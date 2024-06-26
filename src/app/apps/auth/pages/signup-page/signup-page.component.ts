@@ -8,6 +8,7 @@ import { Utilities } from '../../../../shared/utilities/table.utilities';
 import { Alert } from '../../../../shared/utilities/alert.utilities';
 import { Router } from '@angular/router';
 import { ValidatorsService } from '../../../../shared/validator/validator.service';
+import { FormUtilities } from '../../../../shared/utilities/form.utilities';
 
 @Component({
   selector: 'app-signup-page',
@@ -38,7 +39,7 @@ export class SignupPageComponent {
     Password : ['', [Validators.required]] ,
     Icon: []
   });
-
+  public validatorUtilities : FormUtilities = new FormUtilities(this.formSignUp);
 
   async submit(): Promise<void>{
     this.loader = true;
@@ -89,9 +90,6 @@ export class SignupPageComponent {
   }
 
 
-  isValidField(field: string){
-    //TODO: Servicio para validacion
-    return this.validatorService.isValidField(this.formSignUp, field);
-  }
+
 
 }

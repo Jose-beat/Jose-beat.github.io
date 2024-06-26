@@ -11,36 +11,36 @@
             <div class="col-lg-6 mb-3">
               <label for="exampleInputEmail1" class="form-label">Nombre</label>
               <input type="text" class="form-control" id="Name" formControlName="Name" aria-describedby="emailHelp">
-              <span *ngIf="isValidField('Name')" class="form-text text-danger">
-                Nombre sin formato correcto
+              <span *ngIf="validatorUtilities.isValidField('Name')" class="form-text text-danger">
+                {{validatorUtilities.getFieldError('Name')}}
               </span>
             </div>
             <div class="col-lg-6 mb-3">
               <label for="exampleInputEmail1" class="form-label">Apellidos</label>
               <input type="text" class="form-control" id="LastName" formControlName="LastName" aria-describedby="emailHelp">
-              <span *ngIf="isValidField('LastName')" class="form-text text-danger">
-                Apellidos sin formato correcto
+              <span *ngIf="validatorUtilities.isValidField('LastName')" class="form-text text-danger">
+                {{validatorUtilities.getFieldError('LastName')}}
               </span>
             </div>
             <div class="col-lg-6 mb-3">
               <label for="exampleInputEmail1" class="form-label">Email</label>
               <input type="email" class="form-control"id="Email" formControlName="Email" aria-describedby="emailHelp">
-              <span *ngIf="isValidField('Email')" class="form-text text-danger">
-                Email sin formato correcto
+              <span *ngIf="validatorUtilities.isValidField('Email')" class="form-text text-danger">
+                {{validatorUtilities.getFieldError('Email')}}
               </span>
             </div>
             <div class="col-lg-6 mb-3">
               <label for="exampleInputEmail1" class="form-label">Username</label>
               <input type="text" class="form-control" id="Username" formControlName="Username" aria-describedby="emailHelp">
-              <span *ngIf="isValidField('Username')" class="form-text text-danger">
-                Username sin formato correcto
+              <span *ngIf="validatorUtilities.isValidField('Username')" class="form-text text-danger">
+                {{validatorUtilities.getFieldError('Username')}}
               </span>
             </div>
             <div class="col-lg-6 mb-3">
               <label for="exampleInputEmail1" class="form-label">Password</label>
               <input type="password" class="form-control" id="Password" formControlName="Password" aria-describedby="emailHelp">
-              <span *ngIf="isValidField('Password')" class="form-text text-danger">
-                Password sin formato correcto
+              <span *ngIf="validatorUtilities.isValidField('Password')" class="form-text text-danger">
+                {{validatorUtilities.getFieldError('Password')}}
               </span>
             </div>
             <div class="col-lg-12 mb-3">
