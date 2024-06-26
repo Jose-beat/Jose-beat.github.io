@@ -29,14 +29,14 @@ export class SignupPageComponent {
   public response? : ITransaction<User>;
   public authResponse? : ITransaction<User>;
   public user : User = new User('','','','','');
-
+  public submitActive : boolean = false;
 
   public formSignUp : FormGroup = this.formBuilder.group({
     Name: ['',[Validators.required, Validators.pattern(this.validatorService.firstNameAndLastnamePattern)]],
     LastName: ['',[Validators.required, Validators.pattern(this.validatorService.firstNameAndLastnamePattern)]],
     Email: ['', [Validators.required, Validators.pattern(this.validatorService.emailPattern)]],
-    Username: ['', []],
-    Password : ['', []] ,
+    Username: ['', [Validators.required]],
+    Password : ['', [Validators.required]] ,
     Icon: []
   });
 
@@ -86,6 +86,7 @@ export class SignupPageComponent {
 
 
   }
+
 
   isValidField(field: string){
     //TODO: Servicio para validacion
