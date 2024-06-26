@@ -7,7 +7,6 @@ import { Utilities } from '../../../../shared/utilities/table.utilities';
 
 import { Alert } from '../../../../shared/utilities/alert.utilities';
 import { Router } from '@angular/router';
-import { catchError, tap } from 'rxjs';
 import { ValidatorsService } from '../../../../shared/validator/validator.service';
 
 @Component({
@@ -29,7 +28,7 @@ export class SignupPageComponent {
   public response? : ITransaction<User>;
   public authResponse? : ITransaction<User>;
   public user : User = new User('','','','','');
-  public submitActive : boolean = false;
+  public loader : boolean = false;
 
   public formSignUp : FormGroup = this.formBuilder.group({
     Name: ['',[Validators.required, Validators.pattern(this.validatorService.firstNameAndLastnamePattern)]],
@@ -42,7 +41,7 @@ export class SignupPageComponent {
 
 
   async submit(): Promise<void>{
-
+    this.loader = true;
     console.info(this.user);
 
     this.user =  Utilities.formObjectT<User>(this.formSignUp, this.user);
@@ -52,7 +51,9 @@ export class SignupPageComponent {
     if(this.authResponse.Error === true){
 
       // console.log("ERROR AL CREAR AL USUARIO: " + this.authResponse.Message);
-      Alert.sweetAlert(this.authResponse).then();
+      this.loader = false;
+      Alert.sweetAlert(this.authResponse).then(()=>this.loader = false);
+
       return;
     };
 
@@ -62,15 +63,15 @@ export class SignupPageComponent {
       console.log("ERROR AL CREAR AL USUARIO EN LA DB: " + this.response.Message);
 
       console.log("Eliminando usuario: " + (await this.authService.DeleteUser()).Success);
+      this.loader = false;
       Alert.sweetAlert(this.response).then();
       // Alert.sweetAlert(this.response);
       return;
     };
-
+    this.loader = false;
     Alert.sweetAlert(this.response).then(
       (result)=>{
         if(result.isConfirmed){
-
           const logout = this.authService.Logout().subscribe(
             (logout)=>{
               if(!logout) console.log("Error al desloguear al usuario");
