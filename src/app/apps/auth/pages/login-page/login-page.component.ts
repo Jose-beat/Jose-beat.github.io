@@ -24,20 +24,21 @@ export class LoginPageComponent {
   ){}
 
   public response? : ITransaction<User>;
-
+  public loader : boolean = false;
   public formLogin : FormGroup = this.formBuilder.group({
     Email : ['', [Validators.required, Validators.pattern(this.validatorService.emailPattern)]],
     Password : ['', [Validators.required]]
   })
   async logIn(){
-
+    this.loader = true;
     this.response = await this.authService.Login<User>(this.formLogin.value.Email, this.formLogin.value.Password);
 
     if(this.response.Error){
+      this.loader = false;
       Alert.sweetAlert(this.response).then();
       return;
     }
-
+    this.loader = false;
     Alert.sweetAlert(this.response).then(
       (result)=>{
         if(result.isConfirmed){
