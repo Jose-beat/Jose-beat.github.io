@@ -4,7 +4,6 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { ResetPasswordPageComponent } from './pages/reset-password-page/reset-password-page.component';
 import { SignupPageComponent } from './pages/signup-page/signup-page.component';
-import { VerificationAccountPageComponent } from './pages/verification-account-page/verification-account-page.component';
 
 const routes: Routes = [
   {
@@ -23,10 +22,6 @@ const routes: Routes = [
       {
         path: 'sign-up',
         component: SignupPageComponent
-      },
-      {
-        path: 'verify',
-        component: VerificationAccountPageComponent
       },
       {
         path: '**',

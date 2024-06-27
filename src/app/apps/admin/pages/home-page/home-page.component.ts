@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../auth/services/auth.service';
 import { pipe, tap } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-page',
@@ -9,7 +10,10 @@ import { pipe, tap } from 'rxjs';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor(private authService : AuthService){}
+  constructor(
+    private authService : AuthService,
+    private router : Router
+  ){}
 
   ngOnInit(): void {
     throw new Error('Method not implemented.');
@@ -20,10 +24,13 @@ export class HomePageComponent implements OnInit {
       (response)=>{
         console.log(response);
 
-      }
-    );
+      });
+  }
 
-
-
+  checkVerify(){
+    console.log(this.authService.AuthVerify());
+    if(!this.authService.AuthVerify()){
+      this.router.navigate(['/admin/verify']);
+    }
   }
 }

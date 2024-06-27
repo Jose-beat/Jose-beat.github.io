@@ -8,7 +8,7 @@ const checkStatus = (): boolean | Observable<boolean> => {
   const authService: AuthService = inject(AuthService);
   const router : Router = inject(Router);
 
-  return authService.CheckAuthentication().pipe(
+  return authService.AuthAuthenticated().pipe(
     // tap(authenticated => console.log("Autenticado en Auth: " + authenticated)),
     tap((isAuthenticated)=>{
       console.log("Autenticado, te mandare al admin");

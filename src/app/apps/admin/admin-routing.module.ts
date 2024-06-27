@@ -4,6 +4,7 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { DashPageComponent } from './pages/dash-page/dash-page.component';
 import { CatalogPageComponent } from './pages/catalog-page/catalog-page.component';
 import { ProjectPageComponent } from './pages/project-page/project-page.component';
+import { VerificationAccountPageComponent } from './pages/verification-account-page/verification-account-page.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
       {
         path: 'project',
         component: ProjectPageComponent
+      },
+      {
+        path: 'verify',
+        component: VerificationAccountPageComponent
       },
       {
         path: '**',

@@ -29,7 +29,7 @@ export class DBTransaction<T> implements ITransaction<T>{
     return new DBTransaction<T>(message, modelObject, listObject, redirectTo, true, false);
   }
   public static OnFaliure<T>(message: string, redirectTo : string): ITransaction<T> {
-    return new DBTransaction<T>(message, undefined, undefined, redirectTo, false, true);
+    return new DBTransaction<T>(`ERROR: ${message}`, undefined, undefined, redirectTo, false, true);
   }
 
 }

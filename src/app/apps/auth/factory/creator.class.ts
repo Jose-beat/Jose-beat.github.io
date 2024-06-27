@@ -19,9 +19,19 @@ export abstract class Creator{
     return factory.Logout();
   }
 
-  CheckAuthentication() : Observable<boolean> {
+  AuthAuthenticated() : Observable<boolean> {
     const factory = this.factoryMethod();
-    return factory.CheckAuthentication();
+    return factory.AuthAuthenticated();
+  }
+
+  AuthVerify() : boolean {
+    const factory = this.factoryMethod();
+    return factory.AuthVerify();
+  }
+
+  VerifyUserAuth<T>() : Promise<ITransaction<T>>{
+    const factory =  this.factoryMethod();
+    return factory.VerifyUserAuth();
   }
 
   CreateUserAuth<T>(model : T) : Promise<ITransaction<T>>{

@@ -29,7 +29,7 @@ export class AuthTransaction<T> implements ITransaction<T>{
     return new AuthTransaction<T>(message, undefined, undefined, redirectTo, true, false);
   }
   public static OnFaliure<T>(message: string, redirectTo : string): ITransaction<T> {
-    return new AuthTransaction<T>(message, undefined, undefined, redirectTo, false, true);
+    return new AuthTransaction<T>(`ERROR: ${message}`, undefined, undefined, redirectTo, false, true);
   }
 
 }

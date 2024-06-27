@@ -1,6 +1,6 @@
 import { Observable, catchError, from, map, of, tap } from 'rxjs';
 import { IAuthRepository } from '../interfaces/IAuthRepository.interface';
-import { createUserWithEmailAndPassword, deleteUser, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { createUserWithEmailAndPassword, deleteUser, getAuth, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 
 import { User } from '../../../shared/model/User.model';
 import { Utilities } from '../../../shared/utilities/table.utilities';
@@ -55,7 +55,7 @@ export class FirebaseAuth implements IAuthRepository {
 
   }
 
-  CheckAuthentication(): Observable<boolean> {
+  AuthAuthenticated(): Observable<boolean> {
     const userObserver = new Observable<boolean>((subscriber)=>{
       onAuthStateChanged(this.auth, (user)=>{
         // console.log(this.auth)
@@ -73,7 +73,34 @@ export class FirebaseAuth implements IAuthRepository {
 
     return userObserver;
   }
+  AuthVerify(): boolean{
+    const user = this.auth.currentUser;
+    if(user === null) return false;
+    return user.emailVerified;
+  }
 
+
+  async VerifyUserAuth<T>() : Promise<ITransaction<T>>{
+    let currentUser =this.auth.currentUser;
+    let response : AuthTransaction<T> =  AuthTransaction.OnFaliure("Usuario no Autenticado", "");
+
+    if(!currentUser) return response;
+
+    await sendEmailVerification(currentUser).then(
+      ()=>{
+        response = AuthTransaction.OnSuccess("Email de Verificacion Enviado!", "", );
+      }
+    ).catch(
+      (error)=>{
+        response = AuthTransaction.OnFaliure(`${error.message} ${error.code}`, "", );
+      }
+    );
+
+    return response;
+
+
+
+  }
   async CreateUserAuth<T>(model: T): Promise<ITransaction<T>> {
     let response: ITransaction<T> =  AuthTransaction.OnFaliure(AuthCode.WithoutExecution,'');
 
