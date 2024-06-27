@@ -22,7 +22,9 @@ export class HomePageComponent implements OnInit {
   logout(): void{
     this.authService.Logout().subscribe(
       (response)=>{
-        console.log(response);
+        if(response){
+          this.router.navigate(['/auth']);
+        }
 
       });
   }
