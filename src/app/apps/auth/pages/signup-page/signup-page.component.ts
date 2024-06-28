@@ -9,6 +9,7 @@ import { Alert } from '../../../../shared/utilities/alert.utilities';
 import { Router } from '@angular/router';
 import { ValidatorsService } from '../../../../shared/validator/validator.service';
 import { FormUtilities } from '../../../../shared/utilities/form.utilities';
+import { LoadingService } from '../../../../shared/services/global/loading.service';
 
 @Component({
   selector: 'app-signup-page',
@@ -21,7 +22,8 @@ export class SignupPageComponent {
     private formBuilder : FormBuilder,
     private authService: AuthService,
     private router : Router,
-    private validatorService : ValidatorsService
+    private validatorService : ValidatorsService,
+    private loadingService : LoadingService
   ){}
 
 
@@ -43,7 +45,7 @@ export class SignupPageComponent {
 
   async submit(): Promise<void>{
 
-    this.loader = true;
+    this.loadingService.loadingOn();
     console.info(this.user);
 
 
@@ -55,7 +57,7 @@ export class SignupPageComponent {
                       this.authResponse = responses[0];
                       this.response = responses[1];
 
-                      this.loader = false;
+                      this.loadingService.loadingOff();
                       if(this.authResponse.Error){
                         Alert.sweetAlert(this.authResponse);
                         return;

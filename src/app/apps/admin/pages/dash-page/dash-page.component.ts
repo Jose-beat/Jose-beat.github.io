@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../auth/services/auth.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dash-page',
@@ -10,13 +9,15 @@ import { Router } from '@angular/router';
 export class DashPageComponent implements OnInit {
 
   constructor(
-    private authService : AuthService,
-    private router : Router
+    private authService : AuthService
   ){}
 
   ngOnInit(): void {
 
   }
 
+  checkVerify(){
+
+  }
 
 }

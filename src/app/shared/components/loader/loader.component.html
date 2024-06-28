@@ -1,6 +1,16 @@
 
-<h1 *ngIf="this.loader" >Cargando!</h1>
+<!-- <h1 *ngIf="this.loader" >Cargando!</h1>
 <div *ngIf="this.loader" class="full-screen-overlay">
   <img src="../../../../assets/img/loader.svg" alt="Loader.svg">
-</div>
+</div> -->
 
+@if (loading$ | async) {
+  <div class="full-screen-overlay">
+    @if(!customLoadingIndicator){
+      <img src="../../../../assets/img/loader.svg" alt="Loader.svg">
+    }
+
+  </div>
+
+
+}

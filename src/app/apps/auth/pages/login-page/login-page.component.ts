@@ -8,6 +8,7 @@ import { User } from '../../../../shared/model/User.model';
 import { AuthTransaction } from '../../providers/transaction/AuthTransaction.class';
 import { Router } from '@angular/router';
 import { FormUtilities } from '../../../../shared/utilities/form.utilities';
+import { LoadingService } from '../../../../shared/services/global/loading.service';
 
 @Component({
   selector: 'app-login-page',
@@ -21,7 +22,8 @@ export class LoginPageComponent {
     private authService : AuthService,
     private formBuilder : FormBuilder,
     private router : Router,
-    private validatorService : ValidatorsService
+    private validatorService : ValidatorsService,
+    private loadingService : LoadingService
   ){}
 
   public response? : ITransaction<User>;
@@ -33,15 +35,15 @@ export class LoginPageComponent {
   public validatorUtilities : FormUtilities = new FormUtilities(this.formLogin);
 
   async logIn(){
-    this.loader = true;
+    this.loadingService.loadingOn();
     this.response = await this.authService.Login<User>(this.formLogin.value.Email, this.formLogin.value.Password);
 
     if(this.response.Error){
-      this.loader = false;
+      this.loadingService.loadingOff();
       Alert.sweetAlert(this.response).then();
       return;
     }
-    this.loader = false;
+    this.loadingService.loadingOff();
     Alert.sweetAlert(this.response).then(
       (result)=>{
         if(result.isConfirmed){

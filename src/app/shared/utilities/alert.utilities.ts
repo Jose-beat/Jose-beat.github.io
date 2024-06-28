@@ -30,6 +30,7 @@ export class Alert{
       title: title,
       text: response.Message.toString(),
       icon: icon,
+      allowOutsideClick: false,
       confirmButtonText: 'Aceptar'
     });
   }
