@@ -1,6 +1,7 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild, viewChild } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
+import { GraphicUtilities } from '../../../../shared/utilities/graphic.utilities';
 
 @Component({
   selector: 'beat-nav-bar',
@@ -21,20 +22,12 @@ export class NavBarComponent  implements OnInit{
   constructor(private router : Router){}
 
   ngOnInit(): void {
-    this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd)
-    ).subscribe(()=> {
-        this.closeNavbar();
-    });
+
+    GraphicUtilities.closeNavbar(this.router);
 
 
   }
-  closeNavbar(){
-    const navbarCollapse = document.querySelector('.navbar-collapse');
-    if (navbarCollapse && navbarCollapse.classList.contains('show')) {
-      navbarCollapse.classList.remove('show');
-    }
-  }
+
 
 
 

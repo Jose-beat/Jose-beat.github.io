@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../auth/services/auth.service';
 import { pipe, tap } from 'rxjs';
 import { Router } from '@angular/router';
+import { GraphicUtilities } from '../../../../shared/utilities/graphic.utilities';
 
 @Component({
   selector: 'app-home-page',
@@ -16,7 +17,8 @@ export class HomePageComponent implements OnInit {
   ){}
 
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+
+    GraphicUtilities.closeNavbar(this.router);
   }
 
   logout(): void{
