@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../auth/services/auth.service';
 import { Alert } from '../../../../shared/utilities/alert.utilities';
 import { Router } from '@angular/router';
+import { LoadingService } from '../../../../shared/services/global/loading.service';
 
 @Component({
   selector: 'admin-verification-account-page',
@@ -11,7 +12,8 @@ import { Router } from '@angular/router';
 export class VerificationAccountPageComponent implements OnInit {
   constructor(
     private authService : AuthService,
-    private router : Router
+    private router : Router,
+    private loadingService : LoadingService
   ){}
   ngOnInit(): void {
     this.checkVerification();
@@ -22,10 +24,11 @@ export class VerificationAccountPageComponent implements OnInit {
     if(this.authService.AuthVerify()) this.router.navigate(['/admin/dashboard']);
   }
   async sendVerification(){
+    this.loadingService.loadingOn();
     await this.authService.VerifyUserAuth().then(
       (response)=>{
-        Alert.sweetAlert(response).then(()=>{
-        })
+        this.loadingService.loadingOff();
+        Alert.sweetAlert(response).then()
       }
     );
   }

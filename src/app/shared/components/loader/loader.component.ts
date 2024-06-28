@@ -29,8 +29,8 @@ export class LoaderComponent implements OnInit{
   detectedRouteTransitions = false;
 
 
-  @ContentChild("loading")
-  customLoadingIndicator : TemplateRef<any> | null = null;
+  // @ContentChild("loading")
+  // customLoadingIndicator : TemplateRef<any> | null = null;
 
 
   constructor(
