@@ -1,1 +1,69 @@
-<p>project-page works!</p>
+<div class="container">
+  <div class="row">
+      <div class="col">
+          <h1>Proyectos</h1>
+          <button type="button" class="btn btn-success m-2" data-bs-toggle="modal" data-bs-target="#editModal">Agregar +</button>
+          <div class="card w-100 h-100 col mb-3">
+              <div class="card-body table-responsive display" >
+                  <div class="table-responsive">
+                      <table class="table table-bordered">
+                          <thead>
+                              <tr>
+                                  <th >Nombre</th>
+                                  <th>Descripcion</th>
+                                  <th>Repositorio</th>
+                                  <th>Link de Repositorio</th>
+                                  <th>Estado</th>
+
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr class="collapse-row" data-bs-toggle="collapse" data-bs-target="#actions1">
+                                  <td>Proyecto 1</td>
+                                  <td>Proyecto dedicado a la gestion de pacientes en clinicas</td>
+                                  <td>Github <img src="../../../../../assets/icons/c--4.svg"  class="table-icons" > </td>
+                                  <td><p><a class="link-offset-1" href="#">github.com</a></p></td>
+                                  <td><span class="badge text-bg-success">Terminado</span></td>
+
+                              </tr>
+                              <tr id="actions1" class="collapse">
+                                  <td colspan="5">
+                                      <div class="d-flex flex-column flex-md-row justify-content-between">
+                                        <button class="btn btn-primary mr-3"><img src="../../../../../assets/icons/data_icons/edit.svg" ></button>
+                                        <button class="btn btn-success mr-3"  data-bs-toggle="modal" data-bs-target="#viewModal"><img src="../../../../../assets/icons/data_icons/view.svg" class="table-icons"></button>
+                                        <button class="btn btn-danger mr-3" data-bs-toggle="modal" data-bs-target="#deleteModal" ><img src="../../../../../assets/icons/data_icons/del.svg" class="table-icons"></button>
+                                      </div>
+                                  </td>
+                              </tr>
+                              <tr class="collapse-row" data-bs-toggle="collapse" data-bs-target="#actions2">
+                                <td>Proyecto 1</td>
+                                <td>Proyecto dedicado a la gestion de pacientes en clinicas</td>
+                                <td>Github <img src="../../../../../assets/icons/c--4.svg"  class="table-icons" > </td>
+                                <td><p><a class="link-offset-1" href="#">github.com</a></p></td>
+                                <td><span class="badge text-bg-success">Terminado</span></td>
+
+                              </tr>
+                              <tr id="actions2" class="collapse">
+                                  <td colspan="5">
+                                      <div class="d-flex flex-column flex-md-row justify-content-between">
+                                        <button class="btn btn-primary mr-3"><img src="../../../../../assets/icons/data_icons/edit.svg" ></button>
+                                        <button class="btn btn-success mr-3"  data-bs-toggle="modal" data-bs-target="#viewModal"><img src="../../../../../assets/icons/data_icons/view.svg" class="table-icons"></button>
+                                        <button class="btn btn-danger mr-3" data-bs-toggle="modal" data-bs-target="#deleteModal" ><img src="../../../../../assets/icons/data_icons/del.svg" class="table-icons"></button>
+                                      </div>
+                                  </td>
+                              </tr>
+                              <!-- Agrega más filas según sea necesario -->
+                          </tbody>
+                      </table>
+                  </div>
+
+
+
+              </div>
+            </div>
+
+      </div>
+
+  </div>
+
+</div>
