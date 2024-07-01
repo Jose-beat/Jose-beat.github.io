@@ -7,6 +7,7 @@ import { DashPageComponent } from './pages/dash-page/dash-page.component';
 import { ProjectPageComponent } from './pages/project-page/project-page.component';
 import { CatalogPageComponent } from './pages/catalog-page/catalog-page.component';
 import { VerificationAccountPageComponent } from './pages/verification-account-page/verification-account-page.component';
+import { ComponentsModule } from './components/components.module';
 
 
 
@@ -16,12 +17,15 @@ import { VerificationAccountPageComponent } from './pages/verification-account-p
     ProjectPageComponent,
     CatalogPageComponent,
     HomePageComponent,
-    VerificationAccountPageComponent
+    VerificationAccountPageComponent,
+
 
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    ComponentsModule,
+    AdminRoutingModule,
+
   ]
 })
 export class AdminModule { }
