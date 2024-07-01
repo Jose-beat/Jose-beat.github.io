@@ -8,6 +8,7 @@ import { ProjectPageComponent } from './pages/project-page/project-page.componen
 import { CatalogPageComponent } from './pages/catalog-page/catalog-page.component';
 import { VerificationAccountPageComponent } from './pages/verification-account-page/verification-account-page.component';
 import { ComponentsModule } from './components/components.module';
+import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 
 
 
@@ -18,6 +19,7 @@ import { ComponentsModule } from './components/components.module';
     CatalogPageComponent,
     HomePageComponent,
     VerificationAccountPageComponent,
+    ProfilePageComponent,
 
 
   ],

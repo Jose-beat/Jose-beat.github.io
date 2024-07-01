@@ -13,6 +13,7 @@ export class AdminNavbarComponent {
     {label: 'Dashboard', target: '#dashboard', route: '/admin/dashboard'},
     {label: 'Proyectos', target: '#project',route: '/admin/project'},
     {label: 'Catalogo', target: '#catalog', route: '/admin/catalog'},
+    // {label: 'Perfil', target: '#profile', route: '/admin/profile'},
 
   ];
 
