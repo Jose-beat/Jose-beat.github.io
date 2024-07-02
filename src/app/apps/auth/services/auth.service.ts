@@ -62,7 +62,7 @@ export class AuthService implements IAuthRepository, IRepository {
   AuthVerify(): boolean {
       return this.authCreator.AuthVerify();
   }
-  CreateUserAuth <T>(model : T): Promise<ITransaction<T>> {
+  CreateUserAuth <T extends ITableData>(model : T): Promise<ITransaction<T>> {
     return this.authCreator.CreateUserAuth(model);
   }
 

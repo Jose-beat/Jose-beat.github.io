@@ -8,6 +8,7 @@ import { AuthCode, AuthMessage } from '../../../shared/enum/Messages.enum';
 import { getFirebaseApp } from '../../../shared/factory/providers/firebase-provider/firebase-config.provider';
 import { ITransaction } from '../../../shared/interfaces/ITransaction.interface';
 import { AuthTransaction } from './transaction/AuthTransaction.class';
+import { ITableData } from '../../../shared/interfaces/ITableData.interface';
 
 
 export class FirebaseAuth implements IAuthRepository {
@@ -101,7 +102,7 @@ export class FirebaseAuth implements IAuthRepository {
 
 
   }
-  async CreateUserAuth<T>(model: T): Promise<ITransaction<T>> {
+  async CreateUserAuth<T extends ITableData>(model: T): Promise<ITransaction<T>> {
     let response: ITransaction<T> =  AuthTransaction.OnFaliure(AuthCode.WithoutExecution,'');
 
     let model_name: String = (model as any).constructor.name;
@@ -110,7 +111,8 @@ export class FirebaseAuth implements IAuthRepository {
         await createUserWithEmailAndPassword( this.auth, model_user.Email, model_user.Password)
           .then((userCredencial) => {
             console.log(userCredencial.user);
-            response = AuthTransaction.OnSuccess(`${AuthCode.Executed}`,'');
+            model.Id = userCredencial.user.uid;
+            response = AuthTransaction.OnSuccess(`${AuthCode.Executed}`,'', model);
           })
           .catch((error) => {
             console.log(error);

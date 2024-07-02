@@ -25,8 +25,8 @@ export class AuthTransaction<T> implements ITransaction<T>{
     this.Error = Error;
   }
 
-  public static OnSuccess<T>(message: string,redirectTo: string): ITransaction<T> {
-    return new AuthTransaction<T>(message, undefined, undefined, redirectTo, true, false);
+  public static OnSuccess<T>(message: string,redirectTo: string, model? : T): ITransaction<T> {
+    return new AuthTransaction<T>(message, model, undefined, redirectTo, true, false);
   }
   public static OnFaliure<T>(message: string, redirectTo : string): ITransaction<T> {
     return new AuthTransaction<T>(`ERROR: ${message}`, undefined, undefined, redirectTo, false, true);

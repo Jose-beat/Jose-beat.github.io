@@ -2,6 +2,7 @@ import { Observable } from "rxjs";
 import { ITransaction } from "../../../shared/interfaces/ITransaction.interface";
 import { IAuthRepository } from "../interfaces/IAuthRepository.interface";
 import { User } from "../../../shared/model/User.model";
+import { ITableData } from "../../../shared/interfaces/ITableData.interface";
 
 
 export abstract class Creator{
@@ -34,7 +35,7 @@ export abstract class Creator{
     return factory.VerifyUserAuth();
   }
 
-  CreateUserAuth<T>(model : T) : Promise<ITransaction<T>>{
+  CreateUserAuth<T extends ITableData>(model : T) : Promise<ITransaction<T>>{
     const factory =  this.factoryMethod();
     return factory.CreateUserAuth(model);
   }

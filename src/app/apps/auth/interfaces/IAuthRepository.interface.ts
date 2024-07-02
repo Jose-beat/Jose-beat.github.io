@@ -1,5 +1,6 @@
 import { Observable } from "rxjs";
 import { ITransaction } from '../../../shared/interfaces/ITransaction.interface';
+import { ITableData } from "../../../shared/interfaces/ITableData.interface";
 
 
 export interface IAuthRepository {
@@ -14,7 +15,7 @@ export interface IAuthRepository {
 
   VerifyUserAuth<T>() : Promise<ITransaction<T>>;
 
-  CreateUserAuth<T>(model : T) : Promise<ITransaction<T>>;
+  CreateUserAuth<T extends ITableData>(model : T) : Promise<ITransaction<T>>;
 
   DeleteUser<T>() : Promise<ITransaction<T>>;
 }
