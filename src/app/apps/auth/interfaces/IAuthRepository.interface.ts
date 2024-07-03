@@ -17,5 +17,7 @@ export interface IAuthRepository {
 
   CreateUserAuth<T extends ITableData>(model : T) : Promise<ITransaction<T>>;
 
+  GetUserAuth<T extends ITableData>(model : T) : ITransaction<T>;
+
   DeleteUser<T>() : Promise<ITransaction<T>>;
 }

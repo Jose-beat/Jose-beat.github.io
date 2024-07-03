@@ -7,7 +7,7 @@ export interface IRepository {
 
   GetAll<T>(model: new (...args: any[]) => T): Observable<ITransaction<T>>
 
-  GetById<T>(id : String, model: new (...args: any[]) => T) : Observable<ITransaction<T>>;
+  GetById<T>(id : String, model: new (...args: any[]) => T) : Promise<ITransaction<T>>;
 
   Create<T extends ITableData>(model : T) : ITransaction<T>
 

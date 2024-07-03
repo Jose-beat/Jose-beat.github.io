@@ -123,6 +123,35 @@ export class FirebaseAuth implements IAuthRepository {
     return response;
   }
 
+  GetUserAuth<T extends ITableData>(model : T) : ITransaction<T>{
+    let response : ITransaction<T> = AuthTransaction.OnFaliure("Usuario sin informacion", "");
+    const user = this.auth.currentUser;
+    try {
+
+      if(user !== null){
+
+        model.Id = user.uid;
+        model.Image = user.photoURL;
+        response = AuthTransaction.OnSuccess("Success", "", model);
+
+      }else{
+
+        response = AuthTransaction.OnFaliure("Usuario sin informacion", "");
+
+      }
+
+    }catch(error){
+      response = AuthTransaction.OnFaliure(`${error}`, "");
+    }
+
+
+    return response;
+
+
+
+
+  }
+
   async DeleteUser<T>(): Promise<ITransaction<T>> {
     const user = this.auth.currentUser!;
 

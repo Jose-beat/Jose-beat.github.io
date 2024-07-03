@@ -27,8 +27,8 @@ export class AuthService implements IAuthRepository, IRepository {
   GetAll<T>(model: new (...args: any[]) => T): Observable<ITransaction<T>> {
     throw new Error('Method not implemented.');
   }
-  GetById<T>(id: String, model: new (...args: any[]) => T): Observable<ITransaction<T>> {
-    throw new Error('Method not implemented.');
+  GetById<T>(id: String, model: new (...args: any[]) => T): Promise<ITransaction<T>> {
+    return this.dbCreator.GetById(id, model);
   }
   Create<T extends ITableData>(model: T): ITransaction<T> {
     throw new Error('Method not implemented.');
@@ -64,6 +64,10 @@ export class AuthService implements IAuthRepository, IRepository {
   }
   CreateUserAuth <T extends ITableData>(model : T): Promise<ITransaction<T>> {
     return this.authCreator.CreateUserAuth(model);
+  }
+
+  GetUserAuth<T extends ITableData>(model : T) : ITransaction<T>{
+    return this.authCreator.GetUserAuth(model);
   }
 
   DeleteUser<T>(): Promise<ITransaction<T>> {

@@ -41,6 +41,9 @@ export class User implements ITableData{
     this.State =  State === null || State === undefined ? 1 : 0;
   }
 
+  update(data: Partial<User>) {
+    Object.assign(this, data);
+  }
   //TODO : Ver forma de incluir cada formulario de que cada modelo en la clas
 
 

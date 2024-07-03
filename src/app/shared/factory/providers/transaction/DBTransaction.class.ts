@@ -25,7 +25,7 @@ export class DBTransaction<T> implements ITransaction<T>{
     this.Error = Error;
   }
 
-  public static OnSuccess<T>(message: string, modelObject: T, listObject : T[], redirectTo: string): ITransaction<T> {
+  public static OnSuccess<T>(message: string, redirectTo: string, modelObject?: T, listObject? : T[]): ITransaction<T> {
     return new DBTransaction<T>(message, modelObject, listObject, redirectTo, true, false);
   }
   public static OnFaliure<T>(message: string, redirectTo : string): ITransaction<T> {

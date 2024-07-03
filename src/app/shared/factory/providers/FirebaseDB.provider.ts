@@ -3,10 +3,11 @@ import { Observable } from "rxjs";
 import { IRepository } from "../../interfaces/IRepository.interface";
 import { ITableData } from "../../interfaces/ITableData.interface";
 import { ITransaction } from "../../interfaces/ITransaction.interface";
-import {  getDatabase, ref, set } from "firebase/database";
+import {  child, get, getDatabase, onValue, ref, set } from "firebase/database";
 import { MessageType } from '../../enum/Messages.enum';
 import { getFirebaseApp } from './firebase-provider/firebase-config.provider';
 import { DBTransaction } from './transaction/dbTransaction.class';
+import { Utilities } from '../../utilities/table.utilities';
 
 export class FirebaseDB implements IRepository{
 
@@ -19,10 +20,39 @@ export class FirebaseDB implements IRepository{
     console.error({model: model});
     throw new Error("Method not implemented.");
   }
-  GetById<T>(id: String, model: new (...args: any[]) => T): Observable<ITransaction<T>> {
+  async GetById<T>(id: String, model: new (...args: any[]) => T): Promise<ITransaction<T>> {
     console.error({model: model, Id: id});
-    throw new Error("Method not implemented.");
+
+    let response : ITransaction<T>;
+    let model_object: T;
+    let model_name: string = model.name;
+
+    try{
+
+      const refData =  ref(this.db);
+      const snapshot = await get(child(refData,  model_name + '/' + id));
+      if (snapshot.exists()) {
+
+        const data = snapshot.val();
+        model_object = data as T;
+
+        response = DBTransaction.OnSuccess( MessageType.DataLoaded,"", model_object);
+
+
+      } else {
+        response = DBTransaction.OnFaliure( MessageType.Error,"");
+      }
+    }catch(error){
+      response = DBTransaction.OnFaliure( MessageType.Error + error,"");
+      // response = {Message: MessageType.Error + error,  Error: true};
+
+    }
+
+    return response;
+
   }
+
+
   Create<T extends ITableData>(model: T): ITransaction<T> {
     console.error({model: model});
     throw new Error("Method not implemented.");
@@ -54,7 +84,7 @@ export class FirebaseDB implements IRepository{
           });
 
       //response = {Message: MessageType.Create,Success: true,RedirectTo: '/auth',  ModelObject: model,  Error: false};
-      response = DBTransaction.OnSuccess(MessageType.Create, model, [], '/auth');
+      response = DBTransaction.OnSuccess(MessageType.Create,'/auth', model, [] );
 
     }catch(error){
       response =  DBTransaction.OnFaliure(MessageType.Error + error, '/error');

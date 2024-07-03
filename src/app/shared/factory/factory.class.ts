@@ -11,7 +11,7 @@ export abstract class Factory {
     return factory.GetAll(model);
   }
 
-  GetById<T>(id : String, model: new (...args: any[]) => T) : Observable<ITransaction<T>>{
+  GetById<T>(id : String, model: new (...args: any[]) => T) : Promise<ITransaction<T>>{
     const factory = this.FactoryMethod();
     return factory.GetById(id, model);
   }

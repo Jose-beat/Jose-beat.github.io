@@ -51,4 +51,11 @@ export class Utilities<T>{
     Object.assign(user, obj);
     return user;
   }
+
+  public static combineWithUser(user: User, data: Partial<User>): User {
+    user.update(data);
+    return user;
+}
+
+
 }

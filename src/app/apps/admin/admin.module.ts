@@ -9,6 +9,7 @@ import { CatalogPageComponent } from './pages/catalog-page/catalog-page.componen
 import { VerificationAccountPageComponent } from './pages/verification-account-page/verification-account-page.component';
 import { ComponentsModule } from './components/components.module';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -25,6 +26,8 @@ import { ProfilePageComponent } from './pages/profile-page/profile-page.componen
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     ComponentsModule,
     AdminRoutingModule,
 

@@ -40,6 +40,11 @@ export abstract class Creator{
     return factory.CreateUserAuth(model);
   }
 
+  GetUserAuth<T extends ITableData>(model : T) : ITransaction<T>{
+    const factory = this.factoryMethod();
+    return factory.GetUserAuth(model);
+  }
+
   DeleteUser<T>(): Promise<ITransaction<T>>{
 
     const factory = this.factoryMethod();
