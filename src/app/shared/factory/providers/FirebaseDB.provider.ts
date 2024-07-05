@@ -1,13 +1,14 @@
-import { initializeApp } from 'firebase/app';
+
 import { Observable } from "rxjs";
 import { IRepository } from "../../interfaces/IRepository.interface";
 import { ITableData } from "../../interfaces/ITableData.interface";
 import { ITransaction } from "../../interfaces/ITransaction.interface";
-import {  child, get, getDatabase, onValue, ref, set } from "firebase/database";
+import {  child, get, getDatabase, ref, set } from "firebase/database";
+import * as firebase_storage from 'firebase/storage';
 import { MessageType } from '../../enum/Messages.enum';
 import { getFirebaseApp } from './firebase-provider/firebase-config.provider';
 import { DBTransaction } from './transaction/dbTransaction.class';
-import { Utilities } from '../../utilities/table.utilities';
+
 
 export class FirebaseDB implements IRepository{
 
@@ -15,6 +16,8 @@ export class FirebaseDB implements IRepository{
 
   private app = getFirebaseApp();
   private db = getDatabase(this.app);
+  private storage = firebase_storage.getStorage(this.app)
+
 
   GetAll<T>(model: new (...args: any[]) => T): Observable<ITransaction<T>> {
     console.error({model: model});
@@ -22,7 +25,7 @@ export class FirebaseDB implements IRepository{
   }
   async GetById<T>(id: String, model: new (...args: any[]) => T): Promise<ITransaction<T>> {
     console.error({model: model, Id: id});
-
+    this.uploadFile();
     let response : ITransaction<T>;
     let model_object: T;
     let model_name: string = model.name;
@@ -66,6 +69,7 @@ export class FirebaseDB implements IRepository{
     throw new Error("Method not implemented.");
   }
 
+  //TODO: Ver posibilidad de unificar la funcion Create con esta
   async  CreateUser<T extends ITableData>(model: T): Promise<ITransaction<T>> {
 
     console.error({model: model});
@@ -92,5 +96,17 @@ export class FirebaseDB implements IRepository{
 
     return response;
   }
+
+  //* Funcion independiende para subir archivos
+
+  public uploadFile () {
+    const storageRef = firebase_storage.ref(this.storage, 'profile_name');
+    const message = '5b6p5Y+344GX44G+44GX44Gf77yB44GK44KB44Gn44Go44GG77yB';
+
+    firebase_storage.uploadString(storageRef, message, 'base64').then(()=>{
+      console.error("Cargado el string base 64");
+    })
+  }
+
 
 }

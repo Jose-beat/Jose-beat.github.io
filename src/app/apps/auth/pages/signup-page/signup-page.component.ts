@@ -46,45 +46,11 @@ export class SignupPageComponent {
   async submit(): Promise<void>{
 
     this.loadingService.loadingOn();
-    console.info(this.user);
-
+    console.error("Formulario :" + this.formSignUp.value.Icon);
+    return;
 
 
     this.user =  Utilities.formObjectT<User>(this.formSignUp, this.user);
-
-    // await Promise.all([this.authService.CreateUserAuth<User>(this.user), this.authService.CreateUser<User>(this.user)])
-    //               .then(async (responses)=>{
-    //                   this.authResponse = responses[0];
-    //                   this.response = responses[1];
-
-    //                   this.loadingService.loadingOff();
-    //                   if(this.authResponse.Error){
-    //                     Alert.sweetAlert(this.authResponse);
-    //                     return;
-    //                   }
-
-    //                   if(this.response.Error){
-    //                     await this.authService.DeleteUser();
-    //                     Alert.sweetAlert(this.response);
-    //                     return;
-    //                   }
-    //                   Alert.sweetAlert(this.response).then(
-    //                       (result)=>{
-    //                         if(result.isConfirmed){
-    //                           this.authService.Logout().subscribe(
-    //                             (logout)=>{
-    //                               if(!logout) console.log("Error al desloguear al usuario");
-    //                               this.router.navigate([this.response?.RedirectTo]);
-    //                             }
-    //                           );
-
-
-    //                         }
-    //                       }
-    //                     );
-
-    //               });
-
 
     await this.authService.CreateUserAuth<User>(this.user).then(async (authResponse)=>{
       if(!authResponse.Error){
@@ -121,6 +87,9 @@ export class SignupPageComponent {
     });
   }
 
+  onFileChange(event : any) : void{
+    this.formSignUp =  this.validatorUtilities.onFileChange(this.formSignUp, event);
+  }
 
 
 

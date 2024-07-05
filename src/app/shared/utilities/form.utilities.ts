@@ -1,4 +1,4 @@
-import {  FormGroup } from "@angular/forms";
+import {  Form, FormGroup } from "@angular/forms";
 import { ValidatorsService } from "../validator/validator.service";
 
 export class FormUtilities {
@@ -38,9 +38,46 @@ export class FormUtilities {
 
   }
 
+  onFileChange(form : FormGroup, event: any) :FormGroup {
+    const file : File = event.target.files[0];
+    if (file) {
+       console.log(file.name);
+       this.fileToBase64(file).then((response)=>{
+          console.log(response);
+       });
+
+      // form.patchValue({
+      //   Icon: file
+      // });
+    }
+
+    return form;
+  }
 
   // isValidField(field: string){
   //   //TODO: Servicio para validacion
   //   return this.validatorService.isValidField(this.form, field);
   // }
+
+  private fileToBase64(file: File): Promise<string> {
+    return new Promise<string>((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+
+      reader.onload = () => {
+        if (reader.result) {
+          const base64String = (reader.result as string).split(',')[1];
+          resolve(base64String);
+        } else {
+          reject(new Error('File could not be read.'));
+        }
+      };
+
+      reader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  }
+
+
 }

@@ -23,7 +23,7 @@ export class ProfilePageComponent implements OnInit{
   public user : User = new User("","","","","","");
   public response? : ITransaction<User>;
   public authResponse? : ITransaction<User>;
-  public formLogIn : FormGroup = this.formBuilder.group({
+  public formProfile : FormGroup = this.formBuilder.group({
     Name: ['',[Validators.required, Validators.pattern(this.validatorService.firstNameAndLastnamePattern)]],
     LastName: ['',[Validators.required, Validators.pattern(this.validatorService.firstNameAndLastnamePattern)]],
     Email: ['', [Validators.required, Validators.pattern(this.validatorService.emailPattern)]],
@@ -38,16 +38,6 @@ export class ProfilePageComponent implements OnInit{
 
   }
 
-  populateForm(user: User): void {
-      this.formLogIn.patchValue({
-        Name: user.Name,
-        LastName: user.LastName,
-        Email: user.Email,
-        Username: user.Username,
-        Password : user.Password,
-        Icon: user.Icon
-      });
-  }
 
   async getDataProfile(): Promise<void>{
     this.loaderService.loadingOn();
@@ -62,7 +52,9 @@ export class ProfilePageComponent implements OnInit{
         let object = response.ModelObject as User;
 
         this.user = Utilities.combineWithUser(this.user, object);
-        this.populateForm(this.user);
+
+        // this.populateForm(this.user);
+        this.formProfile.reset(this.user);
         this.loaderService.loadingOff();
 
       });
@@ -70,5 +62,6 @@ export class ProfilePageComponent implements OnInit{
     }
 
   }
+
 
 }
