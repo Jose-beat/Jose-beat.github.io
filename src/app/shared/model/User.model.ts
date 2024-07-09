@@ -10,7 +10,7 @@ export class User implements ITableData{
   public Email : string;
   public Username : string;
   public Password : string;
-  public Icon? : string;
+  public Image? : File;
   public CreateDate?: number;
   public UpdateDate?: number;
   public State : number;
@@ -22,8 +22,8 @@ export class User implements ITableData{
     Email : string,
     Username : string,
     Password : string,
-    Icon? : string,
     Id? : string,
+    Image? : File,
     CreateDate? : number,
     UpdateDate?: number,
     State? : number
@@ -35,7 +35,7 @@ export class User implements ITableData{
     this.Email = Email;
     this.Password = Password;
     this.Username = Username;
-    this.Icon = Icon;
+    this.Image = Image;
     this.CreateDate = Utilities.createDate(CreateDate);
     this.UpdateDate = Utilities.updateDate(UpdateDate);
     this.State =  State === null || State === undefined ? 1 : 0;

@@ -25,7 +25,6 @@ export class FirebaseDB implements IRepository{
   }
   async GetById<T>(id: String, model: new (...args: any[]) => T): Promise<ITransaction<T>> {
     console.error({model: model, Id: id});
-    this.uploadFile();
     let response : ITransaction<T>;
     let model_object: T;
     let model_name: string = model.name;
@@ -86,7 +85,7 @@ export class FirebaseDB implements IRepository{
             //response = {Message: MessageType.Error + error ,RedirectTo: '/error', ModelObject: model,  Error: true};
             response = DBTransaction.OnFaliure(MessageType.Error + error, '/error');
           });
-
+        this.uploadFile(model.Image);
       //response = {Message: MessageType.Create,Success: true,RedirectTo: '/auth',  ModelObject: model,  Error: false};
       response = DBTransaction.OnSuccess(MessageType.Create,'/auth', model, [] );
 
@@ -99,13 +98,20 @@ export class FirebaseDB implements IRepository{
 
   //* Funcion independiende para subir archivos
 
-  public uploadFile () {
+  public uploadFile (file : File | undefined | null) {
     const storageRef = firebase_storage.ref(this.storage, 'profile_name');
-    const message = '5b6p5Y+344GX44G+44GX44Gf77yB44GK44KB44Gn44Go44GG77yB';
+    // const message = '5b6p5Y+344GX44G+44GX44Gf77yB44GK44KB44Gn44Go44GG77yB';
 
-    firebase_storage.uploadString(storageRef, message, 'base64').then(()=>{
-      console.error("Cargado el string base 64");
-    })
+    // firebase_storage.uploadString(storageRef, message, 'base64').then(()=>{
+    //   console.error("Cargado el string base 64");
+    // })
+    if(file){
+      firebase_storage.uploadBytes(storageRef,file).then(
+        (snapshot)=>{
+          console.log("Subiendo Imagen");
+        })
+    }
+
   }
 
 

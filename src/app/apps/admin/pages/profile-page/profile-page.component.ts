@@ -29,7 +29,7 @@ export class ProfilePageComponent implements OnInit{
     Email: ['', [Validators.required, Validators.pattern(this.validatorService.emailPattern)]],
     Username: ['', [Validators.required]],
     Password : ['', [Validators.required]] ,
-    Icon: []
+    Image: []
   });
 
   async ngOnInit(): Promise<void> {

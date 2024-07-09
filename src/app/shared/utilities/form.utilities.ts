@@ -38,20 +38,23 @@ export class FormUtilities {
 
   }
 
-  onFileChange(form : FormGroup, event: any) :FormGroup {
+  onFileChange( event: any) :FormGroup {
     const file : File = event.target.files[0];
     if (file) {
-       console.log(file.name);
-       this.fileToBase64(file).then((response)=>{
-          console.log(response);
-       });
+      console.log(file.name);
+      //  this.fileToBase64(file).then((response)=>{
+      //     console.log(response);
+      //     form.patchValue({
+      //         Icon: file
+      //       });
+      //  });
 
       // form.patchValue({
       //   Icon: file
       // });
     }
 
-    return form;
+    return this.form;
   }
 
   // isValidField(field: string){

@@ -39,15 +39,16 @@ export class SignupPageComponent {
     Email: ['', [Validators.required, Validators.pattern(this.validatorService.emailPattern)]],
     Username: ['', [Validators.required]],
     Password : ['', [Validators.required]] ,
-    Icon: []
+    Image: []
   });
   public validatorUtilities : FormUtilities = new FormUtilities(this.formSignUp);
 
   async submit(): Promise<void>{
 
     this.loadingService.loadingOn();
-    console.error("Formulario :" + this.formSignUp.value.Icon);
-    return;
+    console.error("Formulario :" + this.formSignUp.value);
+
+
 
 
     this.user =  Utilities.formObjectT<User>(this.formSignUp, this.user);
@@ -88,7 +89,11 @@ export class SignupPageComponent {
   }
 
   onFileChange(event : any) : void{
-    this.formSignUp =  this.validatorUtilities.onFileChange(this.formSignUp, event);
+    this.formSignUp =  this.validatorUtilities.onFileChange( event);
+    this.user =  Utilities.formObjectT<User>(this.formSignUp, this.user);
+    //console.log(this.formSignUp.value.Image);
+   //console.log(this.user.Image);
+
   }
 
 

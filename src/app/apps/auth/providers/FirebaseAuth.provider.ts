@@ -131,7 +131,7 @@ export class FirebaseAuth implements IAuthRepository {
       if(user !== null){
 
         model.Id = user.uid;
-        model.Image = user.photoURL;
+        // model.Image = user.photoURL;
         response = AuthTransaction.OnSuccess("Success", "", model);
 
       }else{

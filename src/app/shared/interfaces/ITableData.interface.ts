@@ -1,6 +1,6 @@
 export interface ITableData {
   Id : string;
-  Image? : string | null;
+  Image? : File | null;
   CreateDate? : number;
   UpdateDate? : number;
   State : number;
