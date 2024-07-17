@@ -36,7 +36,6 @@ export class FirebaseAuth implements IAuthRepository {
 
   }
 
-
   Logout(): Observable<boolean>  {
 
     const logoutObserver = new Observable<boolean>((subscriber)=>{
@@ -74,6 +73,7 @@ export class FirebaseAuth implements IAuthRepository {
 
     return userObserver;
   }
+
   AuthVerify(): boolean{
     const user = this.auth.currentUser;
     if(user === null) return false;
@@ -102,6 +102,7 @@ export class FirebaseAuth implements IAuthRepository {
 
 
   }
+
   async CreateUserAuth<T extends ITableData>(model: T): Promise<ITransaction<T>> {
     let response: ITransaction<T> =  AuthTransaction.OnFaliure(AuthCode.WithoutExecution,'');
 

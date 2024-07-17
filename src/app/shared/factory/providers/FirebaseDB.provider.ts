@@ -85,7 +85,7 @@ export class FirebaseDB implements IRepository{
             //response = {Message: MessageType.Error + error ,RedirectTo: '/error', ModelObject: model,  Error: true};
             response = DBTransaction.OnFaliure(MessageType.Error + error, '/error');
           });
-        this.uploadFile(model.Image);
+        // this.uploadFile(model.Image);
       //response = {Message: MessageType.Create,Success: true,RedirectTo: '/auth',  ModelObject: model,  Error: false};
       response = DBTransaction.OnSuccess(MessageType.Create,'/auth', model, [] );
 
