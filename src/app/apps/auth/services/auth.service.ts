@@ -6,9 +6,9 @@ import { Provider as AuthProvider }   from '../factory/provider.class';
 import { Provider  as DBProvider }from "../../../shared/factory/provider.factory";
 import { Creator as AuthCreator } from '../factory/creator.class';
 import { Factory  as DBFactory }from "../../../shared/factory/factory.class";
-import { ITransaction } from '../../../shared/interfaces/ITransaction.interface';
-import { IRepository } from '../../../shared/interfaces/IRepository.interface';
-import { ITableData } from '../../../shared/interfaces/ITableData.interface';
+import { ITransaction } from '../../../shared/interfaces/model-interfaces/ITransaction.interface';
+import { IRepository } from '../../../shared/interfaces/model-interfaces/IRepository.interface';
+import { ITableData } from '../../../shared/interfaces/model-interfaces/ITableData.interface';
 
 
 @Injectable({

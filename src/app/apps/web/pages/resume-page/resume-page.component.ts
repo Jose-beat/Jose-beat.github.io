@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AccordionItem } from '../../../../shared/interfaces/AccordionItem.interface';
+import { AccordionItem } from '../../../../shared/interfaces/component-interfaces/AccordionItem.interface';
 
 
 

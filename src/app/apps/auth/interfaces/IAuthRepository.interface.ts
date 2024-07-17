@@ -1,6 +1,6 @@
 import { Observable } from "rxjs";
-import { ITransaction } from '../../../shared/interfaces/ITransaction.interface';
-import { ITableData } from "../../../shared/interfaces/ITableData.interface";
+import { ITransaction } from '../../../shared/interfaces/model-interfaces/ITransaction.interface';
+import { ITableData } from "../../../shared/interfaces/model-interfaces/ITableData.interface";
 
 
 export interface IAuthRepository {

@@ -1,7 +1,7 @@
 import { Observable } from "rxjs";
-import { IRepository } from "../interfaces/IRepository.interface";
-import { ITransaction } from "../interfaces/ITransaction.interface";
-import { ITableData } from "../interfaces/ITableData.interface";
+import { IRepository } from "../interfaces/model-interfaces/IRepository.interface";
+import { ITransaction } from "../interfaces/model-interfaces/ITransaction.interface";
+import { ITableData } from "../interfaces/model-interfaces/ITableData.interface";
 
 export abstract class Factory {
   protected abstract FactoryMethod() : IRepository;

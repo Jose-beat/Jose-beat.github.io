@@ -1,5 +1,5 @@
 import { FormGroup } from "@angular/forms";
-import { ITableData } from "../interfaces/ITableData.interface";
+import { ITableData } from "../interfaces/model-interfaces/ITableData.interface";
 import { Utilities } from "../utilities/table.utilities";
 
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../auth/services/auth.service';
 import { User } from '../../../../shared/model/User.model';
-import { ITransaction } from '../../../../shared/interfaces/ITransaction.interface';
+import { ITransaction } from '../../../../shared/interfaces/model-interfaces/ITransaction.interface';
 import { Utilities } from '../../../../shared/utilities/table.utilities';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ValidatorsService } from '../../../../shared/validator/validator.service';

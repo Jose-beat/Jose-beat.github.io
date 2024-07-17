@@ -3,7 +3,7 @@ import { AuthService } from '../../services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ValidatorsService } from '../../../../shared/validator/validator.service';
 import { Alert } from '../../../../shared/utilities/alert.utilities';
-import { ITransaction } from '../../../../shared/interfaces/ITransaction.interface';
+import { ITransaction } from '../../../../shared/interfaces/model-interfaces/ITransaction.interface';
 import { User } from '../../../../shared/model/User.model';
 import { AuthTransaction } from '../../providers/transaction/AuthTransaction.class';
 import { Router } from '@angular/router';

@@ -1,4 +1,4 @@
-import { ITransaction } from "../../../interfaces/ITransaction.interface";
+import { ITransaction } from "../../../interfaces/model-interfaces/ITransaction.interface";
 
 export class DBTransaction<T> implements ITransaction<T>{
 

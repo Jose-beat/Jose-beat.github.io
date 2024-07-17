@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../../auth/services/auth.service';
 import { Router } from '@angular/router';
-import { MenuItem } from '../../../../shared/interfaces/MenuItem.interface';
+import { MenuItem } from '../../../../shared/interfaces//component-interfaces/MenuItem.interface';
 
 @Component({
   selector: 'admin-navbar',

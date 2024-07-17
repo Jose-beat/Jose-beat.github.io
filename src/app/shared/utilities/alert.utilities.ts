@@ -1,5 +1,5 @@
 import Swal, { SweetAlertIcon, SweetAlertResult } from "sweetalert2";
-import { ITransaction } from "../interfaces/ITransaction.interface";
+import { ITransaction } from "../interfaces/model-interfaces/ITransaction.interface";
 import { throwError } from "rxjs";
 
 

@@ -6,9 +6,9 @@ import { User } from '../../../shared/model/User.model';
 import { Utilities } from '../../../shared/utilities/table.utilities';
 import { AuthCode, AuthMessage } from '../../../shared/enum/Messages.enum';
 import { getFirebaseApp } from '../../../shared/factory/providers/firebase-provider/firebase-config.provider';
-import { ITransaction } from '../../../shared/interfaces/ITransaction.interface';
+import { ITransaction } from '../../../shared/interfaces/model-interfaces/ITransaction.interface';
 import { AuthTransaction } from './transaction/AuthTransaction.class';
-import { ITableData } from '../../../shared/interfaces/ITableData.interface';
+import { ITableData } from '../../../shared/interfaces/model-interfaces/ITableData.interface';
 
 
 export class FirebaseAuth implements IAuthRepository {

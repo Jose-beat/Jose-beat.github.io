@@ -2,7 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { User } from '../../../../shared/model/User.model';
-import { ITransaction } from '../../../../shared/interfaces/ITransaction.interface';
+import { ITransaction } from '../../../../shared/interfaces/model-interfaces/ITransaction.interface';
 import { Utilities } from '../../../../shared/utilities/table.utilities';
 
 import { Alert } from '../../../../shared/utilities/alert.utilities';

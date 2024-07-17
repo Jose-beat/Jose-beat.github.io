@@ -2,7 +2,7 @@ import { Component, ElementRef, HostListener, OnInit, ViewChild, viewChild } fro
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 import { GraphicUtilities } from '../../../../shared/utilities/graphic.utilities';
-import { MenuItem } from '../../../../shared/interfaces/MenuItem.interface';
+import { MenuItem } from '../../../../shared/interfaces/component-interfaces/MenuItem.interface';
 
 @Component({
   selector: 'beat-nav-bar',

@@ -1,4 +1,4 @@
-import { ITransaction } from "../../../../shared/interfaces/ITransaction.interface";
+import { ITransaction } from "../../../../shared/interfaces/model-interfaces/ITransaction.interface";
 
 export class AuthTransaction<T> implements ITransaction<T>{
 

@@ -1,8 +1,8 @@
 
 import { Observable } from "rxjs";
-import { IRepository } from "../../interfaces/IRepository.interface";
-import { ITableData } from "../../interfaces/ITableData.interface";
-import { ITransaction } from "../../interfaces/ITransaction.interface";
+import { IRepository } from "../../interfaces/model-interfaces/IRepository.interface";
+import { ITableData } from "../../interfaces/model-interfaces/ITableData.interface";
+import { ITransaction } from "../../interfaces/model-interfaces/ITransaction.interface";
 import {  child, get, getDatabase, ref, set } from "firebase/database";
 import * as firebase_storage from 'firebase/storage';
 import { MessageType } from '../../enum/Messages.enum';

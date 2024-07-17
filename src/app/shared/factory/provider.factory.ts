@@ -1,4 +1,4 @@
-import { IRepository } from "../interfaces/IRepository.interface";
+import { IRepository } from "../interfaces/model-interfaces/IRepository.interface";
 import { Factory } from "./factory.class"
 import { FirebaseDB } from "./providers/firebaseDb.provider";
 
