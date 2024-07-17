@@ -1,56 +1,57 @@
 <div class="container">
   <div class="row">
-      <div class="col-lg-6 col-md-6 col-sm-12">
+      <div class="col-lg-12 col-md-12 col-sm-12">
           <div class="card w-100 mb-3">
               <div class="card-header d-flex justify-content-between align-items-center">
-                  <h5 class="card-title">Experiencia</h5>
+                  <h5 class="card-title">Perfil</h5>
                   <span class="badge rounded-pill text-bg-primary">2024</span>
               </div>
+
+
               <div class="card-body d-flex justify-content-between align-items-center">
-                <form [formGroup]="formProfile"  >
+                <form [formGroup]="formProfile">
                   <div class="row">
-                    <div class="col-lg-6 mb-3">
-                      <label for="Name" class="form-label">Nombre</label>
-                      <input class="form-control" type="text" id="Name" formControlName="Name" >
+                    <!-- Column for text inputs -->
+                    <div class="col-lg-8">
+                      <div class="row">
+                        <div class="col-lg-6 mb-3">
+                          <label for="Name" class="form-label">Nombre</label>
+                          <input class="form-control" type="text" id="Name" formControlName="Name">
+                        </div>
+                        <div class="col-lg-6 mb-3">
+                          <label for="LastName" class="form-label">Apellido</label>
+                          <input class="form-control" type="text" id="LastName" formControlName="LastName">
+                        </div>
+                        <div class="col-lg-6 mb-3">
+                          <label for="Email" class="form-label">Email</label>
+                          <input class="form-control" type="email" id="Email" formControlName="Email">
+                        </div>
+                        <div class="col-lg-6 mb-3">
+                          <label for="Username" class="form-label">Username</label>
+                          <input class="form-control" type="text" id="Username" formControlName="Username">
+                        </div>
+                      </div>
                     </div>
-                    <div class="col-lg-6 mb-3">
-                      <label for="LastName" class="form-label">Apellido</label>
-                      <input class="form-control" type="text" id="LastName"  formControlName="LastName" >
+
+                    <!-- Column for image and file input -->
+                    <div class="col-lg-4 d-flex flex-column align-items-center">
+                      <img [src]="user.ImagePath" alt="Profile Image" class="img-thumbnail mb-3 img-container">
+                      <input type="file" class="form-control">
                     </div>
-                    <div class="col-lg-6 mb-3">
-                      <label for="Email" class="form-label">Email</label>
-                      <input class="form-control" type="email" id="Email"  formControlName="Email" >
-                    </div>
-                    <div class="col-lg-6 mb-3">
-                      <label for="Username" class="form-label">Username</label>
-                      <input class="form-control" type="text" id="Username"   formControlName="Username">
-                    </div>
+
+                  </div>
+                  <div class="row mt-3 ">
+                      <div class="col-6" >
+                        <button class="btn btn-warning"  type="submit">Actualizar</button>
+                      </div>
+
                   </div>
                 </form>
               </div>
+
             </div>
       </div>
-      <div class="col-lg-6 col-md-6 col-sm-12">
-          <div class="card w-100 mb-3">
-              <div class="card-header d-flex justify-content-between align-items-center">
-                  <h5 class="card-title">Portada</h5>
-                  <!-- <span class="badge rounded-pill text-bg-primary">2024</span> -->
-              </div>
-              <div class="card-body d-flex justify-content-between align-items-center">
-                <div class="row">
-                  <div class="col-lg-12 mb-3">
-                    <img [src]="user.ImagePath" class="img-container">
-                  </div>
-                  <div class="col-lg-12 mb-3">
-                    <label for="profileImage" class="form-label">Imagen de Portada</label>
-                    <input class="form-control" type="file" id="profileImage" >
-                  </div>
-                </div>
 
-              </div>
-            </div>
-
-      </div>
   </div>
   <div class="row">
       <div class="col-12 ">
