@@ -23,7 +23,7 @@ export class FirebaseDB implements IRepository{
     console.error({model: model});
     throw new Error("Method not implemented.");
   }
-  async GetById<T>(id: String, model: new (...args: any[]) => T): Promise<ITransaction<T>> {
+  async GetById<T extends ITableData>(id: String, model: new (...args: any[]) => T): Promise<ITransaction<T>> {
     console.error({model: model, Id: id});
     let response : ITransaction<T>;
     let model_object: T;
@@ -37,7 +37,7 @@ export class FirebaseDB implements IRepository{
 
         const data = snapshot.val();
         model_object = data as T;
-
+        if( model_object.ImagePath) model_object.ImagePath = await this.downloadFile(model_object.ImagePath);
         response = DBTransaction.OnSuccess( MessageType.DataLoaded,"", model_object);
 
 
@@ -117,10 +117,14 @@ export class FirebaseDB implements IRepository{
   }
 
   public async downloadFile(fileName : string): Promise<string>{
-    const storageRef =  firebase_storage.ref(this.storage, fileName);
+
+
 
     let image : string = 'assets/img/loader.svg';
 
+    if(fileName === '') return image;
+
+    const storageRef =  firebase_storage.ref(this.storage, fileName);
     await firebase_storage.getDownloadURL(storageRef)
     .then((url)=>{
       image = url;
