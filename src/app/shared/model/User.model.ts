@@ -11,6 +11,7 @@ export class User implements ITableData{
   public Username : string;
   public Password : string;
   public Image? : File;
+  public ImagePath?: string | null | undefined;
   public CreateDate?: number;
   public UpdateDate?: number;
   public State : number;
@@ -24,6 +25,7 @@ export class User implements ITableData{
     Password : string,
     Id? : string,
     Image? : File,
+    ImagePath?: string | null | undefined,
     CreateDate? : number,
     UpdateDate?: number,
     State? : number
@@ -36,6 +38,7 @@ export class User implements ITableData{
     this.Password = Password;
     this.Username = Username;
     this.Image = Image;
+    this.ImagePath = ImagePath;
     this.CreateDate = Utilities.createDate(CreateDate);
     this.UpdateDate = Utilities.updateDate(UpdateDate);
     this.State =  State === null || State === undefined ? 1 : 0;

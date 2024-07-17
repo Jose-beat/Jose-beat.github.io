@@ -38,8 +38,7 @@ export class SignupPageComponent {
     LastName: ['',[Validators.required, Validators.pattern(this.validatorService.firstNameAndLastnamePattern)]],
     Email: ['', [Validators.required, Validators.pattern(this.validatorService.emailPattern)]],
     Username: ['', [Validators.required]],
-    Password : ['', [Validators.required]] ,
-    Image: []
+    Password : ['', [Validators.required]]
   });
   public validatorUtilities : FormUtilities = new FormUtilities(this.formSignUp);
 
@@ -89,10 +88,7 @@ export class SignupPageComponent {
   }
 
   onFileChange(event : any) : void{
-    this.formSignUp =  this.validatorUtilities.onFileChange( event);
-    this.user =  Utilities.formObjectT<User>(this.formSignUp, this.user);
-    //console.log(this.formSignUp.value.Image);
-   //console.log(this.user.Image);
+    this.user =  this.validatorUtilities.onFileChange<User>(this.user, event);
 
   }
 

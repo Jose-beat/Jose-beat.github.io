@@ -1,5 +1,6 @@
 import {  Form, FormGroup } from "@angular/forms";
 import { ValidatorsService } from "../validator/validator.service";
+import { ITableData } from "../interfaces/model-interfaces/ITableData.interface";
 
 export class FormUtilities {
 
@@ -38,23 +39,15 @@ export class FormUtilities {
 
   }
 
-  onFileChange( event: any) :FormGroup {
-    const file : File = event.target.files[0];
-    if (file) {
-      console.log(file.name);
-      //  this.fileToBase64(file).then((response)=>{
-      //     console.log(response);
-      //     form.patchValue({
-      //         Icon: file
-      //       });
-      //  });
+  onFileChange<T extends ITableData>(model : T, event: any) : T {
 
-      // form.patchValue({
-      //   Icon: file
-      // });
+    const file : File = event.target.files[0];
+
+    if (file) {
+      model.Image = file;
     }
 
-    return this.form;
+    return model;
   }
 
   // isValidField(field: string){

@@ -79,14 +79,14 @@ export class FirebaseDB implements IRepository{
     console.log('My model: ' + model);
 
     try{
-
+      if(model.Image !== null || model.Image !== undefined) model.ImagePath = await this.uploadFile(model.Image, `${model_name}_${model.Id}`);
       await set(ref(this.db, model_name + '/' + Id ), model)
           .catch((error) => {
-            //response = {Message: MessageType.Error + error ,RedirectTo: '/error', ModelObject: model,  Error: true};
+
             response = DBTransaction.OnFaliure(MessageType.Error + error, '/error');
           });
-        // this.uploadFile(model.Image);
-      //response = {Message: MessageType.Create,Success: true,RedirectTo: '/auth',  ModelObject: model,  Error: false};
+
+
       response = DBTransaction.OnSuccess(MessageType.Create,'/auth', model, [] );
 
     }catch(error){
@@ -98,19 +98,35 @@ export class FirebaseDB implements IRepository{
 
   //* Funcion independiende para subir archivos
 
-  public uploadFile (file : File | undefined | null) {
-    const storageRef = firebase_storage.ref(this.storage, 'profile_name');
-    // const message = '5b6p5Y+344GX44G+44GX44Gf77yB44GK44KB44Gn44Go44GG77yB';
+  public async uploadFile (file : File | undefined | null, title : string) : Promise<string>{
 
-    // firebase_storage.uploadString(storageRef, message, 'base64').then(()=>{
-    //   console.error("Cargado el string base 64");
-    // })
+    let pathFile : string = '';
+
     if(file){
-      firebase_storage.uploadBytes(storageRef,file).then(
+      let extension = file.name.split('.').pop();
+      const storageRef = firebase_storage.ref(this.storage, `${title}.${extension}`);
+      await firebase_storage.uploadBytes(storageRef,file).then(
         (snapshot)=>{
           console.log("Subiendo Imagen");
+          pathFile = snapshot.ref.fullPath;
         })
     }
+
+    return pathFile;
+
+  }
+
+  public async downloadFile(fileName : string): Promise<string>{
+    const storageRef =  firebase_storage.ref(this.storage, fileName);
+
+    let image : string = 'assets/img/loader.svg';
+
+    await firebase_storage.getDownloadURL(storageRef)
+    .then((url)=>{
+      image = url;
+    });
+
+    return image;
 
   }
 
