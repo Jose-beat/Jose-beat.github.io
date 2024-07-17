@@ -109,6 +109,8 @@ export class FirebaseDB implements IRepository{
         (snapshot)=>{
           console.log("Subiendo Imagen");
           pathFile = snapshot.ref.fullPath;
+        }).catch(()=>{
+          pathFile = '';
         })
     }
 
