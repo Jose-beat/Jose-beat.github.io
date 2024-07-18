@@ -39,12 +39,21 @@ export class FormUtilities {
 
   }
 
-  onFileChange<T extends ITableData>(model : T, event: any) : T {
+  onFileChange<T extends ITableData>(model : T, event: any, preview : boolean) : T {
 
-    const file : File = event.target.files[0];
+    //const file : File = event.target.files[0];
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      model.Image = input.files[0];
+      if(preview){
+        const file = input.files[0];
+        const reader = new FileReader();
 
-    if (file) {
-      model.Image = file;
+        reader.onload = () => {
+          model.ImagePath = reader.result?.toString();
+        };
+        reader.readAsDataURL(file);
+      }
     }
 
     return model;

@@ -6,6 +6,7 @@ import { Utilities } from '../../../../shared/utilities/table.utilities';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ValidatorsService } from '../../../../shared/validator/validator.service';
 import { LoadingService } from '../../../../shared/services/global/loading.service';
+import { FormUtilities } from '../../../../shared/utilities/form.utilities';
 
 @Component({
   selector: 'admin-profile-page',
@@ -31,7 +32,7 @@ export class ProfilePageComponent implements OnInit{
     Password : ['', [Validators.required]] ,
     Image: []
   });
-
+  public validatorUtilities : FormUtilities = new FormUtilities(this.formProfile);
   async ngOnInit(): Promise<void> {
 
     await this.getDataProfile();
@@ -61,6 +62,10 @@ export class ProfilePageComponent implements OnInit{
       console.log(this.user);
     }
 
+  }
+
+  onFileChange(event : Event){
+    this.user =  this.validatorUtilities.onFileChange<User>(this.user, event, true);
   }
 
 

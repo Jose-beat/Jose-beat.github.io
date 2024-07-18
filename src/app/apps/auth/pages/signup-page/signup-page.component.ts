@@ -88,7 +88,7 @@ export class SignupPageComponent {
   }
 
   onFileChange(event : any) : void{
-    this.user =  this.validatorUtilities.onFileChange<User>(this.user, event);
+    this.user =  this.validatorUtilities.onFileChange<User>(this.user, event, false);
 
   }
 
