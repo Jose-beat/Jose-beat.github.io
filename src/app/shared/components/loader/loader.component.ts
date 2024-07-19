@@ -2,6 +2,7 @@ import { Component, ContentChild, Input, OnInit, TemplateRef } from '@angular/co
 import { Observable, tap } from 'rxjs';
 import { LoadingService } from '../../services/global/loading.service';
 import { RouteConfigLoadEnd, RouteConfigLoadStart, Router } from '@angular/router';
+import { environments } from '../../../../environments/environments';
 
 @Component({
   selector: 'beat-loader',
@@ -27,7 +28,7 @@ export class LoaderComponent implements OnInit{
 
   @Input()
   detectedRouteTransitions = false;
-
+  public loader : string = environments.LOADER_SVG;
 
   // @ContentChild("loading")
   // customLoadingIndicator : TemplateRef<any> | null = null;

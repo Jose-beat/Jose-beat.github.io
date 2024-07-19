@@ -8,6 +8,7 @@ import * as firebase_storage from 'firebase/storage';
 import { MessageType } from '../../enum/Messages.enum';
 import { getFirebaseApp } from './firebase-provider/firebase-config.provider';
 import { DBTransaction } from './transaction/dbTransaction.class';
+import { environments } from "../../../../environments/environments";
 
 
 export class FirebaseDB implements IRepository{
@@ -53,8 +54,6 @@ export class FirebaseDB implements IRepository{
     return response;
 
   }
-
-
   Create<T extends ITableData>(model: T): ITransaction<T> {
     console.error({model: model});
     throw new Error("Method not implemented.");
@@ -67,7 +66,6 @@ export class FirebaseDB implements IRepository{
     console.error({model: model, Id: id});
     throw new Error("Method not implemented.");
   }
-
   //TODO: Ver posibilidad de unificar la funcion Create con esta
   async  CreateUser<T extends ITableData>(model: T): Promise<ITransaction<T>> {
 
@@ -96,13 +94,7 @@ export class FirebaseDB implements IRepository{
     return response;
   }
 
-  // async UpdateUser<T extends ITableData>(): Promise<ITransaction<T>>{
-
-  // }
-
-  //* Funcion independiende para subir archivos
-
-  public async uploadFile (file : File | undefined | null, title : string) : Promise<string>{
+  private async uploadFile (file : File | undefined | null, title : string) : Promise<string>{
 
     let pathFile : string = '';
 
@@ -123,11 +115,11 @@ export class FirebaseDB implements IRepository{
 
   }
 
-  public async downloadFile(fileName : string): Promise<string>{
+  private async downloadFile(fileName : string): Promise<string>{
 
 
 
-    let image : string = 'assets/img/loader.svg';
+    let image : string = environments.LOADER_SVG;
 
     if(fileName === '') return image;
 
@@ -135,6 +127,9 @@ export class FirebaseDB implements IRepository{
     await firebase_storage.getDownloadURL(storageRef)
     .then((url)=>{
       image = url;
+    })
+    .catch((error)=>{
+      console.error(error);
     });
 
     return image;

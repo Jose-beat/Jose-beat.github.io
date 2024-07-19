@@ -8,5 +8,5 @@ export const environments = {
   MESSAGING_SENDER_ID: "324020358348",
   APP_ID: "1:324020358348:web:8bd4a9461777e00c3e8669",
   MEASUREMENT_ID: "G-CJY8QF80N0",
-
+  LOADER_SVG: "assets/img/loader.svg"
 }

@@ -1,13 +1,9 @@
 
-<!-- <h1 *ngIf="this.loader" >Cargando!</h1>
-<div *ngIf="this.loader" class="full-screen-overlay">
-  <img src="../../../../assets/img/loader.svg" alt="Loader.svg">
-</div> -->
 
 @if (loading$ | async) {
   <div class="full-screen-overlay">
 
-      <img src="../../../../assets/img/loader.svg" alt="Loader.svg">
+      <img [src]="this.loader" alt="Loader.svg">
 
 
   </div>
