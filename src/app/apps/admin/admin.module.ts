@@ -10,6 +10,7 @@ import { VerificationAccountPageComponent } from './pages/verification-account-p
 import { ComponentsModule } from './components/components.module';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../../shared/shared.module';
 
 
 
@@ -30,6 +31,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     ComponentsModule,
     AdminRoutingModule,
+    SharedModule
 
   ]
 })

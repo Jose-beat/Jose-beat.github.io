@@ -6,13 +6,15 @@ import { ComponentsMaterialModule } from './components-material/components-mater
 import { GlobalService } from './services/global/global.service';
 import { WebService } from './services/web/web.service';
 import { ErrorPageComponent } from './pages/error-page/error-page.component';
+import { ImagePipe } from './pipes/image.pipe';
 
 
 
 @NgModule({
   declarations: [
 
-    ErrorPageComponent
+    ErrorPageComponent,
+    ImagePipe
   ],
   imports: [
     CommonModule,
@@ -23,7 +25,8 @@ import { ErrorPageComponent } from './pages/error-page/error-page.component';
 
     ComponentsMaterialModule,
     ComponentsModule,
-    ErrorPageComponent
+    ErrorPageComponent,
+    ImagePipe
   ],
   providers: [
     GlobalService,

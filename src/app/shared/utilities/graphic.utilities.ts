@@ -17,5 +17,10 @@ export class GraphicUtilities  {
 
   }
 
+  static  urlStartsWith(type: string,url: string): boolean {
+    console.error(url.slice(0, 4) == type);
+    return url.slice(0, 4) === type;
+  }
+
 
 }

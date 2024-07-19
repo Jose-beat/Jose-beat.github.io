@@ -48,7 +48,7 @@
 
                     <!-- Column for image and file input -->
                     <div class="col-lg-4 d-flex flex-column align-items-center">
-                      <img [src]="user.ImagePath" alt="Profile Image" class="img-thumbnail mb-3 img-container">
+                      <img [src]="user.ImagePath | ImagePipe" alt="Profile Image" class="img-thumbnail mb-3 img-container">
                       <input type="file"  class="form-control" (change)="onFileChange($event)">
                     </div>
 
