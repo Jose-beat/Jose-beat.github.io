@@ -126,20 +126,22 @@ export class FirebaseAuth implements IAuthRepository {
 
   async UpdateUserAuth<T extends ITableData>(model : T): Promise<ITransaction<T>>{
 
-      let currentUser = this.auth.currentUser;
-      let response : ITransaction<T> =  AuthTransaction.OnFaliure("Usuario no Autenticado", "");
-
-      if(!currentUser) return response;
+      const currentUser = this.auth.currentUser!;
+      let response : ITransaction<T> =  AuthTransaction.OnFaliure("Usuario no nini Autenticado", "");
       let model_user: User = Utilities.convertToUser<T>(model);
 
-      if(currentUser.email === model_user.Email) return response = AuthTransaction.OnSuccess("El email no ha cambiado", "", model);
 
-      updateEmail(currentUser, model_user.Email)
-      .then((reponse)=>{
-        console.error(response);
+      if(currentUser.email === model_user.Email) return  AuthTransaction.OnSuccess("El email no ha cambiado", "", model);
+
+      await updateEmail(currentUser, model_user.Email)
+      .then((localResponse)=>{
+        console.log("LLEGO HASTA AQUI ");
+        console.error(localResponse);
         response = AuthTransaction.OnSuccess("Email actualizado", "", model);
-      }).catch(()=>{
-        response = AuthTransaction.OnSuccess("Error al actualizar el correo electronico", "", model);
+      }).catch((error)=>{
+        console.log("LLEGO HASTA AQUI ERROR");
+
+        response = AuthTransaction.OnFaliure(`${AuthCode.FailExecution} : ${error.code}`, "",);
       });
 
       return response;

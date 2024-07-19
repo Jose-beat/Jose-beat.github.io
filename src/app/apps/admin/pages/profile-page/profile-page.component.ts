@@ -75,10 +75,13 @@ export class ProfilePageComponent implements OnInit{
     this.user.UpdateDate = Date.now()
     await this.authService.UpdateUserAuth<User>(this.user)
     .then(async (authResponse)=>{
+
       console.error(authResponse.Message);
+
       if(!authResponse.Error){
         await this.authService.CreateUser(this.user)
         .then((dbResponse)=>{
+
           if(!dbResponse.Error){
             this.loaderService.loadingOff();
             Alert.sweetAlert(dbResponse)
@@ -91,7 +94,9 @@ export class ProfilePageComponent implements OnInit{
             this.loaderService.loadingOff();
             Alert.sweetAlert(dbResponse);
           }
+
           })
+
       }else{
         this.loaderService.loadingOff();
         Alert.sweetAlert(authResponse);
