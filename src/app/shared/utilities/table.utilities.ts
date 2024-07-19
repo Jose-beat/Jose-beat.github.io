@@ -41,8 +41,8 @@ export class Utilities<T>{
     let data : Partial<T> = parseData;
 
     Object.assign(model , data);
-    // model = JSON.parse(formValues);
 
+    // model = JSON.parse(formValues);
     return model;
 
   }

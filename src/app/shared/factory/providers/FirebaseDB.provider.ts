@@ -96,6 +96,10 @@ export class FirebaseDB implements IRepository{
     return response;
   }
 
+  // async UpdateUser<T extends ITableData>(): Promise<ITransaction<T>>{
+
+  // }
+
   //* Funcion independiende para subir archivos
 
   public async uploadFile (file : File | undefined | null, title : string) : Promise<string>{
@@ -109,6 +113,7 @@ export class FirebaseDB implements IRepository{
         (snapshot)=>{
           console.log("Subiendo Imagen");
           pathFile = snapshot.ref.fullPath;
+          console.log(snapshot);
         }).catch(()=>{
           pathFile = '';
         })

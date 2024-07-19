@@ -39,6 +39,10 @@ export abstract class Creator{
     const factory =  this.factoryMethod();
     return factory.CreateUserAuth(model);
   }
+  UpdateUserAuth<T extends ITableData>(model : T): Promise<ITransaction<T>>{
+    const factory = this.factoryMethod();
+    return factory.UpdateUserAuth(model);
+  }
 
   GetUserAuth<T extends ITableData>(model : T) : ITransaction<T>{
     const factory = this.factoryMethod();

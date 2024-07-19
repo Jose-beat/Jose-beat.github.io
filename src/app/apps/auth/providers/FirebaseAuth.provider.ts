@@ -1,10 +1,10 @@
 import { Observable, catchError, from, map, of, tap } from 'rxjs';
 import { IAuthRepository } from '../interfaces/IAuthRepository.interface';
-import { createUserWithEmailAndPassword, deleteUser, getAuth, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { createUserWithEmailAndPassword, deleteUser, getAuth, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, signOut, updateEmail, updateProfile } from 'firebase/auth';
 
 import { User } from '../../../shared/model/User.model';
 import { Utilities } from '../../../shared/utilities/table.utilities';
-import { AuthCode, AuthMessage } from '../../../shared/enum/Messages.enum';
+import { AuthCode } from '../../../shared/enum/Messages.enum';
 import { getFirebaseApp } from '../../../shared/factory/providers/firebase-provider/firebase-config.provider';
 import { ITransaction } from '../../../shared/interfaces/model-interfaces/ITransaction.interface';
 import { AuthTransaction } from './transaction/AuthTransaction.class';
@@ -122,6 +122,29 @@ export class FirebaseAuth implements IAuthRepository {
       }
 
     return response;
+  }
+
+  async UpdateUserAuth<T extends ITableData>(model : T): Promise<ITransaction<T>>{
+
+      let currentUser = this.auth.currentUser;
+      let response : ITransaction<T> =  AuthTransaction.OnFaliure("Usuario no Autenticado", "");
+
+      if(!currentUser) return response;
+      let model_user: User = Utilities.convertToUser<T>(model);
+
+      if(currentUser.email === model_user.Email) return response = AuthTransaction.OnSuccess("El email no ha cambiado", "", model);
+
+      updateEmail(currentUser, model_user.Email)
+      .then((reponse)=>{
+        console.error(response);
+        response = AuthTransaction.OnSuccess("Email actualizado", "", model);
+      }).catch(()=>{
+        response = AuthTransaction.OnSuccess("Error al actualizar el correo electronico", "", model);
+      });
+
+      return response;
+
+
   }
 
   GetUserAuth<T extends ITableData>(model : T) : ITransaction<T>{

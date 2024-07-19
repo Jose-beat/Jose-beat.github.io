@@ -44,6 +44,9 @@ export class AuthService implements IAuthRepository, IRepository {
     return this.dbCreator.CreateUser(model);
   }
 
+  async UpdateUserAuth<T extends ITableData>(model : T): Promise<ITransaction<T>>{
+    return this.authCreator.UpdateUserAuth(model);
+  }
 
   Login<T>(email : string, password : string): Promise<ITransaction<T>> {
     return  this.authCreator.Login(email, password);
