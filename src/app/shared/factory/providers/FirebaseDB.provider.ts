@@ -37,7 +37,7 @@ export class FirebaseDB implements IRepository{
 
         const data = snapshot.val();
         model_object = data as T;
-        if( model_object.ImagePath) model_object.ImagePath = await this.downloadFile(model_object.ImagePath);
+        if(model_object.ImagePath) model_object.ImagePath = await this.downloadFile(model_object.ImagePath);
         response = DBTransaction.OnSuccess( MessageType.DataLoaded,"", model_object);
 
 
@@ -79,7 +79,7 @@ export class FirebaseDB implements IRepository{
     console.log('My model: ' + model);
 
     try{
-      if(model.Image !== null || model.Image !== undefined) model.ImagePath = await this.uploadFile(model.Image, `${model_name}_${model.Id}`);
+      if(model.Image !== null) model.ImagePath = await this.uploadFile(model.Image, `${model_name}_${model.Id}`);
       await set(ref(this.db, model_name + '/' + Id ), model)
           .catch((error) => {
 

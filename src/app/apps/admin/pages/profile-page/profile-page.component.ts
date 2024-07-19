@@ -22,7 +22,7 @@ export class ProfilePageComponent implements OnInit{
     private loaderService : LoadingService
   ){}
 
-  public user : User = new User("","","","","","");
+  public user : User = new User("","","","","","", null,"");
   public response? : ITransaction<User>;
   public authResponse? : ITransaction<User>;
   public formProfile : FormGroup = this.formBuilder.group({

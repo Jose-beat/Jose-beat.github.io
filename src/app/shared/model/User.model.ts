@@ -10,8 +10,8 @@ export class User implements ITableData{
   public Email : string;
   public Username : string;
   public Password : string;
-  public Image? : File;
-  public ImagePath?: string | null | undefined;
+  public Image? : File | null;
+  public ImagePath?: string | null;
   public CreateDate?: number;
   public UpdateDate?: number;
   public State : number;
@@ -24,8 +24,8 @@ export class User implements ITableData{
     Username : string,
     Password : string,
     Id? : string,
-    Image? : File,
-    ImagePath?: string | null | undefined,
+    Image? : File | null,
+    ImagePath?: string | null,
     CreateDate? : number,
     UpdateDate?: number,
     State? : number

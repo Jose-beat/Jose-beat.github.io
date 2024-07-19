@@ -31,7 +31,13 @@ export class Utilities<T>{
   }
 
   public static updateDate(date? : number) : number{
-    return date === undefined || date === null ? new Date('01-01-1900').getTime() : date;
+    let timeDefault = new Date('01-01-1900').getTime();
+
+    if(date === undefined || date === null){
+      return timeDefault;
+    }
+
+    return Date.now();
   }
 
   public static formObjectT<T extends object>(form : FormGroup, model : T) : T {

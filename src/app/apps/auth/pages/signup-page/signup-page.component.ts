@@ -30,7 +30,7 @@ export class SignupPageComponent {
 
   public response? : ITransaction<User>;
   public authResponse? : ITransaction<User>;
-  public user : User = new User('','','','','');
+  public user : User = new User("","","","","","",null,"");
   public loader : boolean = false;
 
   public formSignUp : FormGroup = this.formBuilder.group({
