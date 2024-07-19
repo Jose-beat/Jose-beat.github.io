@@ -22,5 +22,10 @@ export class GraphicUtilities  {
     return url.slice(0, 4) === type;
   }
 
+  //TODO: Funcion para definir un formato de imagen para evitar variaciones
+  static refactorFile(){
+
+  }
+
 
 }
