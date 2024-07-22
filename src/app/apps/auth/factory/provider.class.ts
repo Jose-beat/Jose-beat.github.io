@@ -1,5 +1,5 @@
 import { IAuthRepository } from "../interfaces/IAuthRepository.interface";
-import { FirebaseAuth } from "../providers/firebaseAuth.provider";
+import { FirebaseAuth } from "../providers/FirebaseAuth.provider";
 import { Creator } from "./creator.class";
 
 export class Provider extends Creator {

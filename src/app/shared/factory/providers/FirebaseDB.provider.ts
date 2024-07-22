@@ -7,7 +7,7 @@ import {  child, get, getDatabase, ref, set } from "firebase/database";
 import * as firebase_storage from 'firebase/storage';
 import { MessageType } from '../../enum/Messages.enum';
 import { getFirebaseApp } from './firebase-provider/firebase-config.provider';
-import { DBTransaction } from './transaction/dbTransaction.class';
+import { DBTransaction } from './transaction/DBTransaction.class';
 import { environments } from "../../../../environments/environments";
 
 
