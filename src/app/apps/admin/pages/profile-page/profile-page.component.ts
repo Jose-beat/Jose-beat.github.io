@@ -8,6 +8,7 @@ import { ValidatorsService } from '../../../../shared/validator/validator.servic
 import { LoadingService } from '../../../../shared/services/global/loading.service';
 import { FormUtilities } from '../../../../shared/utilities/form.utilities';
 import { Alert } from '../../../../shared/utilities/alert.utilities';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'admin-profile-page',
@@ -17,6 +18,7 @@ import { Alert } from '../../../../shared/utilities/alert.utilities';
 export class ProfilePageComponent implements OnInit{
   constructor(
     private authService : AuthService,
+    private dataService : DataService,
     private formBuilder : FormBuilder,
     private validatorService : ValidatorsService,
     private loaderService : LoadingService
@@ -70,43 +72,51 @@ export class ProfilePageComponent implements OnInit{
 
     this.loaderService.loadingOn();
 
-    this.user = Utilities.formObjectT<User>(this.formProfile, this.user);
-    //TODO: Ver manera de evitar la asignacion de datos desde el componente.
-    this.user.UpdateDate = Date.now()
-    await this.authService.UpdateUserAuth<User>(this.user)
-    .then(async (authResponse)=>{
+    this.dataService.activeForm(true);
 
-      console.error(authResponse.Message);
+    this.dataService.loginData.subscribe( async (response)=>{
+      console.warn(response);
+      if(!response.Error){
+        this.user = Utilities.formObjectT<User>(this.formProfile, this.user);
+        //TODO: Ver manera de evitar la asignacion de datos desde el componente.
+        this.user.UpdateDate = Date.now();
+        await this.authService.UpdateUserAuth<User>(this.user)
+        .then(async (authResponse)=>{
 
-      if(!authResponse.Error){
-        await this.authService.CreateUser(this.user)
-        .then((dbResponse)=>{
+          console.error(authResponse.Message);
 
-          if(!dbResponse.Error){
-            this.loaderService.loadingOff();
-            Alert.sweetAlert(dbResponse)
-            .then(async(result)=>{
-              if(result.isConfirmed){
-                await this.getDataProfile();
+          if(!authResponse.Error){
+            await this.authService.CreateUser(this.user)
+            .then((dbResponse)=>{
+
+              if(!dbResponse.Error){
+                this.loaderService.loadingOff();
+                Alert.sweetAlert(dbResponse)
+                .then(async(result)=>{
+                  if(result.isConfirmed){
+                    await this.getDataProfile();
+                  }
+                });
+              }else{
+                this.loaderService.loadingOff();
+                Alert.sweetAlert(dbResponse);
               }
-            });
+
+              })
+
           }else{
             this.loaderService.loadingOff();
-            Alert.sweetAlert(dbResponse);
+            Alert.sweetAlert(authResponse);
           }
 
-          })
-
-      }else{
-        this.loaderService.loadingOff();
-        Alert.sweetAlert(authResponse);
+        })
+        .catch((error)=>{
+          this.loaderService.loadingOff();
+          console.log(error);
+        });
       }
-
-    })
-    .catch((error)=>{
-      this.loaderService.loadingOff();
-      console.log(error);
     });
+
   }
 
 

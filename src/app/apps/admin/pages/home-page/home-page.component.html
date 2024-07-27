@@ -1,3 +1,4 @@
 <!-- <button class="btn btn-danger" (click)="logout()">Cerrar Sesion</button> -->
 <admin-navbar></admin-navbar>
+<admin-login-popup (loginResponse)="login($event)" *ngIf="this.activeLoginForm"></admin-login-popup>
 <router-outlet></router-outlet>

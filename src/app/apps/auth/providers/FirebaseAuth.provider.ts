@@ -1,6 +1,6 @@
 import { Observable, catchError, from, map, of, tap } from 'rxjs';
 import { IAuthRepository } from '../interfaces/IAuthRepository.interface';
-import { createUserWithEmailAndPassword, deleteUser, getAuth, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, signOut, updateEmail, updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword, deleteUser, getAuth, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, signOut, updateEmail, EmailAuthProvider, reauthenticateWithCredential } from 'firebase/auth';
 
 import { User } from '../../../shared/model/User.model';
 import { Utilities } from '../../../shared/utilities/table.utilities';
@@ -17,20 +17,38 @@ export class FirebaseAuth implements IAuthRepository {
 
 
   async Login<T>(email : string, password : string ): Promise<ITransaction<T>> {
-    let response: ITransaction<T> = {
-      Message: AuthCode.WithoutExecution,
-      Success: false,
-      Error: false,
-    };
+    const currentUser = this.auth.currentUser;
+    let response: ITransaction<T> = { Message: AuthCode.WithoutExecution, Success: false, Error: false};
 
-    await signInWithEmailAndPassword(this.auth, email, password)
-          .then(
-            (userCredential)=>{
-            response = AuthTransaction.OnSuccess(userCredential.user.email!, '/admin');
-        }).catch(
-            (error)=>{
-            response = AuthTransaction.OnFaliure(`${AuthCode.FailExecution} : ${error.code} - ${error.message}`, '');
-              });
+
+    if(!currentUser){
+
+        await signInWithEmailAndPassword(this.auth, email, password)
+        .then(
+          (userCredential)=>{
+          response = AuthTransaction.OnSuccess(userCredential.user.email!, '/admin');
+        })
+        .catch(
+          (error)=>{
+          response = AuthTransaction.OnFaliure(`${AuthCode.FailExecution} : ${error.code} - ${error.message}`, '');
+        });
+
+    }else{
+      const credential = EmailAuthProvider.credential(currentUser.email!, currentUser.providerId);
+      await reauthenticateWithCredential(currentUser, credential)
+      .then((userCredential)=>{
+          response = AuthTransaction.OnSuccess(userCredential.user.email!, '');
+      })
+      .catch((error)=>{
+        response = AuthTransaction.OnFaliure(`${AuthCode.FailExecution} : ${error.code} - ${error.message}`, '');
+      });
+
+
+    }
+
+
+
+
     return response;
 
 
