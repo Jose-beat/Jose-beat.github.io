@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AdminNavbarComponent } from './admin-navbar/admin-navbar.component';
 import { RouterModule } from '@angular/router';
 import { LoginPopupComponent } from './login-popup/login-popup.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -13,7 +14,8 @@ import { LoginPopupComponent } from './login-popup/login-popup.component';
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule
 
   ],
   exports: [

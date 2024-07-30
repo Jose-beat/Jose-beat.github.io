@@ -52,7 +52,7 @@ export class HomePageComponent implements OnInit {
 
 
 
-  login(response : ITransaction<User>){
+  login(response : ITransaction<User> | null){
     console.warn(response);
     this.dataService.login(response);
     this.activeLoginForm = false;

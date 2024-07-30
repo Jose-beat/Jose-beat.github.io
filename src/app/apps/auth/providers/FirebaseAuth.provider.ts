@@ -34,7 +34,8 @@ export class FirebaseAuth implements IAuthRepository {
         });
 
     }else{
-      const credential = EmailAuthProvider.credential(currentUser.email!, currentUser.providerId);
+      const credential = EmailAuthProvider.credential(currentUser.email!, password);
+      console.warn(currentUser);
       await reauthenticateWithCredential(currentUser, credential)
       .then((userCredential)=>{
           response = AuthTransaction.OnSuccess(userCredential.user.email!, '');

@@ -9,7 +9,7 @@ import { User } from '../../../shared/model/User.model';
 })
 export class DataService {
     private responseDefault = AuthTransaction.OnFaliure<User>("", "")
-    private dataSource = new BehaviorSubject<ITransaction<User>>( this.responseDefault);
+    private dataSource = new BehaviorSubject<ITransaction<User> | null>(null);
     private activeSource = new BehaviorSubject<boolean>(false);
 
     public loginData = this.dataSource.asObservable();
@@ -17,7 +17,7 @@ export class DataService {
 
     constructor(){}
 
-    login(data:ITransaction<User>){
+    login(data:ITransaction<User> | null){
       this.dataSource.next(data);
     }
 
@@ -27,6 +27,6 @@ export class DataService {
     }
     resetData() {
       this.activeSource.next(false);
-      this.dataSource.next(this.responseDefault); // Restablece el valor a null o cualquier valor inicial deseado
+      this.dataSource.next(null); // Restablece el valor a null o cualquier valor inicial deseado
     }
 }

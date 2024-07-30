@@ -74,47 +74,55 @@ export class ProfilePageComponent implements OnInit{
 
     this.dataService.activeForm(true);
 
-    this.dataService.loginData.subscribe( async (response)=>{
+    this.dataService.loginData
+    .subscribe( async (response)=>{
+      console.warn("RESPUESTA DE PROFILE");
       console.warn(response);
-      if(!response.Error){
-        this.user = Utilities.formObjectT<User>(this.formProfile, this.user);
-        //TODO: Ver manera de evitar la asignacion de datos desde el componente.
-        this.user.UpdateDate = Date.now();
-        await this.authService.UpdateUserAuth<User>(this.user)
-        .then(async (authResponse)=>{
+      if(response){
+        if(!response.Error){
+          this.user = Utilities.formObjectT<User>(this.formProfile, this.user);
+          //TODO: Ver manera de evitar la asignacion de datos desde el componente.
+          this.user.UpdateDate = Date.now();
+          await this.authService.UpdateUserAuth<User>(this.user)
+          .then(async (authResponse)=>{
 
-          console.error(authResponse.Message);
+            console.error(authResponse.Message);
 
-          if(!authResponse.Error){
-            await this.authService.CreateUser(this.user)
-            .then((dbResponse)=>{
+            if(!authResponse.Error){
+              await this.authService.CreateUser(this.user)
+              .then((dbResponse)=>{
 
-              if(!dbResponse.Error){
-                this.loaderService.loadingOff();
-                Alert.sweetAlert(dbResponse)
-                .then(async(result)=>{
-                  if(result.isConfirmed){
-                    await this.getDataProfile();
-                  }
-                });
-              }else{
-                this.loaderService.loadingOff();
-                Alert.sweetAlert(dbResponse);
-              }
+                if(!dbResponse.Error){
+                  this.loaderService.loadingOff();
+                  Alert.sweetAlert(dbResponse)
+                  .then(async(result)=>{
+                    if(result.isConfirmed){
+                      await this.getDataProfile();
+                    }
+                  });
+                }else{
+                  this.loaderService.loadingOff();
+                  Alert.sweetAlert(dbResponse);
+                }
 
-              })
+                })
 
-          }else{
+            }else{
+              this.loaderService.loadingOff();
+              Alert.sweetAlert(authResponse);
+            }
+
+          })
+          .catch((error)=>{
             this.loaderService.loadingOff();
-            Alert.sweetAlert(authResponse);
-          }
-
-        })
-        .catch((error)=>{
+            console.log(error);
+          });
+        }else{
           this.loaderService.loadingOff();
-          console.log(error);
-        });
+          Alert.sweetAlert(response);
+        }
       }
+
     });
 
   }
