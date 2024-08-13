@@ -11,6 +11,7 @@ import { ComponentsModule } from './components/components.module';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
+import { ExperiencePageComponent } from './pages/experience-page/experience-page.component';
 
 
 
@@ -22,6 +23,7 @@ import { SharedModule } from '../../shared/shared.module';
     HomePageComponent,
     VerificationAccountPageComponent,
     ProfilePageComponent,
+    ExperiencePageComponent,
 
 
   ],

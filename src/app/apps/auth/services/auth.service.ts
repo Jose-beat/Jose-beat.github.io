@@ -30,7 +30,7 @@ export class AuthService implements IAuthRepository, IRepository {
   GetById<T extends ITableData>(id: String, model: new (...args: any[]) => T): Promise<ITransaction<T>> {
     return this.dbCreator.GetById(id, model);
   }
-  Create<T extends ITableData>(model: T): ITransaction<T> {
+  Create<T extends ITableData>(model: T): Promise<ITransaction<T>> {
     throw new Error('Method not implemented.');
   }
   Update<T extends ITableData>(model: T): ITransaction<T> {
@@ -78,7 +78,9 @@ export class AuthService implements IAuthRepository, IRepository {
   }
 
 
-
+  GetCurrentUserId() : string {
+    return this.authCreator.GetCurrentUserId();
+  }
 
 
 

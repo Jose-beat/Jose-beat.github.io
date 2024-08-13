@@ -54,9 +54,31 @@ export class FirebaseDB implements IRepository{
     return response;
 
   }
-  Create<T extends ITableData>(model: T): ITransaction<T> {
+  async Create<T extends ITableData>(model: T): Promise<ITransaction<T>> {
     console.error({model: model});
-    throw new Error("Method not implemented.");
+    let model_name :String = (model as any).constructor.name
+    let response : ITransaction<T>;
+    let Id = model['Id'];
+    console.log('Id: ' + Id);
+    console.log('My model: ' + model);
+
+    try{
+      if(model.Image !== null) model.ImagePath = await this.uploadFile(model.Image, `${model_name}_${model.Id}`);
+      await set(ref(this.db, model_name + '/' + Id ), model)
+          .catch((error) => {
+
+            response = DBTransaction.OnFaliure(MessageType.Error + error, '/error');
+          });
+
+
+      response = DBTransaction.OnSuccess(MessageType.Create,'/auth', model, [] );
+
+    }catch(error){
+      response =  DBTransaction.OnFaliure(MessageType.Error + error, '/error');
+    }
+
+    return response;
+
   }
   Update<T extends ITableData>(model: T): ITransaction<T> {
     console.error({model: model});

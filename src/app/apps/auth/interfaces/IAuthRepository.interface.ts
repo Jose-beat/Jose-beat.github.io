@@ -21,5 +21,8 @@ export interface IAuthRepository {
 
   GetUserAuth<T extends ITableData>(model : T) : ITransaction<T>;
 
+  GetCurrentUserId() : string;
+
   DeleteUser<T>() : Promise<ITransaction<T>>;
+
 }

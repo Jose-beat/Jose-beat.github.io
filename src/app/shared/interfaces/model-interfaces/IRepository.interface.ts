@@ -9,7 +9,7 @@ export interface IRepository {
 
   GetById<T extends ITableData>(id : String, model: new (...args: any[]) => T) : Promise<ITransaction<T>>;
 
-  Create<T extends ITableData>(model : T) : ITransaction<T>
+  Create<T extends ITableData>(model : T) : Promise<ITransaction<T>>
 
   Update<T extends ITableData>(model : T) : ITransaction<T>;
 

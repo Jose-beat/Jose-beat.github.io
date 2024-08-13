@@ -16,7 +16,7 @@ export abstract class Factory {
     return factory.GetById(id, model);
   }
 
-  Create<T extends ITableData>(model : T) : ITransaction<T>{
+  Create<T extends ITableData>(model : T) : Promise<ITransaction<T>>{
     const factory = this.FactoryMethod();
     return factory.Create(model);
   }

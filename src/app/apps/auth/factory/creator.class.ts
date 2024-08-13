@@ -54,4 +54,9 @@ export abstract class Creator{
     const factory = this.factoryMethod();
     return factory.DeleteUser();
   }
+
+  GetCurrentUserId() : string {
+    const factory = this.factoryMethod();
+    return factory.GetCurrentUserId();
+  }
 }

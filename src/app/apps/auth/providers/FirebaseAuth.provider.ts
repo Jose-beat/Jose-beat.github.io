@@ -1,6 +1,6 @@
 import { Observable, catchError, from, map, of, tap } from 'rxjs';
 import { IAuthRepository } from '../interfaces/IAuthRepository.interface';
-import { createUserWithEmailAndPassword, deleteUser, getAuth, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, signOut, updateEmail, EmailAuthProvider, reauthenticateWithCredential } from 'firebase/auth';
+import { createUserWithEmailAndPassword, deleteUser, getAuth, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, signOut, updateEmail, EmailAuthProvider, reauthenticateWithCredential, User as FBUser } from 'firebase/auth';
 
 import { User } from '../../../shared/model/User.model';
 import { Utilities } from '../../../shared/utilities/table.utilities';
@@ -213,5 +213,13 @@ export class FirebaseAuth implements IAuthRepository {
         });
 
     return response;
+  }
+
+  GetCurrentUserId(): string {
+    const user = this.auth.currentUser;
+    if(!user){
+      return '';
+    }
+    return user.uid;
   }
 }
