@@ -9,6 +9,7 @@ import { Factory  as DBFactory }from "../../../shared/factory/factory.class";
 import { ITransaction } from '../../../shared/interfaces/model-interfaces/ITransaction.interface';
 import { IRepository } from '../../../shared/interfaces/model-interfaces/IRepository.interface';
 import { ITableData } from '../../../shared/interfaces/model-interfaces/ITableData.interface';
+import { TableData } from '../../../shared/abstract/ITableData.abstract';
 
 
 @Injectable({
@@ -30,7 +31,7 @@ export class AuthService implements IAuthRepository, IRepository {
   GetById<T extends ITableData>(id: String, model: new (...args: any[]) => T): Promise<ITransaction<T>> {
     return this.dbCreator.GetById(id, model);
   }
-  Create<T extends ITableData>(model: T): Promise<ITransaction<T>> {
+  Create<T extends TableData>(model: T): Promise<ITransaction<T>> {
     throw new Error('Method not implemented.');
   }
   Update<T extends ITableData>(model: T): ITransaction<T> {

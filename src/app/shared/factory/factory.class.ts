@@ -2,6 +2,7 @@ import { Observable } from "rxjs";
 import { IRepository } from "../interfaces/model-interfaces/IRepository.interface";
 import { ITransaction } from "../interfaces/model-interfaces/ITransaction.interface";
 import { ITableData } from "../interfaces/model-interfaces/ITableData.interface";
+import { TableData } from "../abstract/ITableData.abstract";
 
 export abstract class Factory {
   protected abstract FactoryMethod() : IRepository;
@@ -16,7 +17,7 @@ export abstract class Factory {
     return factory.GetById(id, model);
   }
 
-  Create<T extends ITableData>(model : T) : Promise<ITransaction<T>>{
+  Create<T extends TableData>(model : T) : Promise<ITransaction<T>>{
     const factory = this.FactoryMethod();
     return factory.Create(model);
   }

@@ -9,6 +9,7 @@ import { MessageType } from '../../enum/Messages.enum';
 import { getFirebaseApp } from './firebase-provider/firebase-config.provider';
 import { DBTransaction } from './transaction/DBTransaction.class';
 import { environments } from "../../../../environments/environments";
+import { TableData } from "../../abstract/ITableData.abstract";
 
 
 export class FirebaseDB implements IRepository{
@@ -54,16 +55,16 @@ export class FirebaseDB implements IRepository{
     return response;
 
   }
-  async Create<T extends ITableData>(model: T): Promise<ITransaction<T>> {
+  async Create<T extends TableData>(model: T): Promise<ITransaction<T>> {
     console.error({model: model});
     let model_name :String = (model as any).constructor.name
     let response : ITransaction<T>;
-    let Id = model['Id'];
+    let Id = model['id'];
     console.log('Id: ' + Id);
     console.log('My model: ' + model);
 
     try{
-      if(model.Image !== null) model.ImagePath = await this.uploadFile(model.Image, `${model_name}_${model.Id}`);
+      if(model.image !== null) model.imagePath = await this.uploadFile(model.image, `${model_name}_${model.id}`);
       await set(ref(this.db, model_name + '/' + Id ), model)
           .catch((error) => {
 
@@ -71,7 +72,7 @@ export class FirebaseDB implements IRepository{
           });
 
 
-      response = DBTransaction.OnSuccess(MessageType.Create,'/auth', model, [] );
+      response = DBTransaction.OnSuccess(MessageType.Create,'', model, [] );
 
     }catch(error){
       response =  DBTransaction.OnFaliure(MessageType.Error + error, '/error');
