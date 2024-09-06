@@ -5,13 +5,15 @@ import { RouterModule } from '@angular/router';
 import { PopupComponent } from './popup/popup.component';
 import { ComponentsMaterialModule } from '../components-material/components-material.module';
 import { LoaderComponent } from './loader/loader.component';
+import { BadgeComponent } from './badge/badge.component';
 
 
 
 @NgModule({
   declarations: [
     PopupComponent,
-    LoaderComponent
+    LoaderComponent,
+    BadgeComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { LoaderComponent } from './loader/loader.component';
   ],
   exports: [
     PopupComponent,
-    LoaderComponent
+    LoaderComponent,
+    BadgeComponent
   ]
 })
 export class ComponentsModule { }

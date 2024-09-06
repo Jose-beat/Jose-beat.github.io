@@ -15,7 +15,7 @@ export class AdminService implements IRepository{
   private dbCreator : Factory = new Provider("FB");
 
   GetAll<T>(model: new (...args: any[]) => T): Observable<ITransaction<T>> {
-    throw new Error('Method not implemented.');
+    return this.dbCreator.GetAll(model);
   }
   GetById<T extends ITableData>(id: String, model: new (...args: any[]) => T): Promise<ITransaction<T>> {
     throw new Error('Method not implemented.');

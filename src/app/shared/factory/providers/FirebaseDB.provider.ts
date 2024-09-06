@@ -3,13 +3,14 @@ import { Observable } from "rxjs";
 import { IRepository } from "../../interfaces/model-interfaces/IRepository.interface";
 import { ITableData } from "../../interfaces/model-interfaces/ITableData.interface";
 import { ITransaction } from "../../interfaces/model-interfaces/ITransaction.interface";
-import {  child, get, getDatabase, ref, set } from "firebase/database";
+import {  child, get, getDatabase, onValue, query, ref, set } from "firebase/database";
 import * as firebase_storage from 'firebase/storage';
 import { MessageType } from '../../enum/Messages.enum';
 import { getFirebaseApp } from './firebase-provider/firebase-config.provider';
 import { DBTransaction } from './transaction/DBTransaction.class';
 import { environments } from "../../../../environments/environments";
 import { TableData } from "../../abstract/ITableData.abstract";
+import { Component } from '@angular/core';
 
 
 export class FirebaseDB implements IRepository{
@@ -22,8 +23,31 @@ export class FirebaseDB implements IRepository{
 
 
   GetAll<T>(model: new (...args: any[]) => T): Observable<ITransaction<T>> {
-    console.error({model: model});
-    throw new Error("Method not implemented.");
+    const modelName : string = model.name;
+    const listRef = ref(this.db, `${modelName}/`);
+
+    const getAllObserver = new Observable<ITransaction<T>>((subscriber)=>{
+      onValue(listRef, (snapshot)=>{
+        const data = snapshot.val();
+
+        if(snapshot.exists()){
+          const arrayOfObjects : T[] = Object.values(data);
+          subscriber.next(DBTransaction.OnSuccess<T>(MessageType.DataLoaded,"",undefined, arrayOfObjects));
+          subscriber.complete();
+        }else{
+          subscriber.next(DBTransaction.OnSuccess<T>(MessageType.DataEmpty,"",undefined, []));
+          subscriber.complete();
+        }
+        console.warn(data);
+      },
+      (error)=>{
+        subscriber.next(DBTransaction.OnFaliure<T>(MessageType.Error,""));
+        subscriber.complete();
+      });
+    });
+
+    return getAllObserver;
+
   }
   async GetById<T extends ITableData>(id: String, model: new (...args: any[]) => T): Promise<ITransaction<T>> {
     console.error({model: model, Id: id});
