@@ -7,9 +7,9 @@ import { TableData } from "../abstract/ITableData.abstract";
 export abstract class Factory {
   protected abstract FactoryMethod() : IRepository;
 
-  GetAll<T>(model: new (...args: any[]) => T): Observable<ITransaction<T>>{
+  GetAll<T extends TableData>(model: new (...args: any[]) => T, keyCondition? : string, valueCondition? : string): Observable<ITransaction<T>>{
     const factory = this.FactoryMethod();
-    return factory.GetAll(model);
+    return factory.GetAll(model, keyCondition, valueCondition);
   }
 
   GetById<T extends ITableData>(id : String, model: new (...args: any[]) => T) : Promise<ITransaction<T>>{

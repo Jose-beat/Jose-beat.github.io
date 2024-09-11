@@ -3,10 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Experience } from '../../../../shared/model/Experience.model';
 import { Utilities } from '../../../../shared/utilities/table.utilities';
 import { AuthService } from '../../../auth/services/auth.service';
-import { FirebaseDB } from '../../../../shared/factory/providers/FirebaseDB.provider';
 import { AdminService } from '../../services/admin.service';
 import { Alert } from '../../../../shared/utilities/alert.utilities';
 import { LoadingService } from '../../../../shared/services/global/loading.service';
+import { User } from '../../../../shared/model/User.model';
 
 
 @Component({
@@ -29,6 +29,7 @@ export class ExperiencePageComponent implements OnInit{
     this.getExpecience();
   }
   private idUser : string = this.authService.GetCurrentUserId() ;
+  //private user : User = new User("","","","","","",[],null,"");
   private experience : Experience =  new Experience('', this.idUser,'','',1,null, '',undefined, undefined);
   public listExperience : Experience[]  = [];
 
@@ -39,7 +40,7 @@ export class ExperiencePageComponent implements OnInit{
 
   getExpecience() : void {
     this.loadingService.loadingOn();
-    this.adminService.GetAll(Experience)
+    this.adminService.GetAll(Experience, "idUser", this.idUser)
     .subscribe((response)=>{
       this.loadingService.loadingOff();
       //Alert.sweetAlert(response);
@@ -62,7 +63,11 @@ export class ExperiencePageComponent implements OnInit{
     .then((response)=>{
         this.loadingService.loadingOff();
         Alert.sweetAlert(response);
+
     });
+    this.getExpecience();
+    this.experience = new Experience('', this.idUser,'','',1,null, '',undefined, undefined);
+    this.formExperience.reset();
     console.error("submit");
     console.warn(this.experience);
 

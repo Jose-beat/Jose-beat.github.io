@@ -6,7 +6,7 @@ import { TableData } from "../../abstract/ITableData.abstract";
 
 export interface IRepository {
 
-  GetAll<T>(model: new (...args: any[]) => T): Observable<ITransaction<T>>
+  GetAll<T extends TableData>(model: new (...args: any[]) => T, keyCondition? : string, valueCondition? : string): Observable<ITransaction<T>>
 
   GetById<T extends ITableData>(id : String, model: new (...args: any[]) => T) : Promise<ITransaction<T>>;
 

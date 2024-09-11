@@ -2,8 +2,10 @@ import { FormGroup } from "@angular/forms";
 import { User } from "../model/User.model";
 import { StatusItem } from "../interfaces/enum-interfaces/StatusItem.Interface";
 import { StatusPrivacy, StatusProject } from "../enum/Status.enum";
+import { ITableData } from "../interfaces/model-interfaces/ITableData.interface";
+import { TableData } from "../abstract/ITableData.abstract";
 
-export class Utilities<T>{
+export class Utilities{
 
   public static generateId(id? : string): string {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -99,6 +101,7 @@ export class Utilities<T>{
 
     return statusObject;
   }
+
 
 
 }

@@ -3,7 +3,7 @@ import { Observable } from "rxjs";
 import { IRepository } from "../../interfaces/model-interfaces/IRepository.interface";
 import { ITableData } from "../../interfaces/model-interfaces/ITableData.interface";
 import { ITransaction } from "../../interfaces/model-interfaces/ITransaction.interface";
-import {  child, get, getDatabase, onValue, query, ref, set } from "firebase/database";
+import {  child, equalTo, get, getDatabase, onValue, orderByChild, query, ref, set } from "firebase/database";
 import * as firebase_storage from 'firebase/storage';
 import { MessageType } from '../../enum/Messages.enum';
 import { getFirebaseApp } from './firebase-provider/firebase-config.provider';
@@ -11,6 +11,7 @@ import { DBTransaction } from './transaction/DBTransaction.class';
 import { environments } from "../../../../environments/environments";
 import { TableData } from "../../abstract/ITableData.abstract";
 import { Component } from '@angular/core';
+import { Utilities } from "../../utilities/table.utilities";
 
 
 export class FirebaseDB implements IRepository{
@@ -22,14 +23,14 @@ export class FirebaseDB implements IRepository{
   private storage = firebase_storage.getStorage(this.app)
 
 
-  GetAll<T>(model: new (...args: any[]) => T): Observable<ITransaction<T>> {
+  GetAll<T extends TableData>(model: new (...args: any[]) => T, keyCondition? : string, valueCondition? : string): Observable<ITransaction<T>> {
     const modelName : string = model.name;
     const listRef = ref(this.db, `${modelName}/`);
-
+    const localQuery = keyCondition === undefined && valueCondition === undefined ? query(listRef) : query(listRef , orderByChild(keyCondition!), equalTo(valueCondition!));
     const getAllObserver = new Observable<ITransaction<T>>((subscriber)=>{
-      onValue(listRef, (snapshot)=>{
+      onValue(localQuery, (snapshot)=>{
         const data = snapshot.val();
-
+        const key ="";
         if(snapshot.exists()){
           const arrayOfObjects : T[] = Object.values(data);
           subscriber.next(DBTransaction.OnSuccess<T>(MessageType.DataLoaded,"",undefined, arrayOfObjects));
