@@ -12,6 +12,8 @@ import { ProfilePageComponent } from './pages/profile-page/profile-page.componen
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
 import { ExperiencePageComponent } from './pages/experience-page/experience-page.component';
+import { ExperienceModalComponent } from './modals/experience-modal/experience-modal.component';
+import { ModalsModule } from './modals/modals.module';
 
 
 
@@ -33,6 +35,7 @@ import { ExperiencePageComponent } from './pages/experience-page/experience-page
     ReactiveFormsModule,
     ComponentsModule,
     AdminRoutingModule,
+    ModalsModule,
     SharedModule
 
   ]

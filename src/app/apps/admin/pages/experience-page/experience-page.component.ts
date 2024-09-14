@@ -7,6 +7,7 @@ import { AdminService } from '../../services/admin.service';
 import { Alert } from '../../../../shared/utilities/alert.utilities';
 import { LoadingService } from '../../../../shared/services/global/loading.service';
 import { User } from '../../../../shared/model/User.model';
+import { ModalItem } from '../../../../shared/interfaces/component-interfaces/ModalItem.interface';
 
 
 @Component({
@@ -32,11 +33,17 @@ export class ExperiencePageComponent implements OnInit{
   //private user : User = new User("","","","","","",[],null,"");
   private experience : Experience =  new Experience('', this.idUser,'','',1,null, '',undefined, undefined);
   public listExperience : Experience[]  = [];
-
+  public columndefs : string[] =  [ "name","description",  "state", "actions"];
   public formExperience : FormGroup = this.formBuilder.group({
     name: ['', [Validators.required]],
     description: ['', [Validators.required]]
   });
+
+  public ActionItems : ModalItem[] = [
+    {typeAction: "view", color: "primary", genericTag: "Ver", formTag: ""},
+    {typeAction: "edit", color: "success", genericTag: "Editar", formTag: ""},
+    {typeAction: "delete", color: "danger", genericTag: "Eliminar", formTag: ""},
+  ];
 
   getExpecience() : void {
     this.loadingService.loadingOn();
@@ -73,10 +80,11 @@ export class ExperiencePageComponent implements OnInit{
 
   }
 
-  getStatus(status : number, type: string) : string {
-    let state =  Utilities.getStatusDescription(status, type);
-    return `<span class=badge text-bg-${state.color}>${state.title}</span>`;
 
+
+
+  objetoKeys(): string[] {
+    return Object.keys(this.experience);
   }
 
 }
