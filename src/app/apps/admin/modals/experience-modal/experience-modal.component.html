@@ -1,4 +1,4 @@
-<button [className]="'btn btn-outline-' + modalComponent.color +' text-bg-' + modalComponent.color + ' modal-button'"  data-bs-toggle="modal" [attr.data-bs-target]="'#' + modalComponent.typeAction + 'Modal'"><img [src]="'../../../../../assets/icons/data_icons/' + modalComponent.typeAction + '.svg'" class="table-icons"></button>
+<!-- <button [className]="'btn btn-outline-' + modalComponent.color +' text-bg-' + modalComponent.color + ' modal-button'"  data-bs-toggle="modal" [attr.data-bs-target]="'#' + modalComponent.typeAction + 'Modal'"><img [src]="'../../../../../assets/icons/data_icons/' + modalComponent.typeAction + '.svg'" class="table-icons"></button> -->
 
   <!-- Edit Modal -->
       <div class="modal modal-lg fade" [id]="modalComponent.typeAction + 'Modal'" tabindex="-1" [attr.aria-labelledby]=" modalComponent.typeAction + 'editModalLabel'" aria-hidden="true">
@@ -9,11 +9,21 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <form   autocomplete="off">
+              <form [formGroup]="this.formExperience"  autocomplete="off">
               <div class="row">
                 <div class="col-lg-12 mb-3">
                   <label for="Name" class="form-label">Nombre</label>
-                  <input type="text" class="form-control" formControlName="name" id="Name" aria-describedby="emailHelp">
+                  <input type="text" class="form-control" formControlName="name" id="Name" aria-describedby="emailHelp" >
+                  <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                </div>
+                <div class="col-lg-12 mb-3">
+                  <label for="Description" class="form-label">Fecha de Inicio</label>
+                  <input type="date" class="form-control" formControlName="startDate" id="StartDate" aria-describedby="emailHelp">
+                  <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                </div>
+                <div class="col-lg-12 mb-3">
+                  <label for="Description" class="form-label">Fecha Fin</label>
+                  <input type="date" class="form-control" formControlName="endDate" id="EndDate" aria-describedby="emailHelp">
                   <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                 </div>
                 <div class="col-lg-12 mb-3">
@@ -26,7 +36,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Cerrar</button>
-              <button type="button" class="btn btn-primary" [ngClass]="{'disabled' : false}" data-bs-dismiss="modal" >Guardar cambios</button>
+              <button type="button" class="btn btn-primary" [ngClass]="{'disabled' : false}" (click)="submit(modalComponent.typeAction)" data-bs-dismiss="modal" >Guardar cambios</button>
             </div>
           </div>
         </div>

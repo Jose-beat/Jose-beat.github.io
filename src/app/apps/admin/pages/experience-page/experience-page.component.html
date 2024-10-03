@@ -5,7 +5,7 @@
 
               <div class="card-body table-responsive display" >
                 <h1>Proyectos</h1>
-                <button type="button" class="btn btn-success m-2" data-bs-toggle="modal" data-bs-target="#editModal">Agregar +</button>
+                <button (click)="setExperience(defaultExperience, ActionItems[0])" type="button" class="btn btn-success m-2" data-bs-toggle="modal" data-bs-target="#createModal">Agregar +</button>
 
                   <div class="table-responsive">
                       <table mat-table [dataSource]="this.listExperience" >
@@ -19,7 +19,11 @@
                                 }
                                 @else if(column === 'actions'){
                                   @for (action of ActionItems; track $index) {
-                                    <admin-experience-modal [modalComponent]="ActionItems[$index]"></admin-experience-modal>
+                                    <!-- <admin-experience-modal [modalComponent]="ActionItems[$index]"></admin-experience-modal> -->
+                                    @if(ActionItems[$index].typeAction !== 'create'){
+                                      <button (click)="setExperience(element, ActionItems[$index])" [className]="'btn btn-outline-' + ActionItems[$index].color +' text-bg-' + ActionItems[$index].color + ' modal-button'"  data-bs-toggle="modal" [attr.data-bs-target]="'#' + ActionItems[$index].typeAction + 'Modal'"><img [src]="'../../../../../assets/icons/data_icons/' + ActionItems[$index].typeAction + '.svg'" class="table-icons"></button>
+                                    }
+
                                   }
 
                                 }
@@ -52,85 +56,6 @@
   </div>
 
 </div>
-
-      <!-- Edit Modal -->
-      <!-- <div class="modal modal-lg fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Proyecto</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <form [formGroup]="formExperience"  autocomplete="off">
-              <div class="row">
-                <div class="col-lg-12 mb-3">
-                  <label for="Name" class="form-label">Nombre</label>
-                  <input type="text" class="form-control" formControlName="name" id="Name" aria-describedby="emailHelp">
-                  <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-                </div>
-                <div class="col-lg-12 mb-3">
-                  <label for="Description" class="form-label">Descripcion</label>
-                  <input type="text" class="form-control" formControlName="description" id="Description" aria-describedby="emailHelp">
-                  <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-                </div>
-              </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Cerrar</button>
-              <button type="button" class="btn btn-primary" [ngClass]="{'disabled' : !this.formExperience.valid}" data-bs-dismiss="modal" (click)="submit()">Guardar cambios</button>
-            </div>
-          </div>
-        </div>
-      </div> -->
-  <!-- Delete Modal -->
-      <!-- <div class="modal modal-lg fade" id="deleteModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Eliminar Proyecto</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              ¿Esta seguro de eliminar el proyecto (Proyecto 1)?
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-              <button type="button" class="btn btn-primary">Eliminar</button>
-            </div>
-          </div>
-        </div>
-      </div> -->
-  <!---Check Modal -->
-  <!-- <div class="modal modal-lg fade" id="viewModal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Crear Proyecto</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form>
-          <div class="row">
-            <div class="col-lg-12 mb-3">
-              <label for="exampleInputEmail1" class="form-label">Nombre</label>
-              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="Nombre del Proyecto" disabled>
-              <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-            </div>
-            <div class="col-lg-12 mb-3">
-              <label for="exampleInputEmail1" class="form-label">Descripcion</label>
-              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"  value="Descripcion Breve del Proyecto" disabled>
-              <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-            </div>
-          </div>
-
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn-primary">Guardar cambios</button>
-        </div>
-      </div>
-    </div>
-  </div> -->
+@for (action of ActionItems; track $index) {
+  <admin-experience-modal [modalComponent]="ActionItems[$index]" [experience]="this.experience" (updateExperiences)="setExperienceList($event)"></admin-experience-modal>
+}

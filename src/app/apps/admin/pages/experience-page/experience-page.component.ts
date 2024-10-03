@@ -20,7 +20,6 @@ export class ExperiencePageComponent implements OnInit{
 
 
   constructor(
-    private formBuilder : FormBuilder,
     private authService : AuthService,
     private adminService : AdminService,
     private loadingService : LoadingService
@@ -30,16 +29,14 @@ export class ExperiencePageComponent implements OnInit{
     this.getExpecience();
   }
   private idUser : string = this.authService.GetCurrentUserId() ;
-  //private user : User = new User("","","","","","",[],null,"");
-  private experience : Experience =  new Experience('', this.idUser,'','',1,null, '',undefined, undefined);
+  public defaultExperience : Experience  =  new Experience('', this.idUser,'','',1,null, '',undefined, undefined);
+  public experience : Experience =  new Experience('', this.idUser,'','',1,null, '',undefined, undefined);
+  public action : ModalItem = {typeAction: "create", color: "success", genericTag: "Crear", formTag: ""};
   public listExperience : Experience[]  = [];
   public columndefs : string[] =  [ "name","description",  "state", "actions"];
-  public formExperience : FormGroup = this.formBuilder.group({
-    name: ['', [Validators.required]],
-    description: ['', [Validators.required]]
-  });
 
   public ActionItems : ModalItem[] = [
+    {typeAction: "create", color: "success", genericTag: "Crear", formTag: ""},
     {typeAction: "view", color: "primary", genericTag: "Ver", formTag: ""},
     {typeAction: "edit", color: "success", genericTag: "Editar", formTag: ""},
     {typeAction: "delete", color: "danger", genericTag: "Eliminar", formTag: ""},
@@ -62,29 +59,14 @@ export class ExperiencePageComponent implements OnInit{
       console.warn(response);
     });
   }
-  async submit() : Promise<void>{
-    this.loadingService.loadingOn();
-    this.experience = Utilities.formObjectT<Experience>(this.formExperience, this.experience);
 
-    this.adminService.Create(this.experience)
-    .then((response)=>{
-        this.loadingService.loadingOff();
-        Alert.sweetAlert(response);
-
-    });
-    this.getExpecience();
-    this.experience = new Experience('', this.idUser,'','',1,null, '',undefined, undefined);
-    this.formExperience.reset();
-    console.error("submit");
-    console.warn(this.experience);
-
+  setExperience(experience : Experience,action : ModalItem){
+      this.experience = {... experience}
+      this.action = {... action};
   }
 
-
-
-
-  objetoKeys(): string[] {
-    return Object.keys(this.experience);
+  setExperienceList(experiences : Experience[]){
+    this.listExperience = experiences;
   }
 
 }
