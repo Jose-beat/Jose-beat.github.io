@@ -140,30 +140,40 @@ export class ExperienceModalComponent implements OnChanges{
   }
 
   setEndDate(workingNow? : boolean) : void{
-    if (workingNow !== undefined) {
-      if(workingNow){
-
-        this.formExperience.controls['endDate'].disable();
-      }
-      else{
-        this.formExperience.controls['endDate'].enable();
-      }
-
-      console.warn(this.workingNow);
-
-    } else {
-      this.workingNow = !this.workingNow;
+    console.log(workingNow);
+    this.workingNow = workingNow === undefined ? !this.workingNow : workingNow;
     if(this.workingNow){
-
-      this.formExperience.controls['endDate'].disable();
+          this.formExperience.controls['endDate'].disable();
     }
     else{
-      this.formExperience.controls['endDate'].enable();
+          this.formExperience.controls['endDate'].enable();
     }
 
-      console.warn(this.workingNow);
+        console.warn(this.workingNow);
+    // if (workingNow !== undefined) {
+    //   if(workingNow){
 
-    }
+    //     this.formExperience.controls['endDate'].disable();
+    //   }
+    //   else{
+    //     this.formExperience.controls['endDate'].enable();
+    //   }
+
+    //   console.warn(this.workingNow);
+
+    // } else {
+    //   this.workingNow = !this.workingNow;
+    // if(this.workingNow){
+
+    //   this.formExperience.controls['endDate'].disable();
+    // }
+    // else{
+    //   this.formExperience.controls['endDate'].enable();
+    // }
+
+    //   console.warn(this.workingNow);
+
+    // }
 
 
   }
