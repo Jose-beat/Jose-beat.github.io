@@ -1,10 +1,11 @@
 import { FormGroup } from "@angular/forms";
 import { ITableData } from "../interfaces/model-interfaces/ITableData.interface";
 import { Utilities } from "../utilities/table.utilities";
+import { TableData } from "../abstract/ITableData.abstract";
 
 
-export class User implements ITableData{
-  public Id : string;
+export class User extends TableData{
+
   public Name : string;
   public LastName : string;
   public Email : string;
@@ -14,34 +15,32 @@ export class User implements ITableData{
   public ImagePath?: string | null;
   public CreateDate?: number;
   public UpdateDate?: number;
-  public State : number;
+
 
   constructor(
-    //Interface TableData attributes
+
     Name : string,
     LastName : string,
     Email : string,
     Username : string,
     Password : string,
-    Id? : string,
+    Id : string,
+    State : number,
     Image? : File | null,
     ImagePath?: string | null,
     CreateDate? : number,
     UpdateDate?: number,
-    State? : number
+
 
   ){
-    this.Id = Utilities.generateId(Id);
+    super(Id,State,Image, ImagePath, CreateDate, UpdateDate);
+
     this.Name = Name;
     this.LastName = LastName;
     this.Email = Email;
     this.Password = Password;
     this.Username = Username;
-    this.Image = Image;
-    this.ImagePath = ImagePath;
-    this.CreateDate = Utilities.createDate(CreateDate);
-    this.UpdateDate = Utilities.updateDate(UpdateDate);
-    this.State =  State === null || State === undefined ? 1 : 0;
+
   }
 
   update(data: Partial<User>) {

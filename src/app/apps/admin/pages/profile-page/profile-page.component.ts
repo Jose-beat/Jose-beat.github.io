@@ -24,7 +24,7 @@ export class ProfilePageComponent implements OnInit{
     private loaderService : LoadingService
   ){}
 
-  public user : User = new User("","","","","","", null,"");
+  public user : User = new User("","","","","","",1, null);
   public response? : ITransaction<User>;
   public authResponse? : ITransaction<User>;
   public formProfile : FormGroup = this.formBuilder.group({
@@ -46,7 +46,7 @@ export class ProfilePageComponent implements OnInit{
 
     this.authResponse = this.authService.GetUserAuth<User>(this.user);
     if(!this.authResponse.Error){
-      let id = this.authResponse.ModelObject!.Id;
+      let id = this.authResponse.ModelObject!.id;
       console.log("Mi ID : " + id);
       await this.authService.GetById<User>(id, User).then((response)=>{
 
@@ -80,7 +80,7 @@ export class ProfilePageComponent implements OnInit{
       console.warn(response);
       if(response){
         if(!response.Error){
-          this.user = Utilities.formObjectT<User>(this.formProfile, this.user);
+          this.user = Utilities.formObjectT(this.formProfile, this.user);
           //TODO: Ver manera de evitar la asignacion de datos desde el componente.
           this.user.UpdateDate = Date.now();
           await this.authService.UpdateUserAuth<User>(this.user)

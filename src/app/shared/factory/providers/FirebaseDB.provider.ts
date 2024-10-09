@@ -50,7 +50,7 @@ export class FirebaseDB implements IRepository{
     return getAllObserver;
 
   }
-  async GetById<T extends ITableData>(id: String, model: new (...args: any[]) => T): Promise<ITransaction<T>> {
+  async GetById<T extends TableData>(id: String, model: new (...args: any[]) => T): Promise<ITransaction<T>> {
     console.error({model: model, Id: id});
     let response : ITransaction<T>;
     let model_object: T;
@@ -64,7 +64,7 @@ export class FirebaseDB implements IRepository{
 
         const data = snapshot.val();
         model_object = data as T;
-        if(model_object.ImagePath) model_object.ImagePath = await this.downloadFile(model_object.ImagePath);
+        if(model_object.imagePath) model_object.imagePath = await this.downloadFile(model_object.imagePath);
         response = DBTransaction.OnSuccess( MessageType.DataLoaded,"", model_object);
 
 
@@ -80,9 +80,9 @@ export class FirebaseDB implements IRepository{
     return response;
 
   }
-  async Create<T extends TableData>(model: T): Promise<ITransaction<T>> {
-    console.error({model: model});
-    let model_name :String = (model as any).constructor.name
+  async Create<T extends TableData>(modelName: new (...args: any[]) => T, model: T): Promise<ITransaction<T>> {
+    console.error({model: model, modelName : modelName});
+    let model_name = modelName.name;
     let response : ITransaction<T>;
     let Id = model['id'];
     console.log('Id: ' + Id);
@@ -106,7 +106,7 @@ export class FirebaseDB implements IRepository{
     return response;
 
   }
-  Update<T extends ITableData>(model: T): ITransaction<T> {
+  Update<T extends TableData>(model: T): ITransaction<T> {
     console.error({model: model});
     throw new Error("Method not implemented.");
   }
@@ -115,17 +115,17 @@ export class FirebaseDB implements IRepository{
     throw new Error("Method not implemented.");
   }
   //TODO: Ver posibilidad de unificar la funcion Create con esta
-  async  CreateUser<T extends ITableData>(model: T): Promise<ITransaction<T>> {
+  async  CreateUser<T extends TableData>(model: T): Promise<ITransaction<T>> {
 
     console.error({model: model});
     let model_name :String = (model as any).constructor.name
     let response : ITransaction<T>;
-    let Id = model['Id'];
+    let Id = model['id'];
     console.log('Id: ' + Id);
     console.log('My model: ' + model);
 
     try{
-      if(model.Image !== null) model.ImagePath = await this.uploadFile(model.Image, `${model_name}_${model.Id}`);
+      if(model.image !== null) model.imagePath = await this.uploadFile(model.image, `${model_name}_${model.id}`);
       await set(ref(this.db, model_name + '/' + Id ), model)
           .catch((error) => {
 

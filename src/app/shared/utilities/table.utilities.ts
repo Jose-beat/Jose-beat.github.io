@@ -4,6 +4,7 @@ import { StatusItem } from "../interfaces/enum-interfaces/StatusItem.Interface";
 import { StatusPrivacy, StatusProject } from "../enum/Status.enum";
 import { ITableData } from "../interfaces/model-interfaces/ITableData.interface";
 import { TableData } from "../abstract/ITableData.abstract";
+import { Experience } from "../model/Experience.model";
 
 export class Utilities{
 
@@ -40,20 +41,21 @@ export class Utilities{
 
     return Date.now();
   }
-  public static formObjectT<T extends object>(form : FormGroup, model : T) : T {
-    let formValues = JSON.stringify(form.value);
+  public static formObjectT<T extends TableData>(obj : Object, model : T) : T {
+    let formValues = JSON.stringify(obj);
     let parseData = JSON.parse(formValues);
 
     let data : Partial<T> = parseData;
 
-    Object.assign(model , data);
+    Object.assign<T, Partial<T>>(model , data);
 
     // model = JSON.parse(formValues);
     return model;
 
   }
   public static convertToUser<T>(obj: T): User {
-    const user = new User('','','','','');
+    // const user = new User('','','','','');
+    const user : User = new User("","","","","","",1, null);
     Object.assign(user, obj);
     return user;
   }

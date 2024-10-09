@@ -9,6 +9,7 @@ import { getFirebaseApp } from '../../../shared/factory/providers/firebase-provi
 import { ITransaction } from '../../../shared/interfaces/model-interfaces/ITransaction.interface';
 import { AuthTransaction } from './transaction/AuthTransaction.class';
 import { ITableData } from '../../../shared/interfaces/model-interfaces/ITableData.interface';
+import { TableData } from '../../../shared/abstract/ITableData.abstract';
 
 
 export class FirebaseAuth implements IAuthRepository {
@@ -122,7 +123,7 @@ export class FirebaseAuth implements IAuthRepository {
 
   }
 
-  async CreateUserAuth<T extends ITableData>(model: T): Promise<ITransaction<T>> {
+  async CreateUserAuth<T extends TableData>(model: T): Promise<ITransaction<T>> {
     let response: ITransaction<T> =  AuthTransaction.OnFaliure(AuthCode.WithoutExecution,'');
 
     let model_name: String = (model as any).constructor.name;
@@ -131,7 +132,7 @@ export class FirebaseAuth implements IAuthRepository {
         await createUserWithEmailAndPassword( this.auth, model_user.Email, model_user.Password)
           .then((userCredencial) => {
             console.log(userCredencial.user);
-            model.Id = userCredencial.user.uid;
+            model.id = userCredencial.user.uid;
             response = AuthTransaction.OnSuccess(`${AuthCode.Executed}`,'', model);
           })
           .catch((error) => {
@@ -143,7 +144,7 @@ export class FirebaseAuth implements IAuthRepository {
     return response;
   }
 
-  async UpdateUserAuth<T extends ITableData>(model : T): Promise<ITransaction<T>>{
+  async UpdateUserAuth<T extends TableData>(model : T): Promise<ITransaction<T>>{
 
       const currentUser = this.auth.currentUser!;
       let response : ITransaction<T> =  AuthTransaction.OnFaliure("Usuario no nini Autenticado", "");
@@ -168,14 +169,14 @@ export class FirebaseAuth implements IAuthRepository {
 
   }
 
-  GetUserAuth<T extends ITableData>(model : T) : ITransaction<T>{
+  GetUserAuth<T extends TableData>(model : T) : ITransaction<T>{
     let response : ITransaction<T> = AuthTransaction.OnFaliure("Usuario sin informacion", "");
     const user = this.auth.currentUser;
     try {
 
       if(user !== null){
 
-        model.Id = user.uid;
+        model.id = user.uid;
         // model.Image = user.photoURL;
         response = AuthTransaction.OnSuccess("Success", "", model);
 

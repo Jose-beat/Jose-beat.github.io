@@ -28,24 +28,24 @@ export class AuthService implements IAuthRepository, IRepository {
   GetAll<T>(model: new (...args: any[]) => T): Observable<ITransaction<T>> {
     throw new Error('Method not implemented.');
   }
-  GetById<T extends ITableData>(id: String, model: new (...args: any[]) => T): Promise<ITransaction<T>> {
+  GetById<T extends TableData>(id: String, model: new (...args: any[]) => T): Promise<ITransaction<T>> {
     return this.dbCreator.GetById(id, model);
   }
-  Create<T extends TableData>(model: T): Promise<ITransaction<T>> {
+  Create<T extends TableData>(modelName: new (...args: any[]) => T, model: T): Promise<ITransaction<T>> {
     throw new Error('Method not implemented.');
   }
-  Update<T extends ITableData>(model: T): ITransaction<T> {
+  Update<T extends TableData>(model: T): ITransaction<T> {
     throw new Error('Method not implemented.');
   }
   Delete<T>(id: String, model: new (...args: any[]) => T): ITransaction<T> {
     throw new Error('Method not implemented.');
   }
 
-  CreateUser<T extends ITableData>(model: T): Promise<ITransaction<T>> {
+  CreateUser<T extends TableData>(model: T): Promise<ITransaction<T>> {
     return this.dbCreator.CreateUser(model);
   }
 
-  async UpdateUserAuth<T extends ITableData>(model : T): Promise<ITransaction<T>>{
+  async UpdateUserAuth<T extends TableData>(model : T): Promise<ITransaction<T>>{
     return this.authCreator.UpdateUserAuth(model);
   }
 
@@ -66,11 +66,11 @@ export class AuthService implements IAuthRepository, IRepository {
   AuthVerify(): boolean {
       return this.authCreator.AuthVerify();
   }
-  CreateUserAuth <T extends ITableData>(model : T): Promise<ITransaction<T>> {
+  CreateUserAuth <T extends TableData>(model : T): Promise<ITransaction<T>> {
     return this.authCreator.CreateUserAuth(model);
   }
 
-  GetUserAuth<T extends ITableData>(model : T) : ITransaction<T>{
+  GetUserAuth<T extends TableData>(model : T) : ITransaction<T>{
     return this.authCreator.GetUserAuth(model);
   }
 

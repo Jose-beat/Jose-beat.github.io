@@ -30,7 +30,7 @@ export class SignupPageComponent {
 
   public response? : ITransaction<User>;
   public authResponse? : ITransaction<User>;
-  public user : User = new User("","","","","","",null,"");
+  public user : User = new User("","","","","","",1, null);
   public loader : boolean = false;
 
   public formSignUp : FormGroup = this.formBuilder.group({
@@ -46,10 +46,6 @@ export class SignupPageComponent {
 
     this.loadingService.loadingOn();
     console.error("Formulario :" + this.formSignUp.value);
-
-
-
-
     this.user =  Utilities.formObjectT<User>(this.formSignUp, this.user);
 
     await this.authService.CreateUserAuth<User>(this.user).then(async (authResponse)=>{

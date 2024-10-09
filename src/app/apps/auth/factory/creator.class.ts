@@ -3,6 +3,7 @@ import { ITransaction } from "../../../shared/interfaces/model-interfaces/ITrans
 import { IAuthRepository } from "../interfaces/IAuthRepository.interface";
 import { User } from "../../../shared/model/User.model";
 import { ITableData } from "../../../shared/interfaces/model-interfaces/ITableData.interface";
+import { TableData } from "../../../shared/abstract/ITableData.abstract";
 
 
 export abstract class Creator{
@@ -35,16 +36,16 @@ export abstract class Creator{
     return factory.VerifyUserAuth();
   }
 
-  CreateUserAuth<T extends ITableData>(model : T) : Promise<ITransaction<T>>{
+  CreateUserAuth<T extends TableData>(model : T) : Promise<ITransaction<T>>{
     const factory =  this.factoryMethod();
     return factory.CreateUserAuth(model);
   }
-  UpdateUserAuth<T extends ITableData>(model : T): Promise<ITransaction<T>>{
+  UpdateUserAuth<T extends TableData>(model : T): Promise<ITransaction<T>>{
     const factory = this.factoryMethod();
     return factory.UpdateUserAuth(model);
   }
 
-  GetUserAuth<T extends ITableData>(model : T) : ITransaction<T>{
+  GetUserAuth<T extends TableData>(model : T) : ITransaction<T>{
     const factory = this.factoryMethod();
     return factory.GetUserAuth(model);
   }

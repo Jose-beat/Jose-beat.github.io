@@ -17,8 +17,6 @@ import { ModalItem } from '../../../../shared/interfaces/component-interfaces/Mo
 })
 export class ExperiencePageComponent implements OnInit{
 
-
-
   constructor(
     private authService : AuthService,
     private adminService : AdminService,
@@ -29,8 +27,8 @@ export class ExperiencePageComponent implements OnInit{
     this.getExpecience();
   }
   private idUser : string = this.authService.GetCurrentUserId() ;
-  public defaultExperience : Experience  =  new Experience('', this.idUser,'','',1,null, '',undefined, undefined);
-  public experience : Experience =  new Experience('', this.idUser,'','',1,null, '',undefined, undefined);
+  public defaultExperience : Experience  =  new Experience('', this.idUser,'','','','',false,1,null, '',undefined, undefined);
+  public experience : Experience =  new Experience('', this.idUser,'','','','',false,1,null, '',undefined, undefined);
   public action : ModalItem = {typeAction: "create", color: "success", genericTag: "Crear", formTag: ""};
   public listExperience : Experience[]  = [];
   public columndefs : string[] =  [ "name","description",  "state", "actions"];
@@ -51,7 +49,7 @@ export class ExperiencePageComponent implements OnInit{
       if(!response.Error){
           if(response.ListObject !== undefined){
             this.listExperience = response.ListObject;
-            //console.error(this.listExperience.toString());
+            console.error(this.listExperience);
           }
       }else{
         Alert.sweetAlert(response);

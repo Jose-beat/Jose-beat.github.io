@@ -23,8 +23,14 @@
                 </div>
                 <div class="col-lg-12 mb-3">
                   <label for="Description" class="form-label">Fecha Fin</label>
-                  <input type="date" class="form-control" formControlName="endDate" id="EndDate" aria-describedby="emailHelp">
+                  <input type="date" class ="form-control" formControlName="endDate" id="EndDate" aria-describedby="emailHelp">
                   <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                </div>
+                <div class="col-lg-12 mb-3">
+                  <div class="form-check form-switch">
+                    <input (click)="setEndDate()" class="form-check-input" type="checkbox" role="switch" id="workingNow" formControlName="workingNow" >
+                    <label class="form-check-label" for="workingNow">Trabajando Actualmente</label>
+                  </div>
                 </div>
                 <div class="col-lg-12 mb-3">
                   <label for="Description" class="form-label">Descripcion</label>
@@ -35,7 +41,7 @@
               </form>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Cerrar</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"  >Cerrar</button>
               <button type="button" class="btn btn-primary" [ngClass]="{'disabled' : false}" (click)="submit(modalComponent.typeAction)" data-bs-dismiss="modal" >Guardar cambios</button>
             </div>
           </div>

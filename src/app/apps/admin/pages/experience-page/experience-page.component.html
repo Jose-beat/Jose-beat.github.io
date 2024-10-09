@@ -57,5 +57,5 @@
 
 </div>
 @for (action of ActionItems; track $index) {
-  <admin-experience-modal [modalComponent]="ActionItems[$index]" [experience]="this.experience" (updateExperiences)="setExperienceList($event)"></admin-experience-modal>
+  <admin-experience-modal  [modalComponent]="ActionItems[$index]" [experience]="this.experience" (updateExperiences)="setExperienceList($event)"></admin-experience-modal>
 }

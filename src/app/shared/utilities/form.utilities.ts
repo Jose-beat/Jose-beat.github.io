@@ -1,6 +1,7 @@
 import {  Form, FormGroup } from "@angular/forms";
 import { ValidatorsService } from "../validator/validator.service";
 import { ITableData } from "../interfaces/model-interfaces/ITableData.interface";
+import { TableData } from "../abstract/ITableData.abstract";
 
 export class FormUtilities {
 
@@ -39,18 +40,18 @@ export class FormUtilities {
 
   }
 
-  onFileChange<T extends ITableData>(model : T, event: any, preview : boolean) : T {
+  onFileChange<T extends TableData>(model : T, event: any, preview : boolean) : T {
 
     //const file : File = event.target.files[0];
     const input = event.target as HTMLInputElement;
     if (input.files && input.files[0]) {
-      model.Image = input.files[0];
+      model.image = input.files[0];
       if(preview){
         const file = input.files[0];
         const reader = new FileReader();
 
         reader.onload = () => {
-          model.ImagePath = reader.result?.toString();
+          model.imagePath = reader.result?.toString();
         };
         reader.readAsDataURL(file);
       }
