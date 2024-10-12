@@ -37,8 +37,8 @@ export class AuthService implements IAuthRepository, IRepository {
   Update<T extends TableData>(model: T): ITransaction<T> {
     throw new Error('Method not implemented.');
   }
-  Delete<T>(id: String, model: new (...args: any[]) => T): ITransaction<T> {
-    throw new Error('Method not implemented.');
+  Delete<T extends TableData>(id: String, model: new (...args: any[]) => T): Promise<ITransaction<T>> {
+    return this.dbCreator.Delete(id, model);
   }
 
   CreateUser<T extends TableData>(model: T): Promise<ITransaction<T>> {

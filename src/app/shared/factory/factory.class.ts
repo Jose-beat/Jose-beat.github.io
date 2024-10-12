@@ -27,7 +27,7 @@ export abstract class Factory {
     return factory.Update(model);
   }
 
-  Delete<T>(id: String, model : new (...args: any[]) => T) : ITransaction<T>{
+  Delete<T extends TableData>(id: String, model: new (...args: any[]) => T): Promise<ITransaction<T>>{
     const factory = this.FactoryMethod();
     return factory.Delete(id, model);
   }

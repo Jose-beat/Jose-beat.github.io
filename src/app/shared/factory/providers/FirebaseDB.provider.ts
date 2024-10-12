@@ -3,7 +3,7 @@ import { Observable } from "rxjs";
 import { IRepository } from "../../interfaces/model-interfaces/IRepository.interface";
 import { ITableData } from "../../interfaces/model-interfaces/ITableData.interface";
 import { ITransaction } from "../../interfaces/model-interfaces/ITransaction.interface";
-import {  child, equalTo, get, getDatabase, onValue, orderByChild, query, ref, set } from "firebase/database";
+import {  child, equalTo, get, getDatabase, onValue, orderByChild, query, ref, remove, set } from "firebase/database";
 import * as firebase_storage from 'firebase/storage';
 import { MessageType } from '../../enum/Messages.enum';
 import { getFirebaseApp } from './firebase-provider/firebase-config.provider';
@@ -110,10 +110,22 @@ export class FirebaseDB implements IRepository{
     console.error({model: model});
     throw new Error("Method not implemented.");
   }
-  Delete<T>(id: String, model: new (...args: any[]) => T): ITransaction<T> {
+  async Delete<T extends TableData>(id: String, model: new (...args: any[]) => T): Promise<ITransaction<T>> {
     console.error({model: model, Id: id});
-    throw new Error("Method not implemented.");
+    let model_name = model.name;
+    let response : ITransaction<T>;
+    try {
+      await remove(ref(this.db, model.name + '/' + id )).catch((error)=>{
+          response = DBTransaction.OnFaliure(MessageType.Error + error, '/error');
+        });
+          response = DBTransaction.OnSuccess(MessageType.Delete,'', undefined, [] );
+    } catch (error) {
+          response =  DBTransaction.OnFaliure(MessageType.Error + error, '/error');
+    }
+    return response;
   }
+
+
   //TODO: Ver posibilidad de unificar la funcion Create con esta
   async  CreateUser<T extends TableData>(model: T): Promise<ITransaction<T>> {
 

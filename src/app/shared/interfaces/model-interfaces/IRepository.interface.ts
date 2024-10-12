@@ -14,7 +14,7 @@ export interface IRepository {
 
   Update<T extends TableData>(model : T) : ITransaction<T>;
 
-  Delete<T>(id: String, model : new (...args: any[]) => T) : ITransaction<T>;
+  Delete<T extends TableData>(id: String, model: new (...args: any[]) => T): Promise<ITransaction<T>> ;
 
   CreateUser<T extends TableData>(model : T) : Promise<ITransaction<T>>
 }

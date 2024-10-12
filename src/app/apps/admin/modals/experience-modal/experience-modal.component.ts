@@ -77,8 +77,20 @@ export class ExperienceModalComponent implements OnChanges{
     console.error("submit");
     console.warn(ExperienceModel);
   }
-  async deleteExperience() : Promise<void>{
-
+  async deleteExperience(ExperienceModel : Experience) : Promise<void>{
+    this.loadingService.loadingOn();
+//    this.nowExperiencie  = Utilities.formObjectT<Experience>(this.experience, this.nowExperiencie);
+    console.error(ExperienceModel);
+    await this.adminService.Delete<Experience>(ExperienceModel.id, Experience)
+    .then((response)=>{
+        this.loadingService.loadingOff();
+        Alert.sweetAlert(response);
+    });
+    this.getExpecience();
+    this.experience = new Experience('', this.idUser,'','','','',false,1,null, '',undefined, undefined);
+    this.formExperience.reset();
+    console.error("submit");
+    console.warn(ExperienceModel);
   }
 
   getExpecience() : void {
@@ -117,8 +129,8 @@ export class ExperienceModalComponent implements OnChanges{
 
     );
 
-    console.error(newExperience);
-    if (this.formExperience.valid) {
+
+    if (this.formExperience.valid || typeAction === 'delete') {
       switch(typeAction){
         case "create":
           console.warn(typeof this.experience);
@@ -129,6 +141,8 @@ export class ExperienceModalComponent implements OnChanges{
           await this.createExperience(newExperience);
           break;
         case "delete":
+          console.warn(typeof this.experience);
+          await this.deleteExperience(newExperience);
           break;
         default:
           console.warn("Action not implemented");
