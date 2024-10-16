@@ -50,7 +50,7 @@ export class FirebaseDB implements IRepository{
     return getAllObserver;
 
   }
-  async GetById<T extends TableData>(id: String, model: new (...args: any[]) => T): Promise<ITransaction<T>> {
+  async GetById<T extends TableData>(model: new (...args: any[]) => T, id: String ): Promise<ITransaction<T>> {
     console.error({model: model, Id: id});
     let response : ITransaction<T>;
     let model_object: T;
@@ -80,24 +80,24 @@ export class FirebaseDB implements IRepository{
     return response;
 
   }
-  async Create<T extends TableData>(modelName: new (...args: any[]) => T, model: T): Promise<ITransaction<T>> {
-    console.error({model: model, modelName : modelName});
-    let model_name = modelName.name;
+  async Create<T extends TableData>(model: new (...args: any[]) => T, object: T): Promise<ITransaction<T>> {
+    console.error({model: model, modelName : model});
+    let model_name = model.name;
     let response : ITransaction<T>;
-    let Id = model['id'];
+    let Id = object['id'];
     console.log('Id: ' + Id);
-    console.log('My model: ' + model);
+    console.warn('My object: ' + object);
 
     try{
-      if(model.image !== null) model.imagePath = await this.uploadFile(model.image, `${model_name}_${model.id}`);
-      await set(ref(this.db, model_name + '/' + Id ), model)
+      if(object.image !== null) object.imagePath = await this.uploadFile(object.image, `${model_name}_${object.id}`);
+      await set(ref(this.db, model_name + '/' + Id ), object)
           .catch((error) => {
 
             response = DBTransaction.OnFaliure(MessageType.Error + error, '/error');
           });
 
 
-      response = DBTransaction.OnSuccess(MessageType.Create,'', model, [] );
+      response = DBTransaction.OnSuccess(MessageType.Create,'', object, [] );
 
     }catch(error){
       response =  DBTransaction.OnFaliure(MessageType.Error + error, '/error');
@@ -106,6 +106,7 @@ export class FirebaseDB implements IRepository{
     return response;
 
   }
+  //? Revisar Implementacion
   Update<T extends TableData>(model: T): ITransaction<T> {
     console.error({model: model});
     throw new Error("Method not implemented.");

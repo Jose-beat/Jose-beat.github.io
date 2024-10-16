@@ -28,10 +28,10 @@ export class AuthService implements IAuthRepository, IRepository {
   GetAll<T>(model: new (...args: any[]) => T): Observable<ITransaction<T>> {
     throw new Error('Method not implemented.');
   }
-  GetById<T extends TableData>(id: String, model: new (...args: any[]) => T): Promise<ITransaction<T>> {
-    return this.dbCreator.GetById(id, model);
+  GetById<T extends TableData>(model: new (...args: any[]) => T, id: String, ): Promise<ITransaction<T>> {
+    return this.dbCreator.GetById(model, id);
   }
-  Create<T extends TableData>(modelName: new (...args: any[]) => T, model: T): Promise<ITransaction<T>> {
+  Create<T extends TableData>(model: new (...args: any[]) => T, object: T): Promise<ITransaction<T>> {
     throw new Error('Method not implemented.');
   }
   Update<T extends TableData>(model: T): ITransaction<T> {

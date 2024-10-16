@@ -48,7 +48,7 @@ export class ProfilePageComponent implements OnInit{
     if(!this.authResponse.Error){
       let id = this.authResponse.ModelObject!.id;
       console.log("Mi ID : " + id);
-      await this.authService.GetById<User>(id, User).then((response)=>{
+      await this.authService.GetById<User>(User, id).then((response)=>{
 
         // console.log(typeof(response.ModelObject));
         let object = response.ModelObject as User;

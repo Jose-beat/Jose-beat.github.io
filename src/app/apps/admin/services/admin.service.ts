@@ -17,11 +17,11 @@ export class AdminService implements IRepository{
   GetAll<T extends TableData>(model: new (...args: any[]) => T, keyCondition? : string, valueCondition? : string): Observable<ITransaction<T>> {
     return this.dbCreator.GetAll(model, keyCondition, valueCondition);
   }
-  GetById<T extends TableData>(id: String, model: new (...args: any[]) => T): Promise<ITransaction<T>> {
+  GetById<T extends TableData>(model: new (...args: any[]) => T, id: String): Promise<ITransaction<T>> {
     throw new Error('Method not implemented.');
   }
-  Create<T extends TableData>(modelName: new (...args: any[]) => T, model: T): Promise<ITransaction<T>> {
-    return this.dbCreator.Create<T>(modelName,model);
+  Create<T extends TableData>(model: new (...args: any[]) => T, object: T): Promise<ITransaction<T>> {
+    return this.dbCreator.Create<T>(model,object);
   }
   Update<T extends TableData>(model: T): ITransaction<T> {
     throw new Error('Method not implemented.');

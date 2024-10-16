@@ -12,14 +12,14 @@ export abstract class Factory {
     return factory.GetAll(model, keyCondition, valueCondition);
   }
 
-  GetById<T extends TableData>(id : String, model: new (...args: any[]) => T) : Promise<ITransaction<T>>{
+  GetById<T extends TableData>(model: new (...args: any[]) => T, id: String) : Promise<ITransaction<T>>{
     const factory = this.FactoryMethod();
-    return factory.GetById(id, model);
+    return factory.GetById(model, id);
   }
 
-  Create<T extends TableData>(modelName: new (...args: any[]) => T, model : T) : Promise<ITransaction<T>>{
+  Create<T extends TableData>(model: new (...args: any[]) => T, object: T) : Promise<ITransaction<T>>{
     const factory = this.FactoryMethod();
-    return factory.Create<T>(modelName,model);
+    return factory.Create<T>(model,object);
   }
 
   Update<T extends TableData>(model : T) : ITransaction<T>{

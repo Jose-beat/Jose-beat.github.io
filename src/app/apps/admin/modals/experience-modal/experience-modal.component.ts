@@ -134,7 +134,7 @@ export class ExperienceModalComponent implements OnChanges{
       switch(typeAction){
         case "create":
           console.warn(typeof this.experience);
-          await this.createExperience(this.experience);
+          await this.createExperience(newExperience);
           break;
         case "edit":
           console.warn(typeof this.experience);
