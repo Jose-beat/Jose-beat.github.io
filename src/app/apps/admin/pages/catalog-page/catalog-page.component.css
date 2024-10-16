@@ -1,0 +1,17 @@
+.collapse-row{
+  cursor: pointer;
+}
+
+@media (min-width: 991px) {
+  .collapse:not(.show) {
+      display: none !important;
+  }
+}
+
+.title-sub-td{
+  margin-top: 10px;
+}
+
+.table-icons{
+  width: 20px;
+}

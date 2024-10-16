@@ -1,6 +1,8 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild, viewChild } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
+import { GraphicUtilities } from '../../../../shared/utilities/graphic.utilities';
+import { MenuItem } from '../../../../shared/interfaces/component-interfaces/MenuItem.interface';
 
 @Component({
   selector: 'beat-nav-bar',
@@ -10,7 +12,7 @@ import { filter } from 'rxjs';
 export class NavBarComponent  implements OnInit{
   //@ViewChild('navbar') navbar! : ElementRef;
 
-  menuItems = [
+  menuItems : MenuItem[] = [
     {label: 'Curriculum', target: '#home', route: '/web/resume'},
     {label: 'Portafolio', target: '#briefCase',route: '/web/briefCase'},
     {label: 'Contacto', target: '#contact', route: '/web/contact'},
@@ -21,20 +23,12 @@ export class NavBarComponent  implements OnInit{
   constructor(private router : Router){}
 
   ngOnInit(): void {
-    this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd)
-    ).subscribe(()=> {
-        this.closeNavbar();
-    });
+
+    GraphicUtilities.closeNavbar(this.router);
 
 
   }
-  closeNavbar(){
-    const navbarCollapse = document.querySelector('.navbar-collapse');
-    if (navbarCollapse && navbarCollapse.classList.contains('show')) {
-      navbarCollapse.classList.remove('show');
-    }
-  }
+
 
 
 
