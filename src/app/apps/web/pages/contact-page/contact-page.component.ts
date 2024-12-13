@@ -10,11 +10,12 @@ import Point from 'ol/geom/Point';
 import {Vector as VectorLayer} from 'ol/layer';
 import {Vector as VectorSource} from 'ol/source';
 import {Icon} from 'ol/style';
-import { GlobalService } from '../../../../services/global/global.service';
+import { GlobalService } from '../../../../shared/services/global/global.service';
+
 
 
 @Component({
-  selector: 'app-contact-page',
+  selector: 'beat-contact-page',
   templateUrl: './contact-page.component.html',
   styleUrl: './contact-page.component.css'
 })

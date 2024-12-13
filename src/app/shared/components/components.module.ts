@@ -4,12 +4,16 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { PopupComponent } from './popup/popup.component';
 import { ComponentsMaterialModule } from '../components-material/components-material.module';
+import { LoaderComponent } from './loader/loader.component';
+import { BadgeComponent } from './badge/badge.component';
 
 
 
 @NgModule({
   declarations: [
-    PopupComponent
+    PopupComponent,
+    LoaderComponent,
+    BadgeComponent
   ],
   imports: [
     CommonModule,
@@ -17,7 +21,9 @@ import { ComponentsMaterialModule } from '../components-material/components-mate
     ComponentsMaterialModule
   ],
   exports: [
-    PopupComponent
+    PopupComponent,
+    LoaderComponent,
+    BadgeComponent
   ]
 })
 export class ComponentsModule { }

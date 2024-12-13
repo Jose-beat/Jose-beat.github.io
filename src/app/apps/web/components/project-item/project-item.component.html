@@ -1,0 +1,24 @@
+<div class="row">
+  <div *ngFor="let item of projectItem" class="col-lg-3 col-md-6 col-sm-6 mb-4">
+
+    <mat-card  class="brief-card">
+      <mat-card-header>
+        <mat-icon mat-card-avatar>{{item.Icon}}</mat-icon>
+        <mat-card-title>{{item.Title}}</mat-card-title>
+        <mat-card-subtitle>{{item.SubTitle}}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image [src]="INITIAL_IMAGE_PATH + item.ImagePath" alt="Project Image">
+      <mat-card-content  class="h-50">
+        <br>
+        <p>
+          {{item.Description}}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button class="mr-3" mat-flat-button  color="primary">Rep. Pendiente</button>
+        <button mat-button  color="primary">Informacion</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
+

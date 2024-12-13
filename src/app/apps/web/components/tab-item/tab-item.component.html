@@ -1,0 +1,17 @@
+<mat-tab-group mat-stretch-tabs="false" mat-align-tabs="center">
+  <mat-tab *ngFor="let item of technologyItems" >
+    <ng-template mat-tab-label >{{item.Title}}</ng-template>
+
+    <!-- Tercer elemento -->
+    <div class="container text-center mt-5">
+      <div class="row">
+        <div *ngFor="let tech of item.Items" class="col-6 col-md-4 col-sm-6">
+          <!---TODO:Podemos aplicar un pipe para el proceso de imagenes-->
+          <img class="web-icon" [src]="INITIAL_ICON_PATH+tech.IconPath"  alt="">
+          <h4>{{tech.Title}}</h4>
+        </div>
+
+      </div>
+    </div>
+    </mat-tab>
+</mat-tab-group>

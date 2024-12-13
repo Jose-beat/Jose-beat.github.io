@@ -11,45 +11,8 @@
                   <p class="card-text"><strong>Nombre: </strong>Jose Uriel Rodriguez Ramirez</p>
                   <p class="card-text"><strong>Ubicacion: </strong>Puebla, Mexico</p>
                   <p class="card-text"><strong>Titulo: </strong>Ingenieria en Gestion y Desarrollo de Software</p>
-
                   <h2 class="card-title">Informacion de Contacto</h2>
-                  <div class="container text-center mt-5">
-                    <div class="row d-flex flex-wrap">
-                      <div class="col-6 col-md-4 col-lg-3 mb-3 text-center">
-
-                        <button (click)="redirectTo(emailLink)" class="material-icons head-icons mb-3" mat-fab color="primary" aria-label="Example icon button with a bookmark icon">
-                          <mat-icon>email</mat-icon>
-                        </button>
-                        <h4 class="fw-bold">uri.rm&#64;gmail.com</h4>
-                      </div>
-                      <div class="col-6 col-md-4 col-lg-3 mb-3 text-center">
-                        <button (click)="redirectTo(callLink)" class="material-icons head-icons  mb-3" mat-fab color="primary" aria-label="Example icon button with a bookmark icon">
-                          <mat-icon>call</mat-icon>
-                        </button>
-                        <h4 class="fw-bold">+52 2491302526</h4>
-                      </div>
-                      <div class="col-6 col-md-4 col-lg-3 mb-3 text-center">
-                        <button (click)="redirectTo(mapsLink)" class="material-icons head-icons  mb-3" mat-fab color="primary" aria-label="Example icon button with a bookmark icon">
-                          <mat-icon>location_on</mat-icon>
-                        </button>
-                        <h4 class="fw-bold">Xochitlan Todos Santos Puebla</h4>
-                      </div>
-                      <div class="col-6 col-md-4 col-lg-3 mb-3 text-center">
-                        <button (click)="redirectTo(repositoryLink)" class="material-icons head-icons  mb-3" mat-fab color="primary" aria-label="Example icon button with a bookmark icon">
-                          <mat-icon>code</mat-icon>
-                        </button>
-                        <h4 class="fw-bold">Jose-beat</h4>
-                      </div>
-                      <div class="col-6 col-md-4 col-lg-3 mb-3 text-center">
-                        <button (click)="downloadResume()" class="material-icons head-icons  mb-3" mat-fab color="primary" aria-label="Example icon button with a bookmark icon">
-                          <mat-icon>download</mat-icon>
-                        </button>
-                        <h4 class="fw-bold">Descargar Curriculum</h4>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p> -->
+                  <beat-profile-button></beat-profile-button>
                 </div>
               </div>
 
@@ -64,72 +27,7 @@
         <div class="card custom-border">
             <div class="card-body">
               <h2 class="card-title">Experiencia</h2>
-              <mat-accordion>
-                <mat-expansion-panel [expanded]="true">
-                  <mat-expansion-panel-header>
-                    <mat-panel-title class="web-title fw-bold">
-                      H. Ayuntamiento
-                    </mat-panel-title>
-                    <mat-panel-description>
-                      May 2020- Ago 2020
-                    </mat-panel-description>
-                  </mat-expansion-panel-header>
-
-                  <p>
-                    Analisis y toma de requerimientos para definicion
-                    de alcances para el proyecto en el Honorable Ayuntamiento de Tecamachalco.
-                  </p>
-                </mat-expansion-panel>
-
-                <mat-expansion-panel >
-                  <mat-expansion-panel-header>
-                    <mat-panel-title>
-                      TICAS
-                    </mat-panel-title>
-                    <mat-panel-description>
-                      Ago 2021 - Abr 2022
-                    </mat-panel-description>
-                  </mat-expansion-panel-header>
-                  <p>
-                    Desarrollo de plataformas para la administracion de
-                      restaurantes, pedidos en linea desarrollados en NET CORE para aplicaciones web
-                      y Flutter para aplicaciones moviles ademas de brindar soporte a sistemas web
-                      de Instituciones educativas.
-                  </p>
-                </mat-expansion-panel>
-
-                <mat-expansion-panel >
-                  <mat-expansion-panel-header>
-                    <mat-panel-title>
-                      Xhofhox
-                    </mat-panel-title>
-                    <mat-panel-description>
-                      Oct 2021 - Oct 2022
-                    </mat-panel-description>
-                  </mat-expansion-panel-header>
-                  <p>
-                    Desarrollo para plataformas web de administracion de
-                    campamentos en EUA y la gestion de agendas personales
-                    y profesionales con aplicaciones web.
-                  </p>
-                </mat-expansion-panel>
-
-                <mat-expansion-panel >
-                  <mat-expansion-panel-header>
-                    <mat-panel-title>
-                      Softtek
-                    </mat-panel-title>
-                    <mat-panel-description>
-                      Nov 2022 - Actual
-                    </mat-panel-description>
-                  </mat-expansion-panel-header>
-                  <p>
-                    Soporte y desarrollo de aplicaciones web internas para la gestion de inmuebles y proveedores
-                      para empresas de tienda a nivel nacional.
-                  </p>
-                </mat-expansion-panel>
-
-              </mat-accordion>
+            <beat-accordion-item [accordionItems]="experienceItems" ></beat-accordion-item>
             </div>
           </div>
     </div>
@@ -141,58 +39,7 @@
           <div class="col">
             <div class="card-body">
               <h2 class="card-title">Certificaciones</h2>
-                  <!-- <p class="card-text">
-                    Texto sobre idiomas manejados
-                  </p> -->
-                  <ol class="list-group list-group-numbered">
-                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                      <div class="ms-2 me-auto">
-                        <div class="fw-bold">CCNA R&S:</div>
-                        Routing and Switching Essentials
-                      </div>
-                      <button mat-icon-button color="primary" (click)="getPDF('https://drive.google.com/file/d/1gqgdvpH52pQ3vfOxu0GPDgNBYNzefRxd/preview')" aria-label="Example icon button with a home icon">
-                        <mat-icon>visibility</mat-icon>
-                      </button>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                      <div class="ms-2 me-auto">
-                        <div class="fw-bold">IT ESSENTIALS PC:</div>
-                        Hardware and Software
-                      </div>
-                      <button mat-icon-button color="primary" (click)="getPDF('https://drive.google.com/file/d/1zF-61TAQA9J7TaV6PyClau216kBZlxu8/preview')" aria-label="Example icon button with a home icon">
-                        <mat-icon>visibility</mat-icon>
-                      </button>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                      <div class="ms-2 me-auto">
-                        <div class="fw-bold">MICROSOFT AZ-900 CERTIFIED:</div>
-                        Azure Fundamentals
-                      </div>
-                      <button mat-icon-button color="primary" (click)="getPDF('https://drive.google.com/file/d/1NaaXqofIILrok9WPUEYZ-Z-jmf4wPNjr/preview')" aria-label="Example icon button with a home icon">
-                        <mat-icon>visibility</mat-icon>
-                      </button>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                      <div class="ms-2 me-auto">
-                        <div class="fw-bold">FOUNDATIONAL C# WITH MICROSOFT:</div>
-                        C# Fundamentals
-                      </div>
-                      <button mat-icon-button color="primary" (click)="getPDF('https://drive.google.com/file/d/1iN1WXyoXLqyOWwLGbqZdGKlgzaKYUOkE/preview')" aria-label="Example icon button with a home icon">
-                        <mat-icon>visibility</mat-icon>
-                      </button>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                      <div class="ms-2 me-auto">
-                        <div class="fw-bold">MICROSOFT AI-900 CERTIFIED:</div>
-                        AI and Machine Learning Fundamentals
-                      </div>
-                      <button mat-icon-button color="primary" (click)="getPDF('https://drive.google.com/file/d/1KaLQLP83BtOWZXE5_-TeKeekfZ-DP_wf/preview')" aria-label="Example icon button with a home icon">
-                        <mat-icon>visibility</mat-icon>
-                      </button>
-                    </li>
-                  </ol>
-
-
+                  <beat-viewer-item></beat-viewer-item>
           </div>
           </div>
 
@@ -213,160 +60,7 @@
                   sobre una tecnologia pero podemos hacernos una idea con
                   nuestros proyectos y experiencias.
                 </p>
-
-                <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
-
-                  <mat-tab label="FrontEnd">
-                   <!-- Tercer elemento -->
-                   <div class="container text-center mt-5">
-                    <div class="row">
-                      <div class="col">
-                        <img class="web-icon" src="favicon.ico" alt="">
-                        <h4>Angular</h4>
-                      </div>
-                      <div class="col">
-                        <img class="web-icon" src="assets/icons/icon-btp.svg" alt="">
-                        <h4>Bootstrap</h4>
-                      </div>
-                    </div>
-                  </div>
-
-
-                  </mat-tab>
-
-                  <mat-tab label="BackEnd">
-                    <div class="container text-center mt-5">
-                      <div class="row">
-                        <div class="col">
-                          <img class="web-icon" src="assets/icons/icon-cs.svg" alt="">
-                          <h4>C#</h4>
-                        </div>
-                        <div class="col">
-                          <img class="web-icon" src="assets/icons/icon-cfsn.svg" alt="">
-                          <h4>ColdFusion</h4>
-                        </div>
-                        <div class="col">
-                          <img class="web-icon"  src="assets/icons/icon-jv.svg" alt="">
-                          <h4>Java</h4>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="container  text-center mt-5">
-                      <div class="row">
-                        <div class="col">
-                          <img class="web-icon" src="assets/icons/icon-php.svg" alt="">
-                          <h4>PHP</h4>
-                        </div>
-
-                      </div>
-                    </div>
-
-
-                  </mat-tab>
-                  <mat-tab label="Frameworks">
-                    <div class="container text-center mt-5">
-                      <div class="row">
-                        <div class="col">
-                          <img class="web-icon" src="favicon.ico" alt="">
-                          <h4>Angular</h4>
-                        </div>
-                        <div class="col">
-                          <img class="web-icon" src="assets/icons/icon-net.svg" alt="">
-                          <h4>.NET MVC</h4>
-                        </div>
-                        <div class="col">
-                          <img class="web-icon"  src="assets/icons/icon-net.svg" alt="">
-                          <h4>.NET API</h4>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="container  text-center mt-5">
-                      <div class="row">
-                        <div class="col">
-                          <img class="web-icon" src="assets/icons/icon-lv.svg" alt="">
-                          <h4>Laravel</h4>
-                        </div>
-
-                      </div>
-                    </div>
-
-
-                  </mat-tab>
-                  <mat-tab label="Base de Datos">
-                    <div class="container text-center mt-5">
-                      <div class="row">
-                        <div class="col">
-                          <img class="web-icon" src="assets/icons/icon-sqls.svg" alt="">
-                          <h4>SQL Server</h4>
-                        </div>
-                        <div class="col">
-                          <img class="web-icon" src="assets/icons/icon-mysql.svg" alt="">
-                          <h4>MySQL</h4>
-                        </div>
-                        <div class="col">
-                          <img class="web-icon" src="assets/icons/icon-postrg.svg" alt="">
-                          <h4>PostgreSQL</h4>
-                        </div>
-                      </div>
-                    </div>
-                  </mat-tab>
-
-                  <mat-tab label="Software">
-                    <div class="container text-center mt-5">
-                      <div class="row">
-                        <div class="col">
-                          <img class="web-icon" src="assets/icons/icon-vs.svg" alt="">
-                          <h4>Visual Studio</h4>
-                        </div>
-                        <div class="col">
-                          <img class="web-icon" src="assets/icons/icon-vsc.svg" alt="">
-                          <h4>VS Code</h4>
-                        </div>
-                        <div class="col">
-                          <img class="web-icon" src="assets/icons/icon-dbv.svg" alt="">
-                          <h4>Dbeaver</h4>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="container text-center mt-5">
-                      <div class="row">
-                        <div class="col">
-                          <img class="web-icon" src="assets/icons/icon-pstn.svg" alt="">
-                          <h4>Postman</h4>
-                        </div>
-                        <div class="col">
-                          <img class="web-icon" src="assets/icons/icon-winscp.png" alt="">
-                          <h4>WinSCP</h4>
-                        </div>
-                        <div class="col">
-                          <img class="web-icon" src="assets/icons/icon-as.svg" alt="">
-                          <h4>Android Studio</h4>
-                        </div>
-                      </div>
-                    </div>
-
-                  </mat-tab>
-
-                  <mat-tab label="Tecnologia en la Nube">
-
-                    <div class="container text-center mt-5">
-                      <div class="row">
-                        <div class="col">
-                          <img class="web-icon" src="assets/icons/icon-az.svg" alt="">
-                          <h4>Azure</h4>
-                        </div>
-
-                        <div class="col">
-                          <img class="web-icon" src="assets/icons/icon-ibm.svg" alt="">
-                          <h4>IBM Cloud</h4>
-                        </div>
-                      </div>
-                    </div>
-
-                  </mat-tab>
-
-                </mat-tab-group>
-
+                <beat-tab-item></beat-tab-item>
               </div>
             </div>
 
@@ -387,27 +81,9 @@
                   pero en la lectura me siento bastante familiarizado.
                 </p>
 
-                <div class="col mt-3">
-                  <strong><p class="card-text">Español</p></strong>
-                  <mat-progress-bar
-                    class="example-margin"
-                    [value]="100"
-                    [bufferValue]="100">
-                  </mat-progress-bar>
-                </div>
-
-                <div class="col mt-3">
-                  <strong><p class="card-text">Ingles</p></strong>
-                  <mat-progress-bar
-                    class="example-margin"
-                    [value]="50"
-                    [bufferValue]="75">
-                  </mat-progress-bar>
-                </div>
-
+                <beat-progress-list-item></beat-progress-list-item>
         </div>
         </div>
-
       </div>
     </div>
     <div class="card mb-3 custom-border" >
@@ -418,54 +94,7 @@
                 <p class="card-text">
                   Los titulos aun los tengo en tramite
                 </p>
-                <mat-accordion>
-                  <mat-expansion-panel [expanded]="true">
-                    <mat-expansion-panel-header>
-                      <mat-panel-title class="web-title fw-bold">
-                        INGENIERIA
-                      </mat-panel-title>
-                      <mat-panel-description>
-                        Sep 2020 - May 2022
-                      </mat-panel-description>
-                    </mat-expansion-panel-header>
-                    <p>
-                      ING. Gestion y Desarrollo de Software en la Universidad Tecnológica de Tecamachalco
-                    </p>
-                  </mat-expansion-panel>
-
-                  <mat-expansion-panel >
-                    <mat-expansion-panel-header>
-                      <mat-panel-title class="web-title fw-bold">
-                        TSU
-                      </mat-panel-title>
-                      <mat-panel-description>
-                        Ago 2018 - Abr 2020
-                      </mat-panel-description>
-                    </mat-expansion-panel-header>
-                    <p>
-                      TSU en TIC’S Desarrollo de Software Multiplataforma en la Universidad Tecnológica de Tecamachalco
-                    </p>
-                  </mat-expansion-panel>
-
-                  <mat-expansion-panel >
-                    <mat-expansion-panel-header >
-                      <mat-panel-title class="web-title fw-bold">
-                        Bachillerato
-                      </mat-panel-title>
-                      <mat-panel-description>
-                        Ago 2015 - Jul 2018
-                      </mat-panel-description>
-                    </mat-expansion-panel-header>
-                    <p>
-                      Bachillerato con Especialidad en Derecho en el Bachillerato General Oficial Macario Valencia Vallejo
-                    </p>
-                  </mat-expansion-panel>
-
-
-
-                </mat-accordion>
-
-
+                <beat-accordion-item [accordionItems]="educationItems" ></beat-accordion-item>
         </div>
         </div>
 
@@ -476,31 +105,7 @@
     <div class="card custom-border" >
         <div class="card-body">
           <h2 class="card-title">Participaciones</h2>
-          <ol class="list-group list-group-numbered">
-            <li class="list-group-item d-flex justify-content-between align-items-start">
-              <div class="ms-2 me-auto">
-                <div class="web-title fw-bold">Cisco R&S</div>
-                <strong class="web-text">Tareas realizadas:</strong>
-                <p class="web-text">
-                  Participación en el curso Cisco R&S: Introduction to Networks
-                </p>
-              </div>
-              <span class="badge text-bg-primary">May 2019</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-start">
-              <div class="ms-2 me-auto">
-                <div class="web-title fw-bold">Imparticion de Talleres</div>
-                <strong class="web-text">Tareas realizadas:</strong>
-                <p class="web-text">
-                  Practicipacion impartiendo el taller “Desarrollo movil con flutter y
-                  consumo de Web Service” en el Instituto Tecnologico Superior de
-                  Acatlan de Osorio.
-                </p>
-              </div>
-              <span class="badge text-bg-primary">Abr 2022</span>
-            </li>
-          </ol>
-
+          <beat-list-item></beat-list-item>
         </div>
       </div>
 </div>
