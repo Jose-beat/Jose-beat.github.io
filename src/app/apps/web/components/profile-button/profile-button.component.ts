@@ -29,7 +29,7 @@ export class ProfileButtonComponent {
   public localButtons : ButtonItem[] = [
     {Name: 'email', Content: 'uri.rm.45@gmail.com', Link: 'mailto:uri.rm.45@gmail.com', Icon:'email', Action:'redirect'},
     {Name: 'location', Content: '+52 2491302526', Link: 'tel:+522491302526', Icon:'call', Action:'redirect'},
-    {Name: 'phone_number', Content: 'Xochitlan Todos Santos Puebla', Link: 'https://www.google.com/maps/@18.7049109,-97.7715965,15.75z?entry=ttu', Icon:'location_on', Action:'redirect'},
+    {Name: 'phone_number', Content: 'Puebla, Mexico', Link: 'https://www.google.com/maps/@18.7049109,-97.7715965,15.75z?entry=ttu', Icon:'location_on', Action:'redirect'},
     {Name: 'repository', Content: 'Jose-beat', Link: 'https://github.com/Jose-beat', Icon:'code', Action:'redirect'},
     {Name: 'download_resume', Content: 'Descargar Curriculum', Link: '', Icon:'download', Action:'resume'},
   ];
