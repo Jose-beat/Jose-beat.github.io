@@ -50,7 +50,7 @@ export class ContactPageComponent implements AfterViewInit{
       ],
       controls: controls,
       view: new View({
-        center: fromLonLat([ -97.774614,18.705795]), // Coordenadas de Xochitlan Todos Santos
+        center: fromLonLat([ -98.2019300,19.0433400]), // Coordenadas de Xochitlan Todos Santos
         zoom: 16
       }),
 
