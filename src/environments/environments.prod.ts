@@ -1,4 +1,4 @@
 //* Variables globales de produccion
 export const environments = {
-  appColorTheme: 'blue'
+  LOADER_SVG: "assets/img/loader.svg"
 }
